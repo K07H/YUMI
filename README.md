@@ -6,7 +6,7 @@ It supports Windows, Wine, and most Unix systems (Linux, MacOS, SteamOS, ...).<b
 <br><br>
 
 **Version:** 1.0.0<br>
-**Author:** OSubMarin [contact@osubmarin.com](mailto:contact@osubmarin.com)<br>
+**Author:** OSubMarin <[contact@osubmarin.com](mailto:contact@osubmarin.com)><br>
 **Contributors:** None yet, you're welcome to join :)<br>
 **ModAPI Discord server:** [https://discord.gg/VAMuXyd](https://discord.gg/VAMuXyd)<br>
 **YUMI Discord server:** [https://discord.gg/WDvjt7csWh](https://discord.gg/WDvjt7csWh)<br>
