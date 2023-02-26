@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/yumiresources_unix">
+        <file>bepinex/unix/BepInEx/core/0Harmony.dll</file>
+        <file>bepinex/unix/BepInEx/core/0Harmony.xml</file>
+        <file>bepinex/unix/BepInEx/core/0Harmony20.dll</file>
+        <file>bepinex/unix/BepInEx/core/BepInEx.dll</file>
+        <file>bepinex/unix/BepInEx/core/BepInEx.Harmony.dll</file>
+        <file>bepinex/unix/BepInEx/core/BepInEx.Harmony.xml</file>
+        <file>bepinex/unix/BepInEx/core/BepInEx.Preloader.dll</file>
+        <file>bepinex/unix/BepInEx/core/BepInEx.Preloader.xml</file>
+        <file>bepinex/unix/BepInEx/core/BepInEx.xml</file>
+        <file>bepinex/unix/BepInEx/core/HarmonyXInterop.dll</file>
+        <file>bepinex/unix/BepInEx/core/Mono.Cecil.dll</file>
+        <file>bepinex/unix/BepInEx/core/Mono.Cecil.Mdb.dll</file>
+        <file>bepinex/unix/BepInEx/core/Mono.Cecil.Pdb.dll</file>
+        <file>bepinex/unix/BepInEx/core/Mono.Cecil.Rocks.dll</file>
+        <file>bepinex/unix/BepInEx/core/MonoMod.RuntimeDetour.dll</file>
+        <file>bepinex/unix/BepInEx/core/MonoMod.RuntimeDetour.xml</file>
+        <file>bepinex/unix/BepInEx/core/MonoMod.Utils.dll</file>
+        <file>bepinex/unix/BepInEx/core/MonoMod.Utils.xml</file>
+        <file>bepinex/unix/doorstop_libs/libdoorstop_x64.dylib</file>
+        <file>bepinex/unix/doorstop_libs/libdoorstop_x64.so</file>
+        <file>bepinex/unix/doorstop_libs/libdoorstop_x86.dylib</file>
+        <file>bepinex/unix/doorstop_libs/libdoorstop_x86.so</file>
+        <file>bepinex/unix/run_bepinex.sh</file>
+        <file>bepinex/unix/run_yumi_bepinex.sh</file>
+    </qresource>
+</RCC>
