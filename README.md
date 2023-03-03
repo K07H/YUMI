@@ -5,7 +5,7 @@ It uses [Qt library](https://www.qt.io/) for rendering and [BepInEx library](htt
 It supports Windows, Proton, Wine, and most Unix systems (Linux, MacOS, SteamOS, ...).<br>
 <br><br>
 
-**Version:** 1.0.1<br>
+**Version:** 1.0.2<br>
 **Author:** OSubMarin <[contact@osubmarin.com](mailto:contact@osubmarin.com)><br>
 **Contributors:** None yet, you're welcome to join :)<br>
 **ModAPI Discord server:** [https://discord.gg/VAMuXyd](https://discord.gg/VAMuXyd)<br>
