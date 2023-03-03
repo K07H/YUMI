@@ -11,5 +11,5 @@ Check out [the wiki](https://github.com/K07H/YUMI/wiki) for more info.
 **Contributors:** None yet, you're welcome to join :)<br>
 **ModAPI Discord server:** [https://discord.gg/VAMuXyd](https://discord.gg/VAMuXyd)<br>
 **YUMI Discord server:** [https://discord.gg/WDvjt7csWh](https://discord.gg/WDvjt7csWh)<br>
-**License:** [YUMI Open Source License](https://lc-it-solutions.com/resources/yumi-open-source-license)<br>
+**License:** [YUMI Open Source License](https://raw.githubusercontent.com/K07H/YUMI/main/LICENSE.txt)<br>
 <br><br>
