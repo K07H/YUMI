@@ -87,17 +87,19 @@
 #define DEBUG_PAINTING false
 #define DEBUG_CLICK_EVENTS false
 #endif
-#define QT_NO_SSL true
+#ifndef QT_NO_SSL
+#define QT_NO_SSL
+#endif
 
 #define APP_VERSION "1.0.1"
 #define RUN_YUMI_SCRIPT_NAME "run_yumi_bepinex"
 #define SHOW_LICENSE_AT_STARTUP false
 #define YUMI_LICENSE_URL "https://lc-it-solutions.com/resources/yumi-open-source-license"
-#define YUMI_SHARE_THEME_URL "http://osubmarin.com/yumi/share_theme.php"
-#define YUMI_VERSION_CHECK_URL "http://osubmarin.com/yumi/latest_version.php"
-#define YUMI_BEPINEX_VERSION_CHECK_URL "http://osubmarin.com/yumi/latest_bepinex_version.php"
+#define YUMI_SHARE_THEME_URL "http://osubmarin.fr/yumi/share_theme.php"
+#define YUMI_VERSION_CHECK_URL "http://osubmarin.fr/yumi/latest_version.php"
+#define YUMI_BEPINEX_VERSION_CHECK_URL "http://osubmarin.fr/yumi/latest_bepinex_version.php"
 
-#define DOWNLOAD_BEPINEX_URL "http://osubmarin.com/yumi/bepinex/"
+#define DOWNLOAD_BEPINEX_URL "http://osubmarin.fr/yumi/bepinex/"
 #define UNIX_BEPINEX_NAME "unix_bepinex"
 #define WINX64_BEPINEX_NAME "winx64_bepinex"
 #define WINX86_BEPINEX_NAME "winx86_bepinex"
