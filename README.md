@@ -6,7 +6,7 @@ It supports Windows, Proton, Wine, and most Unix systems (Linux, MacOS, SteamOS,
 Check out [the wiki](https://github.com/K07H/YUMI/wiki) for more info.
 <br><br>
 
-**Version:** 1.0.2<br>
+**Version:** 1.0.3<br>
 **Author:** OSubMarin <[contact@osubmarin.com](mailto:contact@osubmarin.com)><br>
 **Contributors:** None yet, you're welcome to join :)<br>
 **ModAPI Discord server:** [https://discord.gg/VAMuXyd](https://discord.gg/VAMuXyd)<br>
