@@ -158,19 +158,19 @@ void LicenseViewer::updateStyles()
     update();
 }
 
-void LicenseViewer::licenseAccepted()
-{
-    Config::Instance()->checkedNoticesAndLicense = true;
-    Config::Instance()->configChanged = true;
-    close();
-}
-
 void LicenseViewer::doShowAt(const QPoint& center)
 {
     this->show();
     this->adjustSize();
     this->move(center.x() - (this->width() / 2), center.y() - (this->height() / 2));
     QApplication::restoreOverrideCursor();
+}
+
+void LicenseViewer::licenseAccepted()
+{
+    Config::Instance()->checkedNoticesAndLicense = true;
+    Config::Instance()->configChanged = true;
+    close();
 }
 
 void LicenseViewer::loadLicense()

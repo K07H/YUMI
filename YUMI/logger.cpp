@@ -78,9 +78,7 @@
 #include <QTextStream>
 #include "logger.h"
 
-QString Logger::logFilename = QStringLiteral(LOG_FILENAME);
-QString Logger::backupLogFilename = QStringLiteral(BACKUP_LOG_FILENAME);
-QFile Logger::outputLogFile = QFile(Logger::logFilename);
+QFile Logger::outputLogFile = QFile(LOG_FILENAME);
 QtMessageHandler Logger::qtDefaultMsgHandler = qInstallMessageHandler(0);
 
 void Logger::writeToLogFile(const QString& toLog)
@@ -129,17 +127,28 @@ void Logger::initialize()
 {
     if (outputLogFile.exists())
     {
-        bool backupPreviousLogs = true;
+        try
+        {
+            QFile backupLogFileC = QFile(BACKUP_LOG_FILENAME_C);
+            if (backupLogFileC.exists())
+                backupLogFileC.remove();
 
-        QFile backupLogFile = QFile(BACKUP_LOG_FILENAME);
-        if (backupLogFile.exists())
-            if (!backupLogFile.remove())
-                backupPreviousLogs = false;
+            QFile backupLogFileB = QFile(BACKUP_LOG_FILENAME_B);
+            if (backupLogFileB.exists())
+                backupLogFileB.rename(BACKUP_LOG_FILENAME_C);
 
-        if (backupPreviousLogs)
-            outputLogFile.copy(BACKUP_LOG_FILENAME);
+            QFile backupLogFileA = QFile(BACKUP_LOG_FILENAME_A);
+            if (backupLogFileA.exists())
+                backupLogFileA.rename(BACKUP_LOG_FILENAME_B);
+        }
+        catch (...) { }
 
-        outputLogFile.remove();
+        QFile toRemove = QFile(BACKUP_LOG_FILENAME_A);
+        if (toRemove.exists())
+            toRemove.remove();
+
+        if (!toRemove.exists())
+            QFile(LOG_FILENAME).rename(BACKUP_LOG_FILENAME_A);
     }
 
     qInstallMessageHandler(myCustomMessageHandler);

@@ -89,10 +89,11 @@ WindowTitle::WindowTitle(const QString& title, QWidget* parent) : QWidget(parent
 
     this->_appIconTransparentLbl = new QLabel("");
     this->_appIconTransparentLbl->setPixmap(Assets::Instance()->appIconImg);
+    this->_appIconTransparentLbl->setAlignment(Qt::AlignBottom);
 
     this->_titleLayout = new QHBoxLayout(this);
     this->_titleLayout->addWidget(this->_appIconTransparentLbl);
-    this->_titleLayout->addWidget(this->_title);
+    this->_titleLayout->addWidget(this->_title, Qt::AlignTop);
     this->_titleLayout->setContentsMargins(1, 1, 1, 3);
     this->_titleLayout->setSpacing(0);
     this->_titleLayout->setAlignment(Qt::AlignLeft);

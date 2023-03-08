@@ -73,7 +73,11 @@
 ** Franklin Street, Fifth Floor, Boston, MA 02110 USA.
 */
 
+#include <QDebug>
+#include <QFile>
+#include <QDir>
 #include "utils.h"
+#include "base64.h"
 
 QString Utils::toUnixPath(const QString& path)
 {
@@ -102,4 +106,102 @@ QString Utils::stripSpecialCharacters(const QString& str)
             if (str[i] == ' ' || str[i] == '#' || str[i] == ';' || str[i].isLetterOrNumber())
                 result += str[i];
     return result;
+}
+
+QString Utils::toReadableFileSize(const qint64 size)
+{
+    if (size < 1024)
+        return (size > 0 ? "1 Ko" : "0 Ko");
+    QString digits = QString::number((size / 1024) + ((size % 1024) > 0 ? 1 : 0));
+    int digitsLen = digits.length();
+    if (digitsLen <= 3)
+        return (digits + " Ko");
+    QString padded = "";
+    int rem = digitsLen % 3;
+    if (rem > 0)
+    {
+        for (int i = 0; i < rem; i++)
+            padded += digits[i];
+        padded += " ";
+    }
+    int rounds = digitsLen / 3;
+    for (int i = 0; i < rounds; i++)
+    {
+        padded += digits[rem + (i * 3)];
+        padded += digits[rem + 1 + (i * 3)];
+        padded += digits[rem + 2 + (i * 3)];
+        padded += " ";
+    }
+    return (padded + "Ko");
+}
+
+QString Utils::base64Encode(const QString& str)
+{
+    QByteArray raw = str.toUtf8();
+    const char *cstr = raw.constData();
+    int cstrLen = raw.size();
+
+    std::size_t buffLen = Base64::encodedSize(cstrLen) + 1;
+    char* buff = new char[buffLen];
+    memset(buff, 0, buffLen);
+
+    Base64::b64Encode(buff, cstr, cstrLen);
+    QString res(buff);
+    delete[] buff;
+    return res;
+}
+
+QString Utils::base64Decode(const QString& str)
+{
+    QByteArray raw = str.toUtf8();
+    const char *cstr = raw.constData();
+    int cstrLen = raw.size();
+
+    std::size_t buffLen = Base64::decodedSize(cstrLen) + 1;
+    char* buff = new char[buffLen];
+    memset(buff, 0, buffLen);
+
+    Base64::b64Decode(buff, cstr, cstrLen);
+    QString res(buff);
+    delete[] buff;
+    return res;
+}
+
+bool Utils::copyRecursively(QString sourceFolder, QString destFolder, bool overwrite)
+{
+    QDir sourceDir(sourceFolder);
+
+    if (!sourceDir.exists())
+        return false;
+
+    QDir destDir(destFolder);
+    if (!destDir.exists())
+        destDir.mkdir(destFolder);
+
+    QStringList files = sourceDir.entryList(QDir::Files | QDir::NoDotAndDotDot | QDir::NoSymLinks);
+    for (int i = 0; i< files.count(); i++) {
+        QString srcName = sourceFolder + QDir::separator() + files[i];
+        QString destName = destFolder + QDir::separator() + files[i];
+        if (overwrite)
+        {
+            QFile destFile(destName);
+            if (destFile.exists())
+                if (!destFile.remove())
+                    qWarning().nospace() << "Unable to remove existing file at " << destName << ".";
+        }
+        if (!QFile::copy(srcName, destName))
+            return false;
+    }
+
+    files.clear();
+    files = sourceDir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot | QDir::NoSymLinks);
+    for (int i = 0; i< files.count(); i++)
+    {
+        QString srcName = sourceFolder + QDir::separator() + files[i];
+        QString destName = destFolder + QDir::separator() + files[i];
+        if (!copyRecursively(srcName, destName))
+            return false;
+    }
+
+    return true;
 }

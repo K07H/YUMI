@@ -187,6 +187,8 @@ void SaveThemeWindow::updateStyles()
     this->_cancelButton->setStyleSheet(Assets::Instance()->mainBtnStyleFullWidth);
     this->setStyleSheet("SaveThemeWindow { " + Assets::Instance()->DEFAULT_WINDOW_STYLE + " }");
 
+    this->_title->updateStyles();
+
     adjustSize();
     update();
 }

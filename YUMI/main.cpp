@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
     if (!folderToLoad.isEmpty())
         GameLoader::Instance()->addGameFolder(folderToLoad);
 
-    yumi mw;
+    yumi mw(&a, NULL);
     a.setWindowIcon(Assets::Instance()->appIcon);
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
@@ -124,5 +124,6 @@ int main(int argc, char *argv[])
     mw.resize(yumi::initialWindowWidth, yumi::initialWindowHeight);
     mw.move((availableGeometry.width() - mw.width()) / 2, (availableGeometry.height() - mw.height()) / 2);
     mw.show();
+    mw.updateStyles();
     return a.exec();
 }

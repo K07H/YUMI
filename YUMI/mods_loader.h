@@ -79,6 +79,8 @@
 #include <QString>
 #include <QList>
 #include <QDir>
+#include <QMap>
+#include <tuple>
 #include "mod_info.h"
 #include "game_info.h"
 #include "bepinexfile.h"
@@ -129,9 +131,6 @@ private:
     QString getUnixExePath(const QString& gameFolderPath);
     int is64bits(QFile& gameExe);
     bool isIL2CPP(const QString& gameFolderPath);
-    QList<BepInExFile*>* getBepInExFiles(const QString& exeFilepath, const int exeType);
-    bool copyBepInExFiles(const QDir& gameFolder, const QString& gameFolderPath, const QList<BepInExFile*>& bepInExFiles);
-    bool removeBepInExFiles(const QString& gameFolderPath, const QList<BepInExFile*>& bepInExFiles);
     bool isSteamRunning();
     bool pluginsFolderExists(const QDir& gameFolder);
     QString parseSteamConfigAttribute(const QString& line, const QString& prefix);
@@ -153,24 +152,34 @@ private:
     bool createBepInExFoldersForMod(QDir& tempBepInExDir, const QString& tempBepInExDirPath, const QString& gameFolderName);
     QString extractModToTempFolder(QDir& yumiDir, const QString& modsFolderPath, const QString& modFileName);
     QString moveModFolderToTempFolder(QDir& yumiDir, const QString& modsFolderPath, const QString& modFolderName);
-    QString getActualTempModFolderPath(const QString& tempModDirPath, const QString& modName);
+    QString getActualTempModFolderPathForMod(const QString& tempModDirPath, const QString& modName);
+    std::tuple<QString, bool> getActualTempModFolderPathForPlugin(const QString& tempModDirPath, const QString& modName);
     void removeTemporaryExtractionFolder();
-    bool installExtractedMod(const QString& extractedModFolderPath, const QString& modName, const QString& modsFolderPath, void* yumiPtr, bool isArchive);
+    QString askModForWhichGame(void* yumiPtr, const QString& modName);
+    QString getGameNameFromModInfoFile(const QString& actualTempModFolderPath);
+    QString findGameForMod(const QString& actualTempModFolderPath, const QString& modName, void* yumiPtr, const bool isArchive);
+    void removeModArchiveOrFolder(const QString& modName, const QString& modsFolderPath, const bool isArchive);
+    bool installExtractedMod(const QString& extractedModFolderPath, const QString& modName, const QString& modsFolderPath, void* yumiPtr, const bool isArchive);
+    QList<BepInExFile*>* getBepInExFiles(const QString& exeFilepath, const int exeType);
+    bool removeBepInExFiles(const QString& gameFolderPath, const QList<BepInExFile*>& bepInExFiles);
+    bool removeAllBepInExFiles(const QString& gameFolderPath);
+    bool copyBepInExFiles(const QDir& gameFolder, const QString& gameFolderPath, const QList<BepInExFile*>& bepInExFiles);
 
 public:
     static ModsLoader* Instance();
 
     bool installInProgress;
+    QMap<QString, QString>* installModInfo;
 
     int getGameExeType(const QString& gameExeFilepath);
     GameExeInfos findGameExeInfos(const QString& gameFolderPath, const QString& gameName);
     bool isBepInExInstalled(GameInfo* gameInfo, const QDir& gameFolder, void* gameDetails);
     QString getBepInExSubFolderPath(const QDir& gameFolder, const QString& subFolderName);
     QList<ModInfo>* getModsList(const QString& modsFolderPath);
+    bool updateBepInEx(GameInfo* details, void* yumiPtr, void* gameDetails);
     bool installBepInEx(void* yumiPtr, void* gameDetails, GameInfo* game, const bool forEveryone);
     bool uninstallBepInEx(void* yumiPtr, void* gameDetails, GameInfo* game, const bool includingBepInExConfigFile, const bool includingAllModsAndSavedData);
     void installMods(void* yumiPtr);
-    bool copyRecursively(QString sourceFolder, QString destFolder, bool overwrite = true);
 };
 
 #endif

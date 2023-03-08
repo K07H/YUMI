@@ -96,7 +96,7 @@ AboutDescription::AboutDescription(void* yumiPtr, QWidget* parent) : QWidget(par
     this->_description->setText(QCoreApplication::translate("About", "<b>YUMI</b> stands for <b>Y</b>our <b>U</b>nity <b>M</b>ods <b>I</b>nstaller. "
         "It is a lightweight cross-platform mods installer for Unity-based games. "
         "It uses <a href=\"%1\">Qt library</a> for rendering and <a href=\"%2\">BepInEx library</a> for mods loading. "
-        "It supports Windows, Wine, and most Unix systems (Linux, MacOS, SteamOS, ...).", "YUMI description").arg(WEBSITE_QT_URL, WEBSITE_BEPINEX_URL));
+        "It supports Windows, Proton, Wine, and most Unix systems (Linux, MacOS, SteamOS, ...).", "YUMI description").arg(WEBSITE_QT_URL, WEBSITE_BEPINEX_URL));
     this->_description->setTextFormat(Qt::RichText);
     this->_description->setTextInteractionFlags(Qt::TextBrowserInteraction);
     connect(this->_description, SIGNAL(linkActivated(QString)), this, SLOT(linkClicked(QString)));

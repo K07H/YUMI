@@ -99,6 +99,25 @@ ModsList::~ModsList()
             delete _installedMods[i];
 }
 
+void ModsList::updatePrefix(const QString& prefix)
+{
+    QString currentBtnText;
+    int len = this->_installedMods.count();
+    for (int i = 0; i < len; i++)
+    {
+        currentBtnText = this->_installedMods.at(i)->text();
+        if (currentBtnText.startsWith(this->_disabledPrefix))
+            this->_installedMods.at(i)->setText(currentBtnText.replace(this->_disabledPrefix, prefix));
+    }
+    if (this->selectedMod != NULL)
+    {
+        currentBtnText = this->selectedMod->text();
+        if (currentBtnText.startsWith(this->_disabledPrefix))
+            this->selectedMod->setText(currentBtnText.replace(this->_disabledPrefix, prefix));
+    }
+    this->_disabledPrefix = prefix;
+}
+
 void ModsList::updateStyles()
 {
     refreshButtonsStyles();

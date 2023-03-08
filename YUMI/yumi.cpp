@@ -85,6 +85,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QThread>
+#include <QFontDatabase>
 #include "common.h"
 #include "assets.h"
 #include "yumi.h"
@@ -95,14 +96,17 @@ QString yumi::appPath = QDir::currentPath();
 int yumi::initialWindowWidth = 600;
 int yumi::initialWindowHeight = 350;
 
-yumi::yumi(QWidget *parent) : QMainWindow(parent)
+yumi::yumi(QApplication* app, QWidget *parent) : QMainWindow(parent)
 {
-    this->_yumiIsStarting = true;
+    this->yumiIsStarting = true;
     qDebug() << "YUMI is starting.";
 
+    this->appPtr = app;
     this->_aboutWidget = NULL;
     this->_licenseWidget = NULL;
+    this->_debugLogsWidget = NULL;
     this->_settingsWidget = NULL;
+    this->_windowMenu = NULL;
     this->_windowButtons = NULL;
     this->_windowButtonsLayout = NULL;
     this->_windowButtonsWidget = NULL;
@@ -116,7 +120,22 @@ yumi::yumi(QWidget *parent) : QMainWindow(parent)
     this->_pointerEnabled = false;
     this->_monitoringInitialized = false;
     this->_monitoringIsRunning = true;
+    this->_monitoredFolder = QVector<std::tuple<QString, QDateTime>>();
+    this->pendingDragAndDrop = false;
     this->theme = "Default";
+
+    QStringList fontFamilies = QFontDatabase().families();
+    Assets::primaryFontFamily = "Gill Sans MT";
+    if (!fontFamilies.contains(Assets::primaryFontFamily))
+        Assets::primaryFontFamily = "Ubuntu";
+    if (!fontFamilies.contains(Assets::primaryFontFamily))
+        Assets::primaryFontFamily = "FreeSans";
+    if (!fontFamilies.contains(Assets::primaryFontFamily))
+        Assets::primaryFontFamily = "DejaVu Sans";
+    if (!fontFamilies.contains(Assets::primaryFontFamily))
+        Assets::primaryFontFamily = "Sans Serif";
+    if (!fontFamilies.contains(Assets::primaryFontFamily))
+        Assets::primaryFontFamily = "OpenSymbol";
 
     setWindowTitle("YUMI");
     setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
@@ -173,7 +192,7 @@ yumi::yumi(QWidget *parent) : QMainWindow(parent)
 #endif
 
     if (!gamesFound)
-        this->_yumiIsStarting = false;
+        this->yumiIsStarting = false;
 }
 
 yumi::~yumi()
@@ -249,13 +268,78 @@ int yumi::codeMetrics_calcNbLines()
 }
 #endif
 
+void yumi::forceRefreshModsMonitoring()
+{
+    this->_monitoredFolder.clear();
+}
+
+std::tuple<QString, QDateTime> yumi::getMonitoredElem(const QString& toSearch)
+{
+    if (!toSearch.isEmpty())
+    {
+        auto it = this->_monitoredFolder.constBegin();
+        auto end = this->_monitoredFolder.constEnd();
+        while (it != end)
+        {
+            QString current = std::get<0>(*it);
+            if (toSearch.compare(current) == 0)
+                return *it;
+            it++;
+        }
+    }
+    return std::tuple<QString, QDateTime>("", QDateTime());
+}
+
+void yumi::updateCacheMonitoredFolder(const QString& modsFolderPath, const QDir& modsFolder)
+{
+    this->_monitoredFolder.clear();
+    QStringList latestModsFolderContent = modsFolder.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::NoSymLinks);
+    foreach (const QString& fileOrFolder, latestModsFolderContent)
+        if (!fileOrFolder.isEmpty())
+        {
+            QFileInfo fi(Utils::toUnixPath(modsFolderPath + QDir::separator() + fileOrFolder));
+            if (fi.exists())
+                this->_monitoredFolder.push_back(std::tuple<QString, QDateTime>(fileOrFolder, fi.lastModified()));
+        }
+}
+
+bool yumi::hasFileChange(const QString& modsFolderPath, const QDir& modsFolder)
+{
+    QStringList current = modsFolder.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::NoSymLinks);
+    bool hasChanged = (current.count() != this->_monitoredFolder.count());
+    if (!hasChanged)
+    {
+        foreach (const QString& fileOrFolder, current)
+        {
+            std::tuple<QString, QDateTime> monitoredDir = getMonitoredElem(fileOrFolder);
+            if (std::get<0>(monitoredDir).isEmpty() || !std::get<1>(monitoredDir).isValid())
+            {
+                hasChanged = true;
+                break;
+            }
+            else
+            {
+                QFileInfo fi(Utils::toUnixPath(modsFolderPath + QDir::separator() + fileOrFolder));
+                if (!fi.exists() || !fi.lastModified().isValid() || fi.lastModified() != std::get<1>(monitoredDir))
+                {
+                    hasChanged = true;
+                    break;
+                }
+            }
+        }
+    }
+    return hasChanged;
+}
+
 void yumi::monitorModsFolder()
 {
     while (this->_monitoringIsRunning)
     {
         QCoreApplication::processEvents();
 
-        if (!this->_yumiIsStarting && !ModsLoader::Instance()->installInProgress)
+        QThread::currentThread()->msleep(2000);
+
+        if (!this->pendingDragAndDrop && !ModsLoader::Instance()->installInProgress && !this->yumiIsStarting)
         {
             QString modsFolderPath = Utils::toUnixPath(yumi::appPath + QDir::separator() + "mods");
             QDir modsFolder(modsFolderPath);
@@ -263,32 +347,19 @@ void yumi::monitorModsFolder()
             {
                 if (!this->_monitoringInitialized)
                     this->_monitoringInitialized = true;
-                else
-                {
-                    QStringList current = modsFolder.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::NoSymLinks);
-                    bool hasChanged = (current.count() != this->_monitoredFolder.count());
-                    if (!hasChanged)
-                    {
-                        foreach (const QString& fileOrFolder, current)
-                            if (!this->_monitoredFolder.contains(fileOrFolder))
-                            {
-                                hasChanged = true;
-                                break;
-                            }
-                    }
-                    if (hasChanged)
-                    {
-#if IS_DEBUG
-                        qDebug() << "Mods folder content has changed!";
-#endif
-                        QMetaObject::invokeMethod(this, "checkForModsToInstall", Qt::AutoConnection);
-                    }
-                }
-                this->_monitoredFolder = modsFolder.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::NoSymLinks);
+                else if (hasFileChange(modsFolderPath, modsFolder))
+                    QMetaObject::invokeMethod(this, "checkForModsToInstall", Qt::AutoConnection);
+                this->updateCacheMonitoredFolder(modsFolderPath, modsFolder);
+            }
+            else
+            {
+                if (!this->_monitoringInitialized)
+                    this->_monitoringInitialized = true;
+                this->_monitoredFolder.clear();
             }
         }
 
-        QThread::currentThread()->msleep(3000);
+        QThread::currentThread()->msleep(2000);
     }
 }
 
@@ -303,10 +374,16 @@ void yumi::updateStyles()
 {
     menuBar()->setStyleSheet(Assets::Instance()->menuBarStyle);
     statusBar()->setStyleSheet(Assets::Instance()->statusBarStyle);
-    this->_windowButtons->setStyleSheet(Assets::Instance()->windowBtnsMenuBarStyle);
     this->mainWidget->updateStyles();
     if (this->_aboutWidget != NULL)
         this->_aboutWidget->updateStyles();
+    if (this->_debugLogsWidget != NULL)
+        this->_debugLogsWidget->updateStyles();
+    int menuHeight = menuBar()->height() - 3;
+    _menuBarAppIconWidget->resize(menuHeight, menuHeight);
+    int menuVBegin = menuBar()->pos().y() + 1;
+    _menuBarAppIconWidget->setGeometry(_menuBarAppIconWidget->pos().x(), menuVBegin, _menuBarAppIconWidget->width(), _menuBarAppIconWidget->height());
+
     update();
 }
 
@@ -333,7 +410,7 @@ void yumi::showLicense()
 void yumi::checkForModsToInstall()
 {
     ModsLoader::Instance()->installMods(this);
-    this->_yumiIsStarting = false;
+    this->yumiIsStarting = false;
     this->_monitoringInitialized = false;
 }
 
@@ -390,6 +467,17 @@ GameInfo* yumi::getGameInfo(const QString& gameName, const QString& gamePath)
         for (int i = 0; i < len; i++)
             if (gameName.compare(this->gamesInfo[i].name) == 0 && gamePath.compare(this->gamesInfo[i].path) == 0)
                 return &(this->gamesInfo[i]);
+    return NULL;
+}
+
+GameInfo* yumi::getGameInfo(const QString& gameName)
+{
+    if (gameName.isEmpty())
+        return NULL;
+    int nbGames = this->gamesInfo.count();
+    for (int i = 0; i < nbGames; i++)
+        if (gameName.compare(this->gamesInfo[i].name) == 0)
+            return &(this->gamesInfo[i]);
     return NULL;
 }
 
@@ -516,25 +604,44 @@ void yumi::doMaximizeWindow()
 void yumi::setupYumiActions()
 {
     _menuBarAppIcon = new QLabel("");
-    _menuBarAppIcon->setPixmap(Assets::Instance()->appIconImg);
-    menuBar()->setCornerWidget(_menuBarAppIcon, Qt::TopLeftCorner);
+    _appIcon = new QPixmap(Assets::Instance()->appIconImg);
+    _menuBarAppIcon->setPixmap(*_appIcon);
+    _menuBarAppIcon->setScaledContents(true);
+    _menuBarAppIcon->setAlignment(Qt::AlignTop);
+    _menuBarAppIcon->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+    _menuBarAppIcon->setStyleSheet("QLabel { padding: 0; margin: 0; }");
 
-    QMenu* menu = menuBar()->addMenu(QCoreApplication::translate("MainWindow", "&YUMI", "Menu button text"));
+    _menuBarAppIconLayout = new QVBoxLayout();
+    _menuBarAppIconLayout->setContentsMargins(0, 0, 0, 0);
+    _menuBarAppIconLayout->setSpacing(0);
+    _menuBarAppIconLayout->setAlignment(Qt::AlignmentFlag::AlignTop);
+    _menuBarAppIconLayout->addWidget(_menuBarAppIcon);
 
-    QAction* action = menu->addAction(Assets::Instance()->openIcon, QCoreApplication::translate("MainWindow", "&Add a game", "Menu button text"), this, &yumi::gameFolderOpen);
+    _menuBarAppIconWidget = new QWidget();
+    _menuBarAppIconWidget->setContentsMargins(0, 0, 0, 0);
+    _menuBarAppIconWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+    _menuBarAppIconWidget->setLayout(_menuBarAppIconLayout);
+
+    menuBar()->setCornerWidget(_menuBarAppIconWidget, Qt::Corner::TopLeftCorner);
+
+    _windowMenu = menuBar()->addMenu(QCoreApplication::translate("MainWindow", "&YUMI", "Menu button text"));
+
+    QAction* action = _windowMenu->addAction(Assets::Instance()->openIcon, QCoreApplication::translate("MainWindow", "&Add a game", "Menu button text"), this, &yumi::gameFolderOpen);
     action->setShortcut(QKeySequence::Open);
     action->setStatusTip(" " + QCoreApplication::translate("MainWindow", "Add a new game to the games list.", "Tooltip text"));
-    action = menu->addAction(Assets::Instance()->settingsIcon, QCoreApplication::translate("MainWindow", "&Settings", "Menu button text"), this, &yumi::changeSettings);
+    action = _windowMenu->addAction(Assets::Instance()->settingsIcon, QCoreApplication::translate("MainWindow", "&Settings", "Menu button text"), this, &yumi::changeSettings);
     action->setShortcut(Qt::CTRL | Qt::Key_S);
     action->setStatusTip(" " + QCoreApplication::translate("MainWindow", "Modify YUMI settings.", "Tooltip text"));
-    menu->addSeparator();
+    _windowMenu->addSeparator();
 
-    action = menu->addAction(Assets::Instance()->exitIcon, QCoreApplication::translate("MainWindow", "&Quit", "Menu button text"), this, &QWidget::close);
+    action = _windowMenu->addAction(Assets::Instance()->exitIcon, QCoreApplication::translate("MainWindow", "&Quit", "Menu button text"), this, &QWidget::close);
     action->setShortcut(Qt::CTRL | Qt::Key_Q);
     action->setStatusTip(" " + QCoreApplication::translate("MainWindow", "Close YUMI.", "Tooltip text"));
 
-    menu->setCursor(Qt::PointingHandCursor);
-    menu->installEventFilter(this);
+    _windowMenu->setCursor(Qt::PointingHandCursor);
+    _windowMenu->installEventFilter(this);
+
+    _appIcon->scaled(menuBar()->size(), Qt::AspectRatioMode::KeepAspectRatio);
 }
 
 void yumi::setupHelpActions()
@@ -544,6 +651,14 @@ void yumi::setupHelpActions()
     QAction* action = helpMenu->addAction(Assets::Instance()->bookIcon, QCoreApplication::translate("MainWindow", "&Wiki", "Menu button text"), this, &yumi::wiki);
     action->setShortcut(Qt::CTRL | Qt::Key_W);
     action->setStatusTip(" " + QCoreApplication::translate("MainWindow", "Open YUMI's wiki web page.", "Tooltip text"));
+
+    action = helpMenu->addAction(Assets::Instance()->discordIcon, QCoreApplication::translate("MainWindow", "&Discord", "Menu button text"), this, &yumi::discord);
+    action->setShortcut(Qt::CTRL | Qt::Key_D);
+    action->setStatusTip(" " + QCoreApplication::translate("MainWindow", "Join YUMI's Discord server.", "Tooltip text"));
+
+    action = helpMenu->addAction(Assets::Instance()->logsIcon, QCoreApplication::translate("MainWindow", "&Logs", "Menu button text"), this, &yumi::logs);
+    action->setShortcut(Qt::CTRL | Qt::Key_L);
+    action->setStatusTip(" " + QCoreApplication::translate("MainWindow", "View debug logs.", "Tooltip text"));
 
     action = helpMenu->addAction(Assets::Instance()->updatesIcon, QCoreApplication::translate("MainWindow", "&Check for updates", "Menu button text"), this, &yumi::checkForLatestVersion);
     action->setShortcut(Qt::CTRL | Qt::Key_C);
@@ -642,6 +757,26 @@ void yumi::changeSettings()
 void yumi::wiki()
 {
     this->network->openLink(YUMI_WIKI_URL, this);
+}
+
+void yumi::discord()
+{
+    this->network->openLink(YUMI_DISCORD_URL, this);
+}
+
+void yumi::logs()
+{
+    if (this->_debugLogsWidget != NULL)
+    {
+        if (this->_debugLogsWidget->isVisible())
+            this->_debugLogsWidget->close();
+        this->_debugLogsWidget->doShowAt(this->getCenter());
+    }
+    else
+    {
+        this->_debugLogsWidget = new DebugLogs(this, NULL);
+        this->_debugLogsWidget->doShowAt(this->getCenter());
+    }
 }
 
 void yumi::about()

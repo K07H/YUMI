@@ -51,9 +51,13 @@ OBJECTS_DIR   = release
 SOURCES       = ..\YUMI\about.cpp \
 		..\YUMI\about_description.cpp \
 		..\YUMI\assets.cpp \
+		..\YUMI\base64.cpp \
 		..\YUMI\bepinexfile.cpp \
 		..\YUMI\config.cpp \
+		..\YUMI\debug_info.cpp \
+		..\YUMI\debug_logs.cpp \
 		..\YUMI\downloading_window.cpp \
+		..\YUMI\drop_mod_window.cpp \
 		..\YUMI\game_details.cpp \
 		..\YUMI\game_info.cpp \
 		..\YUMI\game_loader.cpp \
@@ -80,7 +84,10 @@ SOURCES       = ..\YUMI\about.cpp \
 		release\moc_about.cpp \
 		release\moc_about_description.cpp \
 		release\moc_assets.cpp \
+		release\moc_debug_info.cpp \
+		release\moc_debug_logs.cpp \
 		release\moc_downloading_window.cpp \
+		release\moc_drop_mod_window.cpp \
 		release\moc_game_details.cpp \
 		release\moc_license_viewer.cpp \
 		release\moc_main_widget.cpp \
@@ -99,9 +106,13 @@ SOURCES       = ..\YUMI\about.cpp \
 OBJECTS       = release\about.obj \
 		release\about_description.obj \
 		release\assets.obj \
+		release\base64.obj \
 		release\bepinexfile.obj \
 		release\config.obj \
+		release\debug_info.obj \
+		release\debug_logs.obj \
 		release\downloading_window.obj \
+		release\drop_mod_window.obj \
 		release\game_details.obj \
 		release\game_info.obj \
 		release\game_loader.obj \
@@ -129,7 +140,10 @@ OBJECTS       = release\about.obj \
 		release\moc_about.obj \
 		release\moc_about_description.obj \
 		release\moc_assets.obj \
+		release\moc_debug_info.obj \
+		release\moc_debug_logs.obj \
 		release\moc_downloading_window.obj \
+		release\moc_drop_mod_window.obj \
 		release\moc_game_details.obj \
 		release\moc_license_viewer.obj \
 		release\moc_main_widget.obj \
@@ -149,10 +163,14 @@ OBJECTS       = release\about.obj \
 DIST          =  ..\YUMI\about.h \
 		..\YUMI\about_description.h \
 		..\YUMI\assets.h \
+		..\YUMI\base64.h \
 		..\YUMI\bepinexfile.h \
 		..\YUMI\common.h \
 		..\YUMI\config.h \
+		..\YUMI\debug_info.h \
+		..\YUMI\debug_logs.h \
 		..\YUMI\downloading_window.h \
+		..\YUMI\drop_mod_window.h \
 		..\YUMI\game_details.h \
 		..\YUMI\game_info.h \
 		..\YUMI\game_loader.h \
@@ -177,9 +195,13 @@ DIST          =  ..\YUMI\about.h \
 		..\YUMI\zipfiles_manager.h ..\YUMI\about.cpp \
 		..\YUMI\about_description.cpp \
 		..\YUMI\assets.cpp \
+		..\YUMI\base64.cpp \
 		..\YUMI\bepinexfile.cpp \
 		..\YUMI\config.cpp \
+		..\YUMI\debug_info.cpp \
+		..\YUMI\debug_logs.cpp \
 		..\YUMI\downloading_window.cpp \
+		..\YUMI\drop_mod_window.cpp \
 		..\YUMI\game_details.cpp \
 		..\YUMI\game_info.cpp \
 		..\YUMI\game_loader.cpp \
@@ -279,8 +301,8 @@ all: Makefile  release\YUMI.exe
 
 release\YUMI.exe: H:\Qt\5.15.2\msvc2019_64\lib\Qt5Widgets.lib H:\Qt\5.15.2\msvc2019_64\lib\Qt5Gui.lib H:\Qt\5.15.2\msvc2019_64\lib\Qt5Network.lib H:\Qt\5.15.2\msvc2019_64\lib\Qt5Core.lib H:\Qt\5.15.2\msvc2019_64\lib\qtmain.lib $(OBJECTS) release\YUMI_resource.res
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
-release\about.obj release\about_description.obj release\assets.obj release\bepinexfile.obj release\config.obj release\downloading_window.obj release\game_details.obj release\game_info.obj release\game_loader.obj release\license_viewer.obj release\logger.obj release\main.obj release\main_widget.obj release\mod_info.obj release\mods_list.obj release\mods_list_container.obj release\mods_loader.obj release\mods_loader_settings.obj release\save_theme_window.obj release\select_game_window.obj release\side_menu.obj release\uninstall_window.obj release\utils.obj release\window_title.obj release\yumi.obj release\yumi_filedownloader.obj release\yumi_network.obj release\yumi_settings.obj release\zipfiles_manager.obj release\qrc_yumiresources.obj release\moc_about.obj release\moc_about_description.obj release\moc_assets.obj release\moc_downloading_window.obj release\moc_game_details.obj release\moc_license_viewer.obj release\moc_main_widget.obj release\moc_mods_list.obj
-release\moc_mods_list_container.obj release\moc_mods_loader_settings.obj release\moc_save_theme_window.obj release\moc_select_game_window.obj release\moc_side_menu.obj release\moc_uninstall_window.obj release\moc_window_title.obj release\moc_yumi.obj release\moc_yumi_filedownloader.obj release\moc_yumi_network.obj release\moc_yumi_settings.obj
+release\about.obj release\about_description.obj release\assets.obj release\base64.obj release\bepinexfile.obj release\config.obj release\debug_info.obj release\debug_logs.obj release\downloading_window.obj release\drop_mod_window.obj release\game_details.obj release\game_info.obj release\game_loader.obj release\license_viewer.obj release\logger.obj release\main.obj release\main_widget.obj release\mod_info.obj release\mods_list.obj release\mods_list_container.obj release\mods_loader.obj release\mods_loader_settings.obj release\save_theme_window.obj release\select_game_window.obj release\side_menu.obj release\uninstall_window.obj release\utils.obj release\window_title.obj release\yumi.obj release\yumi_filedownloader.obj release\yumi_network.obj release\yumi_settings.obj release\zipfiles_manager.obj release\qrc_yumiresources.obj release\moc_about.obj release\moc_about_description.obj release\moc_assets.obj release\moc_debug_info.obj release\moc_debug_logs.obj
+release\moc_downloading_window.obj release\moc_drop_mod_window.obj release\moc_game_details.obj release\moc_license_viewer.obj release\moc_main_widget.obj release\moc_mods_list.obj release\moc_mods_list_container.obj release\moc_mods_loader_settings.obj release\moc_save_theme_window.obj release\moc_select_game_window.obj release\moc_side_menu.obj release\moc_uninstall_window.obj release\moc_window_title.obj release\moc_yumi.obj release\moc_yumi_filedownloader.obj release\moc_yumi_network.obj release\moc_yumi_settings.obj
 $(LIBS)
 <<
 
@@ -291,15 +313,9 @@ qmake: FORCE
 
 qmake_all: FORCE
 
-dist:    
-
 clean: compiler_clean 
-	-$(DEL_FILE) release\about.obj release\about_description.obj release\assets.obj release\bepinexfile.obj release\config.obj release\downloading_window.obj release\game_details.obj release\game_info.obj release\game_loader.obj release\license_viewer.obj release\logger.obj release\main.obj release\main_widget.obj release\mod_info.obj release\mods_list.obj release\mods_list_container.obj release\mods_loader.obj release\mods_loader_settings.obj release\save_theme_window.obj release\select_game_window.obj release\side_menu.obj release\uninstall_window.obj release\utils.obj release\window_title.obj release\yumi.obj release\yumi_filedownloader.obj release\yumi_network.obj release\yumi_settings.obj release\zipfiles_manager.obj release\qrc_yumiresources.obj release\moc_about.obj release\moc_about_description.obj release\moc_assets.obj release\moc_downloading_window.obj release\moc_game_details.obj release\moc_license_viewer.obj release\moc_main_widget.obj release\moc_mods_list.obj release\moc_mods_list_container.obj release\moc_mods_loader_settings.obj release\moc_save_theme_window.obj release\moc_select_game_window.obj release\moc_side_menu.obj release\moc_uninstall_window.obj release\moc_window_title.obj release\moc_yumi.obj release\moc_yumi_filedownloader.obj release\moc_yumi_network.obj release\moc_yumi_settings.obj
+	-$(DEL_FILE) release\about.obj release\about_description.obj release\assets.obj release\base64.obj release\bepinexfile.obj release\config.obj release\debug_info.obj release\debug_logs.obj release\downloading_window.obj release\drop_mod_window.obj release\game_details.obj release\game_info.obj release\game_loader.obj release\license_viewer.obj release\logger.obj release\main.obj release\main_widget.obj release\mod_info.obj release\mods_list.obj release\mods_list_container.obj release\mods_loader.obj release\mods_loader_settings.obj release\save_theme_window.obj release\select_game_window.obj release\side_menu.obj release\uninstall_window.obj release\utils.obj release\window_title.obj release\yumi.obj release\yumi_filedownloader.obj release\yumi_network.obj release\yumi_settings.obj release\zipfiles_manager.obj release\qrc_yumiresources.obj release\moc_about.obj release\moc_about_description.obj release\moc_assets.obj release\moc_debug_info.obj release\moc_debug_logs.obj release\moc_downloading_window.obj release\moc_drop_mod_window.obj release\moc_game_details.obj release\moc_license_viewer.obj release\moc_main_widget.obj release\moc_mods_list.obj release\moc_mods_list_container.obj release\moc_mods_loader_settings.obj release\moc_save_theme_window.obj release\moc_select_game_window.obj release\moc_side_menu.obj release\moc_uninstall_window.obj release\moc_window_title.obj release\moc_yumi.obj release\moc_yumi_filedownloader.obj release\moc_yumi_network.obj release\moc_yumi_settings.obj
 	-$(DEL_FILE) release\YUMI_resource.res
-
-distclean: clean 
-	-$(DEL_FILE) .qmake.stash
-	-$(DEL_FILE) $(DESTDIR_TARGET)
 
 mocclean: compiler_moc_header_clean compiler_moc_objc_header_clean compiler_moc_source_clean
 
@@ -317,12 +333,16 @@ compiler_rcc_clean:
 release\qrc_yumiresources.cpp: ..\YUMI\yumiresources.qrc \
 		..\..\Qt\5.15.2\msvc2019_64\bin\rcc.exe \
 		..\YUMI\FULL_LICENSE.txt \
+		..\YUMI\YUMI_Lang_fr.qm \
+		..\YUMI\qtbase_fr.qm \
 		..\YUMI\images\win\book.png \
+		..\YUMI\images\win\logs.png \
 		..\YUMI\images\win\close.png \
+		..\YUMI\images\win\discord.png \
 		..\YUMI\images\win\checkbox_checked.png \
 		..\YUMI\images\win\updates.png \
-		..\YUMI\images\win\checkbox_checked_pressed.png \
 		..\YUMI\images\win\info.png \
+		..\YUMI\images\win\checkbox_checked_pressed.png \
 		..\YUMI\images\win\checkbox_unchecked_pressed.png \
 		..\YUMI\images\win\checkbox_unchecked.png \
 		..\YUMI\images\win\checkbox_checked_hover.png \
@@ -335,15 +355,19 @@ release\qrc_yumiresources.cpp: ..\YUMI\yumiresources.qrc \
 		..\YUMI\images\win\fileopen.png \
 		..\YUMI\images\win\exitsign.png \
 		..\YUMI\images\win\shrink-window.png \
+		..\YUMI\images\win\flag_fr.png \
 		..\YUMI\images\win\yumilogo.png \
 		..\YUMI\images\win\minimize.png \
+		..\YUMI\images\win\flag_en.png \
 		..\YUMI\images\win\checkbox_indeterminated_hover.png \
 		..\YUMI\images\mac\book.png \
+		..\YUMI\images\mac\logs.png \
 		..\YUMI\images\mac\close.png \
+		..\YUMI\images\mac\discord.png \
 		..\YUMI\images\mac\checkbox_checked.png \
 		..\YUMI\images\mac\updates.png \
-		..\YUMI\images\mac\checkbox_checked_pressed.png \
 		..\YUMI\images\mac\info.png \
+		..\YUMI\images\mac\checkbox_checked_pressed.png \
 		..\YUMI\images\mac\checkbox_unchecked_pressed.png \
 		..\YUMI\images\mac\checkbox_unchecked.png \
 		..\YUMI\images\mac\checkbox_checked_hover.png \
@@ -356,8 +380,10 @@ release\qrc_yumiresources.cpp: ..\YUMI\yumiresources.qrc \
 		..\YUMI\images\mac\fileopen.png \
 		..\YUMI\images\mac\exitsign.png \
 		..\YUMI\images\mac\shrink-window.png \
+		..\YUMI\images\mac\flag_fr.png \
 		..\YUMI\images\mac\yumilogo.png \
 		..\YUMI\images\mac\minimize.png \
+		..\YUMI\images\mac\flag_en.png \
 		..\YUMI\images\mac\checkbox_indeterminated_hover.png
 	H:\Qt\5.15.2\msvc2019_64\bin\rcc.exe -name yumiresources ..\YUMI\yumiresources.qrc -o release\qrc_yumiresources.cpp
 
@@ -367,9 +393,9 @@ compiler_moc_predefs_clean:
 release\moc_predefs.h: ..\..\Qt\5.15.2\msvc2019_64\mkspecs\features\data\dummy.cpp
 	cl -BxH:\Qt\5.15.2\msvc2019_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -O2 -MD -std:c++17 -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E ..\..\Qt\5.15.2\msvc2019_64\mkspecs\features\data\dummy.cpp 2>NUL >release\moc_predefs.h
 
-compiler_moc_header_make_all: release\moc_about.cpp release\moc_about_description.cpp release\moc_assets.cpp release\moc_downloading_window.cpp release\moc_game_details.cpp release\moc_license_viewer.cpp release\moc_main_widget.cpp release\moc_mods_list.cpp release\moc_mods_list_container.cpp release\moc_mods_loader_settings.cpp release\moc_save_theme_window.cpp release\moc_select_game_window.cpp release\moc_side_menu.cpp release\moc_uninstall_window.cpp release\moc_window_title.cpp release\moc_yumi.cpp release\moc_yumi_filedownloader.cpp release\moc_yumi_network.cpp release\moc_yumi_settings.cpp
+compiler_moc_header_make_all: release\moc_about.cpp release\moc_about_description.cpp release\moc_assets.cpp release\moc_debug_info.cpp release\moc_debug_logs.cpp release\moc_downloading_window.cpp release\moc_drop_mod_window.cpp release\moc_game_details.cpp release\moc_license_viewer.cpp release\moc_main_widget.cpp release\moc_mods_list.cpp release\moc_mods_list_container.cpp release\moc_mods_loader_settings.cpp release\moc_save_theme_window.cpp release\moc_select_game_window.cpp release\moc_side_menu.cpp release\moc_uninstall_window.cpp release\moc_window_title.cpp release\moc_yumi.cpp release\moc_yumi_filedownloader.cpp release\moc_yumi_network.cpp release\moc_yumi_settings.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_about.cpp release\moc_about_description.cpp release\moc_assets.cpp release\moc_downloading_window.cpp release\moc_game_details.cpp release\moc_license_viewer.cpp release\moc_main_widget.cpp release\moc_mods_list.cpp release\moc_mods_list_container.cpp release\moc_mods_loader_settings.cpp release\moc_save_theme_window.cpp release\moc_select_game_window.cpp release\moc_side_menu.cpp release\moc_uninstall_window.cpp release\moc_window_title.cpp release\moc_yumi.cpp release\moc_yumi_filedownloader.cpp release\moc_yumi_network.cpp release\moc_yumi_settings.cpp
+	-$(DEL_FILE) release\moc_about.cpp release\moc_about_description.cpp release\moc_assets.cpp release\moc_debug_info.cpp release\moc_debug_logs.cpp release\moc_downloading_window.cpp release\moc_drop_mod_window.cpp release\moc_game_details.cpp release\moc_license_viewer.cpp release\moc_main_widget.cpp release\moc_mods_list.cpp release\moc_mods_list_container.cpp release\moc_mods_loader_settings.cpp release\moc_save_theme_window.cpp release\moc_select_game_window.cpp release\moc_side_menu.cpp release\moc_uninstall_window.cpp release\moc_window_title.cpp release\moc_yumi.cpp release\moc_yumi_filedownloader.cpp release\moc_yumi_network.cpp release\moc_yumi_settings.cpp
 release\moc_about.cpp: ..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QWidget \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qwidget.h \
@@ -744,6 +770,213 @@ release\moc_assets.cpp: ..\YUMI\assets.h \
 		..\..\Qt\5.15.2\msvc2019_64\bin\moc.exe
 	H:\Qt\5.15.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include H:/YUMI/build-YUMI-Desktop_Qt_5_15_2_MSVC2019_64bit-Release/release/moc_predefs.h -IH:/Qt/5.15.2/msvc2019_64/mkspecs/win32-msvc -IH:/YUMI/YUMI -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2/QtGui -IH:/Qt/5.15.2/msvc2019_64/include -IH:/Qt/5.15.2/msvc2019_64/include/QtWidgets -IH:/Qt/5.15.2/msvc2019_64/include/QtGui -IH:/Qt/5.15.2/msvc2019_64/include/QtANGLE -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2/QtCore -IH:/Qt/5.15.2/msvc2019_64/include/QtNetwork -IH:/Qt/5.15.2/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\YUMI\assets.h -o release\moc_assets.cpp
 
+release\moc_debug_info.cpp: ..\YUMI\debug_info.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QObject \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnamespace.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcore-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocessordetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypeinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsysinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlogging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qflags.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasicatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qgenericatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobalstatic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmutex.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnumeric.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversiontagging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstring.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrefcount.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringliteral.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhashfunctions.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpair.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainertools_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpoint.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraylist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregexp.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringmatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetatype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QString \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QChar \
+		..\YUMI\game_info.h \
+		release\moc_predefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\bin\moc.exe
+	H:\Qt\5.15.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include H:/YUMI/build-YUMI-Desktop_Qt_5_15_2_MSVC2019_64bit-Release/release/moc_predefs.h -IH:/Qt/5.15.2/msvc2019_64/mkspecs/win32-msvc -IH:/YUMI/YUMI -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2/QtGui -IH:/Qt/5.15.2/msvc2019_64/include -IH:/Qt/5.15.2/msvc2019_64/include/QtWidgets -IH:/Qt/5.15.2/msvc2019_64/include/QtGui -IH:/Qt/5.15.2/msvc2019_64/include/QtANGLE -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2/QtCore -IH:/Qt/5.15.2/msvc2019_64/include/QtNetwork -IH:/Qt/5.15.2/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\YUMI\debug_info.h -o release\moc_debug_info.cpp
+
+release\moc_debug_logs.cpp: ..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QObject \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnamespace.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcore-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocessordetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypeinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsysinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlogging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qflags.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasicatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qgenericatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobalstatic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmutex.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnumeric.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversiontagging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstring.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrefcount.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringliteral.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhashfunctions.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpair.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainertools_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpoint.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraylist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregexp.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringmatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetatype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QWidget \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtguiglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtgui-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qwindowdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qwindowdefs_win.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmargins.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpaintdevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrect.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsize.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpalette.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcolor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qrgb.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qrgba64.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qbrush.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qmatrix.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpolygon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qregion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatastream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiodevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtransform.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qimage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpixelformat.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpixmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qshareddata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfont.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontmetrics.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qsizepolicy.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcursor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qkeysequence.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariant.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdebug.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlocale.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qset.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontiguouscache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qurl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qurlquery.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfiledevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qvector2d.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtouchdevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QPoint \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QMouseEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPaintEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QHBoxLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgridlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QVBoxLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QString \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLabel \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlabel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qframe.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QPushButton \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qpushbutton.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qicon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qstyleoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qvalidator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregularexpression.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qslider.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractslider.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qstyle.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabbar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qrubberband.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QScrollArea \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qscrollarea.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
+		..\YUMI\window_title.h \
+		release\moc_predefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\bin\moc.exe
+	H:\Qt\5.15.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include H:/YUMI/build-YUMI-Desktop_Qt_5_15_2_MSVC2019_64bit-Release/release/moc_predefs.h -IH:/Qt/5.15.2/msvc2019_64/mkspecs/win32-msvc -IH:/YUMI/YUMI -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2/QtGui -IH:/Qt/5.15.2/msvc2019_64/include -IH:/Qt/5.15.2/msvc2019_64/include/QtWidgets -IH:/Qt/5.15.2/msvc2019_64/include/QtGui -IH:/Qt/5.15.2/msvc2019_64/include/QtANGLE -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2/QtCore -IH:/Qt/5.15.2/msvc2019_64/include/QtNetwork -IH:/Qt/5.15.2/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\YUMI\debug_logs.h -o release\moc_debug_logs.cpp
+
 release\moc_downloading_window.cpp: ..\YUMI\downloading_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QObject \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject.h \
@@ -869,6 +1102,281 @@ release\moc_downloading_window.cpp: ..\YUMI\downloading_window.h \
 		release\moc_predefs.h \
 		..\..\Qt\5.15.2\msvc2019_64\bin\moc.exe
 	H:\Qt\5.15.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include H:/YUMI/build-YUMI-Desktop_Qt_5_15_2_MSVC2019_64bit-Release/release/moc_predefs.h -IH:/Qt/5.15.2/msvc2019_64/mkspecs/win32-msvc -IH:/YUMI/YUMI -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2/QtGui -IH:/Qt/5.15.2/msvc2019_64/include -IH:/Qt/5.15.2/msvc2019_64/include/QtWidgets -IH:/Qt/5.15.2/msvc2019_64/include/QtGui -IH:/Qt/5.15.2/msvc2019_64/include/QtANGLE -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2/QtCore -IH:/Qt/5.15.2/msvc2019_64/include/QtNetwork -IH:/Qt/5.15.2/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\YUMI\downloading_window.h -o release\moc_downloading_window.cpp
+
+release\moc_drop_mod_window.cpp: ..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QObject \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnamespace.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcore-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocessordetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypeinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsysinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlogging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qflags.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasicatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qgenericatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobalstatic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmutex.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnumeric.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversiontagging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstring.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrefcount.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringliteral.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhashfunctions.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpair.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainertools_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpoint.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraylist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregexp.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringmatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetatype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QWidget \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtguiglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtgui-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qwindowdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qwindowdefs_win.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmargins.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpaintdevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrect.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsize.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpalette.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcolor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qrgb.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qrgba64.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qbrush.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qmatrix.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpolygon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qregion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatastream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiodevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtransform.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qimage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpixelformat.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpixmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qshareddata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfont.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontmetrics.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qsizepolicy.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcursor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qkeysequence.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariant.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdebug.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlocale.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qset.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontiguouscache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qurl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qurlquery.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfiledevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qvector2d.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtouchdevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLabel \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlabel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qframe.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QPushButton \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qpushbutton.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qicon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QVBoxLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgridlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QPoint \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QMouseEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPaintEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFont \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventloop.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregularexpression.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
+		..\YUMI\window_title.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QHBoxLayout \
+		release\moc_predefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\bin\moc.exe
+	H:\Qt\5.15.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include H:/YUMI/build-YUMI-Desktop_Qt_5_15_2_MSVC2019_64bit-Release/release/moc_predefs.h -IH:/Qt/5.15.2/msvc2019_64/mkspecs/win32-msvc -IH:/YUMI/YUMI -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2/QtGui -IH:/Qt/5.15.2/msvc2019_64/include -IH:/Qt/5.15.2/msvc2019_64/include/QtWidgets -IH:/Qt/5.15.2/msvc2019_64/include/QtGui -IH:/Qt/5.15.2/msvc2019_64/include/QtANGLE -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2/QtCore -IH:/Qt/5.15.2/msvc2019_64/include/QtNetwork -IH:/Qt/5.15.2/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\YUMI\drop_mod_window.h -o release\moc_drop_mod_window.cpp
 
 release\moc_game_details.cpp: ..\YUMI\game_details.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QWidget \
@@ -1022,6 +1530,154 @@ release\moc_game_details.cpp: ..\YUMI\game_details.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qrubberband.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractitemmodel.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFont \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventloop.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		release\moc_predefs.h \
 		..\..\Qt\5.15.2\msvc2019_64\bin\moc.exe
 	H:\Qt\5.15.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include H:/YUMI/build-YUMI-Desktop_Qt_5_15_2_MSVC2019_64bit-Release/release/moc_predefs.h -IH:/Qt/5.15.2/msvc2019_64/mkspecs/win32-msvc -IH:/YUMI/YUMI -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2/QtGui -IH:/Qt/5.15.2/msvc2019_64/include -IH:/Qt/5.15.2/msvc2019_64/include/QtWidgets -IH:/Qt/5.15.2/msvc2019_64/include/QtGui -IH:/Qt/5.15.2/msvc2019_64/include/QtANGLE -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2/QtCore -IH:/Qt/5.15.2/msvc2019_64/include/QtNetwork -IH:/Qt/5.15.2/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\YUMI\game_details.h -o release\moc_game_details.cpp
@@ -1320,6 +1976,152 @@ release\moc_main_widget.cpp: ..\YUMI\main_widget.h \
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventloop.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		release\moc_predefs.h \
 		..\..\Qt\5.15.2\msvc2019_64\bin\moc.exe
 	H:\Qt\5.15.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include H:/YUMI/build-YUMI-Desktop_Qt_5_15_2_MSVC2019_64bit-Release/release/moc_predefs.h -IH:/Qt/5.15.2/msvc2019_64/mkspecs/win32-msvc -IH:/YUMI/YUMI -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2/QtGui -IH:/Qt/5.15.2/msvc2019_64/include -IH:/Qt/5.15.2/msvc2019_64/include/QtWidgets -IH:/Qt/5.15.2/msvc2019_64/include/QtGui -IH:/Qt/5.15.2/msvc2019_64/include/QtANGLE -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2/QtCore -IH:/Qt/5.15.2/msvc2019_64/include/QtNetwork -IH:/Qt/5.15.2/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\YUMI\main_widget.h -o release\moc_main_widget.cpp
@@ -2465,6 +3267,8 @@ release\moc_yumi.cpp: ..\YUMI\yumi.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -2536,16 +3340,149 @@ release\moc_yumi.cpp: ..\YUMI\yumi.h \
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventloop.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
@@ -2553,7 +3490,6 @@ release\moc_yumi.cpp: ..\YUMI\yumi.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -2577,8 +3513,6 @@ release\moc_yumi.cpp: ..\YUMI\yumi.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
@@ -2588,6 +3522,8 @@ release\moc_yumi.cpp: ..\YUMI\yumi.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		release\moc_predefs.h \
 		..\..\Qt\5.15.2\msvc2019_64\bin\moc.exe
 	H:\Qt\5.15.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include H:/YUMI/build-YUMI-Desktop_Qt_5_15_2_MSVC2019_64bit-Release/release/moc_predefs.h -IH:/Qt/5.15.2/msvc2019_64/mkspecs/win32-msvc -IH:/YUMI/YUMI -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtGui/5.15.2/QtGui -IH:/Qt/5.15.2/msvc2019_64/include -IH:/Qt/5.15.2/msvc2019_64/include/QtWidgets -IH:/Qt/5.15.2/msvc2019_64/include/QtGui -IH:/Qt/5.15.2/msvc2019_64/include/QtANGLE -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2 -IH:/Qt/5.15.2/msvc2019_64/include/QtCore/5.15.2/QtCore -IH:/Qt/5.15.2/msvc2019_64/include/QtNetwork -IH:/Qt/5.15.2/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\YUMI\yumi.h -o release\moc_yumi.cpp
@@ -2952,6 +3888,9 @@ release\moc_yumi_settings.cpp: ..\YUMI\yumi_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayoutitem.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgridlayout.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QVBoxLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
@@ -3160,6 +4099,8 @@ release\about.obj: ..\YUMI\about.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -3205,13 +4146,144 @@ release\about.obj: ..\YUMI\about.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
-		..\YUMI\config.h \
-		..\YUMI\game_loader.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
+		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
+		..\YUMI\game_loader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
@@ -3219,7 +4291,6 @@ release\about.obj: ..\YUMI\about.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -3241,8 +4312,6 @@ release\about.obj: ..\YUMI\about.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
@@ -3252,6 +4321,8 @@ release\about.obj: ..\YUMI\about.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		..\YUMI\assets.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFile \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPixmap \
@@ -3420,6 +4491,7 @@ release\about_description.obj: ..\YUMI\about_description.cpp ..\..\Qt\5.15.2\msv
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QAction \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qaction.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -3480,15 +4552,145 @@ release\about_description.obj: ..\YUMI\about_description.cpp ..\..\Qt\5.15.2\msv
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
@@ -3496,7 +4698,6 @@ release\about_description.obj: ..\YUMI\about_description.cpp ..\..\Qt\5.15.2\msv
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -3504,7 +4705,9 @@ release\about_description.obj: ..\YUMI\about_description.cpp ..\..\Qt\5.15.2\msv
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextformat.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpen.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextoption.h \
-		..\YUMI\yumi_network.h
+		..\YUMI\yumi_network.h \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent
 
 release\assets.obj: ..\YUMI\assets.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QCoreApplication \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
@@ -3671,6 +4874,7 @@ release\assets.obj: ..\YUMI\assets.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCor
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QAction \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qaction.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -3740,20 +4944,147 @@ release\assets.obj: ..\YUMI\assets.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCor
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcolordialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -3762,9 +5093,45 @@ release\assets.obj: ..\YUMI\assets.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCor
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpen.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextoption.h \
 		..\YUMI\yumi_network.h \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		..\YUMI\utils.h \
 		..\YUMI\zipfiles_manager.h \
 		..\YUMI\downloading_window.h
+
+release\base64.obj: ..\YUMI\base64.cpp ..\YUMI\base64.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QString \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstring.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcore-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocessordetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypeinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsysinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlogging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qflags.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasicatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qgenericatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobalstatic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmutex.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnumeric.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversiontagging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrefcount.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnamespace.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringliteral.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringbuilder.h
 
 release\bepinexfile.obj: ..\YUMI\bepinexfile.cpp ..\YUMI\bepinexfile.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QString \
@@ -3825,9 +5192,10 @@ release\bepinexfile.obj: ..\YUMI\bepinexfile.cpp ..\YUMI\bepinexfile.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainerfwd.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject_impl.h
 
-release\config.obj: ..\YUMI\config.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtDebug \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdebug.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qalgorithms.h \
+release\config.obj: ..\YUMI\config.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QApplication \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtguiglobal.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobal.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig-bootstrapped.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig.h \
@@ -3849,20 +5217,26 @@ release\config.obj: ..\YUMI\config.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCor
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmutex.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnumeric.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversiontagging.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhash.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiterator.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlist.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrefcount.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydata.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhashfunctions.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtgui-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstring.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrefcount.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnamespace.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydata.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringliteral.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringalgorithms.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringview.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhashfunctions.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpair.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvector.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainertools_impl.h \
@@ -3871,47 +5245,22 @@ release\config.obj: ..\YUMI\config.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCor
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlist.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregexp.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringmatcher.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmap.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextstream.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiodevice.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreevent.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedpointer.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetatype.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvarlengtharray.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainerfwd.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject_impl.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlocale.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariant.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qshareddata.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qset.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontiguouscache.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer_impl.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFile \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfile.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfiledevice.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QRegularExpression \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregularexpression.h \
-		..\YUMI\config.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QString \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QList \
-		..\YUMI\yumi.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMainWindow \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qmainwindow.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgetsglobal.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtguiglobal.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtgui-config.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgets-config.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventloop.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qwindowdefs.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qwindowdefs_win.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsize.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmargins.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcursor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qwidget.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpaintdevice.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrect.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsize.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpalette.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcolor.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qrgb.h \
@@ -3921,22 +5270,49 @@ release\config.obj: ..\YUMI\config.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCor
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpolygon.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qregion.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatastream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiodevice.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qline.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtransform.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qimage.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpixelformat.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpixmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qshareddata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer_impl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfont.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontmetrics.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontinfo.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qsizepolicy.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcursor.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qkeysequence.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariant.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdebug.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlocale.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qset.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontiguouscache.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qurl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qurlquery.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfiledevice.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qvector2d.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtouchdevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qguiapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qinputmethod.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtDebug \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFile \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QRegularExpression \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregularexpression.h \
+		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QString \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\YUMI\yumi.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMainWindow \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qmainwindow.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qicon.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QAction \
@@ -3944,6 +5320,8 @@ release\config.obj: ..\YUMI\config.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCor
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -4013,15 +5391,144 @@ release\config.obj: ..\YUMI\config.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCor
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\game_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
@@ -4029,7 +5536,6 @@ release\config.obj: ..\YUMI\config.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCor
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -4053,8 +5559,6 @@ release\config.obj: ..\YUMI\config.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCor
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
@@ -4063,7 +5567,786 @@ release\config.obj: ..\YUMI\config.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCor
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkReply \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
+		..\YUMI\assets.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPixmap \
+		..\YUMI\bepinexfile.h \
+		..\YUMI\yumi_filedownloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QByteArray
+
+release\debug_info.obj: ..\YUMI\debug_info.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstring.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcore-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocessordetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypeinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsysinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlogging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qflags.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasicatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qgenericatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobalstatic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmutex.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnumeric.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversiontagging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrefcount.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnamespace.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringliteral.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfiledevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiodevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhashfunctions.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpair.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainertools_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpoint.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraylist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregexp.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringmatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetatype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qshareddata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
+		..\YUMI\debug_info.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QObject \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QString \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QChar \
+		..\YUMI\game_info.h \
+		..\YUMI\utils.h \
+		..\YUMI\yumi.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMainWindow \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qmainwindow.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtguiglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtgui-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qwindowdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qwindowdefs_win.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmargins.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpaintdevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrect.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsize.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpalette.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcolor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qrgb.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qrgba64.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qbrush.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qmatrix.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpolygon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qregion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatastream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtransform.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qimage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpixelformat.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpixmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfont.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontmetrics.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qsizepolicy.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcursor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qkeysequence.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariant.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdebug.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlocale.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qset.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontiguouscache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qurl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qurlquery.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qvector2d.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtouchdevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qicon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QAction \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qaction.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		..\YUMI\main_widget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QWidget \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLabel \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlabel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qframe.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgraphicseffect.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QScrollArea \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qscrollarea.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QTableWidget \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtablewidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtableview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qstyleoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qvalidator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregularexpression.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qslider.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractslider.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qstyle.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabbar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qrubberband.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QHBoxLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgridlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QVBoxLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGridLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QPushButton \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qpushbutton.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractbutton.h \
+		..\YUMI\side_menu.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFont \
+		..\YUMI\game_details.h \
+		..\YUMI\common.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPaintEvent \
+		..\YUMI\mods_list_container.h \
+		..\YUMI\mods_list.h \
+		..\YUMI\mod_info.h \
+		..\YUMI\uninstall_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QPoint \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QMouseEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QCheckBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcheckbox.h \
+		..\YUMI\window_title.h \
+		..\YUMI\mods_loader_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventloop.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
+		..\YUMI\about.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
+		..\YUMI\about_description.h \
+		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
+		..\YUMI\game_loader.h \
+		..\YUMI\license_viewer.h \
+		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcolordialog.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdialog.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
+		..\YUMI\save_theme_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextcursor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextformat.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpen.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextoption.h \
+		..\YUMI\yumi_network.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkAccessManager \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkaccessmanager.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qtnetworkglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qtnetwork-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkrequest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QSharedDataPointer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QUrl \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVariant \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslConfiguration \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslconfiguration.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslsocket.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qtcpsocket.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslpresharedkeyauthenticator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMetaType \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkReply \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
+		..\YUMI\logger.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFile
+
+release\debug_logs.obj: ..\YUMI\debug_logs.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QCoreApplication \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcore-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocessordetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypeinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsysinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlogging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qflags.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasicatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qgenericatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobalstatic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmutex.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnumeric.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversiontagging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstring.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrefcount.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnamespace.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringliteral.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhashfunctions.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpair.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainertools_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpoint.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraylist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregexp.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringmatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetatype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventloop.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QApplication \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtguiglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtgui-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qwindowdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qwindowdefs_win.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsize.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmargins.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcursor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpaintdevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrect.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpalette.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcolor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qrgb.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qrgba64.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qbrush.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qmatrix.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpolygon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qregion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatastream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiodevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtransform.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qimage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpixelformat.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpixmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qshareddata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfont.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontmetrics.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qsizepolicy.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qkeysequence.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariant.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdebug.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlocale.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qset.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontiguouscache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qurl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qurlquery.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfiledevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qvector2d.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtouchdevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qguiapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qinputmethod.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDesktopServices \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qdesktopservices.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QClipboard \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qclipboard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QStyleOption \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qstyleoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qvalidator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregularexpression.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qicon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qslider.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractslider.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qstyle.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabbar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qrubberband.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qframe.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPainter \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpainter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpen.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMessageBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qmessagebox.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdialog.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QThread \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QObject \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QWidget \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QPoint \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QMouseEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPaintEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QHBoxLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgridlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QVBoxLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QString \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLabel \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlabel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QPushButton \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qpushbutton.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QScrollArea \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qscrollarea.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
+		..\YUMI\window_title.h \
+		..\YUMI\assets.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFile \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPixmap \
+		..\YUMI\bepinexfile.h \
+		..\YUMI\yumi_filedownloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QByteArray \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkAccessManager \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkaccessmanager.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qtnetworkglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qtnetwork-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkrequest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QSharedDataPointer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QUrl \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVariant \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslConfiguration \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslconfiguration.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslsocket.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qtcpsocket.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslpresharedkeyauthenticator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMetaType \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkReply \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
+		..\YUMI\debug_info.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QChar \
+		..\YUMI\game_info.h \
+		..\YUMI\yumi.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMainWindow \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qmainwindow.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QAction \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qaction.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		..\YUMI\main_widget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgraphicseffect.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QTableWidget \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtablewidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtableview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGridLayout \
+		..\YUMI\side_menu.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFont \
+		..\YUMI\game_details.h \
+		..\YUMI\common.h \
+		..\YUMI\mods_list_container.h \
+		..\YUMI\mods_list.h \
+		..\YUMI\mod_info.h \
+		..\YUMI\uninstall_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QCheckBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcheckbox.h \
+		..\YUMI\mods_loader_settings.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
+		..\YUMI\about.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
+		..\YUMI\about_description.h \
+		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
+		..\YUMI\game_loader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
+		..\YUMI\license_viewer.h \
+		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcolordialog.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
+		..\YUMI\save_theme_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextcursor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextformat.h \
+		..\YUMI\yumi_network.h \
+		..\YUMI\utils.h
 
 release\downloading_window.obj: ..\YUMI\downloading_window.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QCoreApplication \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
@@ -4243,6 +6526,399 @@ release\downloading_window.obj: ..\YUMI\downloading_window.cpp ..\..\Qt\5.15.2\m
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
 		..\YUMI\common.h
 
+release\drop_mod_window.obj: ..\YUMI\drop_mod_window.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QCoreApplication \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcore-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocessordetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypeinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsysinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlogging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qflags.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasicatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qgenericatomic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobalstatic.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmutex.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnumeric.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversiontagging.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstring.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrefcount.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnamespace.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringliteral.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhashfunctions.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpair.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainertools_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpoint.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraylist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregexp.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringmatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetatype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventloop.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QApplication \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtguiglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtgui-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qwindowdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qwindowdefs_win.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsize.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmargins.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcursor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpaintdevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrect.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpalette.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qcolor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qrgb.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qrgba64.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qbrush.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qmatrix.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpolygon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qregion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatastream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiodevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtransform.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qimage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpixelformat.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpixmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qshareddata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfont.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontmetrics.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qsizepolicy.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qkeysequence.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariant.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdebug.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlocale.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qset.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontiguouscache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qurl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qurlquery.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfiledevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qvector2d.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtouchdevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qguiapplication.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qinputmethod.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QStyleOption \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qstyleoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qvalidator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregularexpression.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qicon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qslider.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractslider.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qstyle.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabbar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qrubberband.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qframe.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPainter \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpainter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpen.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPainterPath \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpainterpath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPen \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFileInfo \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QObject \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QWidget \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLabel \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlabel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QPushButton \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qpushbutton.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractbutton.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QVBoxLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgridlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QPoint \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QMouseEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPaintEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFont \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
+		..\YUMI\window_title.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QHBoxLayout \
+		..\YUMI\common.h \
+		..\YUMI\utils.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QString \
+		..\YUMI\assets.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFile \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPixmap \
+		..\YUMI\bepinexfile.h \
+		..\YUMI\yumi_filedownloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QByteArray \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkAccessManager \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkaccessmanager.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qtnetworkglobal.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qtnetwork-config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkrequest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QSharedDataPointer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QUrl \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVariant \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslConfiguration \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslconfiguration.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslsocket.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qtcpsocket.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslpresharedkeyauthenticator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMetaType \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkReply \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
+		..\YUMI\yumi.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMainWindow \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qmainwindow.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QAction \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qaction.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
+		..\YUMI\game_info.h \
+		..\YUMI\main_widget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGraphicsDropShadowEffect \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgraphicseffect.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QScrollArea \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qscrollarea.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QTableWidget \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtablewidget.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtableview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemview.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGridLayout \
+		..\YUMI\side_menu.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QList \
+		..\YUMI\game_details.h \
+		..\YUMI\mods_list_container.h \
+		..\YUMI\mods_list.h \
+		..\YUMI\mod_info.h \
+		..\YUMI\uninstall_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QCheckBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcheckbox.h \
+		..\YUMI\mods_loader_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\about.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
+		..\YUMI\about_description.h \
+		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
+		..\YUMI\game_loader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
+		..\YUMI\license_viewer.h \
+		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcolordialog.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdialog.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
+		..\YUMI\save_theme_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextcursor.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextformat.h \
+		..\YUMI\yumi_network.h \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
+		..\YUMI\mods_loader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMap
+
 release\game_details.obj: ..\YUMI\game_details.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QCoreApplication \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobal.h \
@@ -4414,8 +7090,151 @@ release\game_details.obj: ..\YUMI\game_details.cpp ..\..\Qt\5.15.2\msvc2019_64\i
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFont \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\mods_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMap \
 		..\YUMI\bepinexfile.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFile \
 		..\YUMI\yumi.h \
@@ -4426,44 +7245,32 @@ release\game_details.obj: ..\YUMI\game_details.cpp ..\..\Qt\5.15.2\msvc2019_64\i
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
 		..\YUMI\main_widget.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QTableWidget \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtablewidget.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtableview.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGridLayout \
 		..\YUMI\side_menu.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFont \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcolordialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -4485,8 +7292,6 @@ release\game_details.obj: ..\YUMI\game_details.cpp ..\..\Qt\5.15.2\msvc2019_64\i
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
@@ -4496,10 +7301,13 @@ release\game_details.obj: ..\YUMI\game_details.cpp ..\..\Qt\5.15.2\msvc2019_64\i
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		..\YUMI\assets.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPixmap \
 		..\YUMI\yumi_filedownloader.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QByteArray
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QByteArray \
+		..\YUMI\utils.h
 
 release\game_info.obj: ..\YUMI\game_info.cpp ..\YUMI\game_info.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QString \
@@ -4661,6 +7469,8 @@ release\game_loader.obj: ..\YUMI\game_loader.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -4732,19 +7542,149 @@ release\game_loader.obj: ..\YUMI\game_loader.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcolordialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -4768,8 +7708,6 @@ release\game_loader.obj: ..\YUMI\game_loader.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
@@ -4779,8 +7717,11 @@ release\game_loader.obj: ..\YUMI\game_loader.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		..\YUMI\utils.h \
 		..\YUMI\mods_loader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMap \
 		..\YUMI\bepinexfile.h
 
 release\license_viewer.obj: ..\YUMI\license_viewer.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QApplication \
@@ -4937,6 +7878,8 @@ release\license_viewer.obj: ..\YUMI\license_viewer.cpp ..\..\Qt\5.15.2\msvc2019_
 		..\YUMI\common.h \
 		..\YUMI\config.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
 		..\YUMI\assets.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFile \
@@ -5181,6 +8124,8 @@ release\main.obj: ..\YUMI\main.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -5250,16 +8195,145 @@ release\main.obj: ..\YUMI\main.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
@@ -5267,7 +8341,6 @@ release\main.obj: ..\YUMI\main.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -5291,8 +8364,6 @@ release\main.obj: ..\YUMI\main.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
@@ -5302,6 +8373,8 @@ release\main.obj: ..\YUMI\main.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		..\YUMI\logger.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFile \
 		..\YUMI\assets.h \
@@ -5487,35 +8560,168 @@ release\main_widget.obj: ..\YUMI\main_widget.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\yumi.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMainWindow \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qmainwindow.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
 		..\YUMI\about.h \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
@@ -5523,7 +8729,6 @@ release\main_widget.obj: ..\YUMI\main_widget.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -5545,8 +8750,6 @@ release\main_widget.obj: ..\YUMI\main_widget.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
@@ -5556,6 +8759,8 @@ release\main_widget.obj: ..\YUMI\main_widget.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		..\YUMI\assets.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFile \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPixmap \
@@ -5760,9 +8965,8 @@ release\mods_list.obj: ..\YUMI\mods_list.cpp ..\..\Qt\5.15.2\msvc2019_64\include
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice
 
-release\mods_list_container.obj: ..\YUMI\mods_list_container.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDebug \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdebug.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qalgorithms.h \
+release\mods_list_container.obj: ..\YUMI\mods_list_container.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QCoreApplication \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobal.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig-bootstrapped.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig.h \
@@ -5784,20 +8988,23 @@ release\mods_list_container.obj: ..\YUMI\mods_list_container.cpp ..\..\Qt\5.15.2
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmutex.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnumeric.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversiontagging.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhash.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiterator.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlist.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrefcount.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydata.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhashfunctions.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstring.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrefcount.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnamespace.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydata.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringliteral.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringalgorithms.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringview.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qalgorithms.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhashfunctions.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpair.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvector.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainertools_impl.h \
@@ -5806,18 +9013,19 @@ release\mods_list_container.obj: ..\YUMI\mods_list_container.cpp ..\..\Qt\5.15.2
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlist.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregexp.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringmatcher.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmap.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextstream.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiodevice.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreevent.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedpointer.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetatype.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvarlengtharray.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainerfwd.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventloop.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDebug \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdebug.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiodevice.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlocale.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariant.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qshareddata.h \
@@ -5900,6 +9108,8 @@ release\mods_list_container.obj: ..\YUMI\mods_list_container.cpp ..\..\Qt\5.15.2
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -5949,23 +9159,153 @@ release\mods_list_container.obj: ..\YUMI\mods_list_container.cpp ..\..\Qt\5.15.2
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcolordialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -5989,8 +9329,6 @@ release\mods_list_container.obj: ..\YUMI\mods_list_container.cpp ..\..\Qt\5.15.2
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
@@ -6000,6 +9338,8 @@ release\mods_list_container.obj: ..\YUMI\mods_list_container.cpp ..\..\Qt\5.15.2
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		..\YUMI\utils.h \
 		..\YUMI\assets.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPixmap \
@@ -6129,6 +9469,7 @@ release\mods_loader.obj: ..\YUMI\mods_loader.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMap \
 		..\YUMI\mod_info.h \
 		..\YUMI\game_info.h \
 		..\YUMI\bepinexfile.h \
@@ -6178,6 +9519,147 @@ release\mods_loader.obj: ..\YUMI\mods_loader.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qrubberband.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractitemmodel.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFont \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\assets.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPixmap \
@@ -6199,8 +9681,6 @@ release\mods_loader.obj: ..\YUMI\mods_loader.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
@@ -6212,49 +9692,37 @@ release\mods_loader.obj: ..\YUMI\mods_loader.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
 		..\YUMI\utils.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\yumi.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMainWindow \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qmainwindow.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QAction \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qaction.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
 		..\YUMI\main_widget.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QTableWidget \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtablewidget.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtableview.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGridLayout \
 		..\YUMI\side_menu.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFont \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\game_loader.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcolordialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -6263,6 +9731,8 @@ release\mods_loader.obj: ..\YUMI\mods_loader.cpp ..\..\Qt\5.15.2\msvc2019_64\inc
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpen.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextoption.h \
 		..\YUMI\yumi_network.h \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		..\YUMI\zipfiles_manager.h \
 		..\YUMI\select_game_window.h
 
@@ -6460,6 +9930,7 @@ release\mods_loader_settings.obj: ..\YUMI\mods_loader_settings.cpp ..\..\Qt\5.15
 		..\YUMI\mods_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QList \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMap \
 		..\YUMI\mod_info.h \
 		..\YUMI\utils.h \
 		..\YUMI\game_details.h \
@@ -6473,43 +9944,173 @@ release\mods_loader_settings.obj: ..\YUMI\mods_loader_settings.cpp ..\..\Qt\5.15
 		..\YUMI\uninstall_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QCheckBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcheckbox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFont \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\yumi.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMainWindow \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qmainwindow.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QAction \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qaction.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrent_global.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrunbase.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuture.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfutureinterface.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrunnable.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qexception.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresultstore.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadpool.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
 		..\YUMI\main_widget.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QTableWidget \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtablewidget.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtableview.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemview.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qitemselectionmodel.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGridLayout \
 		..\YUMI\side_menu.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFont \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
@@ -6521,7 +10122,9 @@ release\mods_loader_settings.obj: ..\YUMI\mods_loader_settings.cpp ..\..\Qt\5.15
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextcursor.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextformat.h \
-		..\YUMI\yumi_network.h
+		..\YUMI\yumi_network.h \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent
 
 release\save_theme_window.obj: ..\YUMI\save_theme_window.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QCoreApplication \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
@@ -6714,6 +10317,7 @@ release\save_theme_window.obj: ..\YUMI\save_theme_window.cpp ..\..\Qt\5.15.2\msv
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QAction \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qaction.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -6756,24 +10360,155 @@ release\save_theme_window.obj: ..\YUMI\save_theme_window.cpp ..\..\Qt\5.15.2\msv
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcolordialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
-		..\YUMI\yumi_network.h
+		..\YUMI\yumi_network.h \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent
 
 release\select_game_window.obj: ..\YUMI\select_game_window.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QCoreApplication \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
@@ -6964,6 +10699,7 @@ release\select_game_window.obj: ..\YUMI\select_game_window.cpp ..\..\Qt\5.15.2\m
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QAction \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qaction.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -7003,29 +10739,160 @@ release\select_game_window.obj: ..\YUMI\select_game_window.cpp ..\..\Qt\5.15.2\m
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QCheckBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcheckbox.h \
 		..\YUMI\mods_loader_settings.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcolordialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextcursor.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextformat.h \
-		..\YUMI\yumi_network.h
+		..\YUMI\yumi_network.h \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent
 
 release\side_menu.obj: ..\YUMI\side_menu.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QCoreApplication \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreapplication.h \
@@ -7167,6 +11034,8 @@ release\side_menu.obj: ..\YUMI\side_menu.cpp ..\..\Qt\5.15.2\msvc2019_64\include
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -7227,15 +11096,146 @@ release\side_menu.obj: ..\YUMI\side_menu.cpp ..\..\Qt\5.15.2\msvc2019_64\include
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
@@ -7243,7 +11243,6 @@ release\side_menu.obj: ..\YUMI\side_menu.cpp ..\..\Qt\5.15.2\msvc2019_64\include
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qdialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -7265,8 +11264,6 @@ release\side_menu.obj: ..\YUMI\side_menu.cpp ..\..\Qt\5.15.2\msvc2019_64\include
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qabstractsocket.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslerror.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qsslcertificate.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcryptographichash.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdatetime.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qssl.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFlags \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
@@ -7276,6 +11273,8 @@ release\side_menu.obj: ..\YUMI\side_menu.cpp ..\..\Qt\5.15.2\msvc2019_64\include
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\qnetworkreply.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QIODevice \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtNetwork\QNetworkRequest \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		..\YUMI\assets.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFile \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPixmap \
@@ -7472,12 +11471,12 @@ release\uninstall_window.obj: ..\YUMI\uninstall_window.cpp ..\..\Qt\5.15.2\msvc2
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMap \
 		..\YUMI\mod_info.h
 
-release\utils.obj: ..\YUMI\utils.cpp ..\YUMI\utils.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QString \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstring.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
+release\utils.obj: ..\YUMI\utils.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDebug \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdebug.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qalgorithms.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qglobal.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig-bootstrapped.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconfig.h \
@@ -7499,14 +11498,56 @@ release\utils.obj: ..\YUMI\utils.cpp ..\YUMI\utils.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmutex.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnumeric.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversiontagging.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhash.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qchar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlist.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrefcount.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnamespace.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhashfunctions.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstring.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qnamespace.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringliteral.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringalgorithms.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringview.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringbuilder.h
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringbuilder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpair.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainertools_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpoint.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraylist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qregexp.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringmatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qiodevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcoreevent.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetatype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobject_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlocale.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariant.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qshareddata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qset.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcontiguouscache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QFile \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfiledevice.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\YUMI\utils.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QString \
+		..\YUMI\base64.h
 
 release\window_title.obj: ..\YUMI\window_title.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPainter \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpainter.h \
@@ -7813,6 +11854,8 @@ release\yumi.obj: ..\YUMI\yumi.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthread.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdeadlinetimer.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFontDatabase \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontdatabase.h \
 		..\YUMI\common.h \
 		..\YUMI\assets.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QObject \
@@ -7854,6 +11897,7 @@ release\yumi.obj: ..\YUMI\yumi.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qmainwindow.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qtabwidget.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QAction \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -7920,20 +11964,146 @@ release\yumi.obj: ..\YUMI\yumi.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcolordialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -7942,8 +12112,11 @@ release\yumi.obj: ..\YUMI\yumi.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpen.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextoption.h \
 		..\YUMI\yumi_network.h \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		..\YUMI\utils.h \
-		..\YUMI\mods_loader.h
+		..\YUMI\mods_loader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMap
 
 release\yumi_filedownloader.obj: ..\YUMI\yumi_filedownloader.cpp ..\YUMI\yumi_filedownloader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QObject \
@@ -8200,6 +12373,7 @@ release\yumi_network.obj: ..\YUMI\yumi_network.cpp ..\..\Qt\5.15.2\msvc2019_64\i
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qaction.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QIcon \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -8268,23 +12442,149 @@ release\yumi_network.obj: ..\YUMI\yumi_network.cpp ..\..\Qt\5.15.2\msvc2019_64\i
 		..\YUMI\mods_loader_settings.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_settings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QSpinBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qspinbox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QColorDialog \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcolordialog.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGroupBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgroupbox.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\YUMI\save_theme_window.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlineedit.h \
@@ -8292,6 +12592,8 @@ release\yumi_network.obj: ..\YUMI\yumi_network.cpp ..\..\Qt\5.15.2\msvc2019_64\i
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextformat.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpen.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qtextoption.h \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		..\YUMI\yumi_filedownloader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QByteArray
 
@@ -8425,13 +12727,6 @@ release\yumi_settings.obj: ..\YUMI\yumi_settings.cpp ..\..\Qt\5.15.2\msvc2019_64
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpen.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QPainterPath \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qpainterpath.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayout.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayoutitem.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgridlayout.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QStringList \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QFontDatabase \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\qfontdatabase.h \
@@ -8450,7 +12745,14 @@ release\yumi_settings.obj: ..\YUMI\yumi_settings.cpp ..\..\Qt\5.15.2\msvc2019_64
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qpushbutton.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractbutton.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QHBoxLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qboxlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qgridlayout.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QVBoxLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QFormLayout \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qformlayout.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QComboBox \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qcombobox.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
@@ -8513,6 +12815,7 @@ release\yumi_settings.obj: ..\YUMI\yumi_settings.cpp ..\..\Qt\5.15.2\msvc2019_64
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\QAction \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qaction.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtWidgets\qactiongroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDateTime \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentRun \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentrun.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentcompilertest.h \
@@ -8547,16 +12850,144 @@ release\yumi_settings.obj: ..\YUMI\yumi_settings.cpp ..\..\Qt\5.15.2\msvc2019_64
 		..\YUMI\mod_info.h \
 		..\YUMI\uninstall_window.h \
 		..\YUMI\mods_loader_settings.h \
+		..\YUMI\drop_mod_window.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragEnterEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDropEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QDragLeaveEvent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QMimeData \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedata.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrent \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\QtConcurrentDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCore \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QtCoreDepends \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstractstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qabstracttransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydataops.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbasictimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbitarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbuffer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qbytearraymatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcache.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcalendar.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborcommon.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\quuid.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcbormap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamreader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfloat16.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcborstreamwriter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcollator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineoption.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qcommandlineparser.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qconcatenatetablesproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdiriterator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeasingcurve.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qendian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qeventtransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfactoryinterface.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileselector.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfinalstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfuturewatcher.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qhistorystate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qidentityproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qisenum.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonarray.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonvalue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsondocument.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qjsonobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibrary.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlibraryinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qversionnumber.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlinkedlist.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qlockfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qloggingcategory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmath.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmetaobject.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimedatabase.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qmimetype.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpauseanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qplugin.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpointer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpluginloader.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qprocess.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qpropertyanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qvariantanimation.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qqueue.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qrandom.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qreadwritelock.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qresource.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsavefile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qscopeguard.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsettings.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsharedmemory.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignalmapper.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsignaltransition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsocketnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstack.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstandardpaths.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstate.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstatemachine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstorageinfo.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qstringlistmodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qsystemsemaphore.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporarydir.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtemporaryfile.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtextcodec.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qthreadstorage.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimeline.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimer.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtimezone.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtranslator.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtransposeproxymodel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtypetraits.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwaitcondition.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDeadlineTimer \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qwineventnotifier.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qxmlstream.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qtcoreversion.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentexception.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilter.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmedian.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentthreadengine.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmapkernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentreducekernel.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentmap.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtConcurrent\qtconcurrentversion.h \
 		..\YUMI\about.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QEvent \
 		..\YUMI\about_description.h \
 		..\YUMI\config.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QTranslator \
 		..\YUMI\game_loader.h \
 		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QDir \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qdir.h \
-		..\..\Qt\5.15.2\msvc2019_64\include\QtCore\qfileinfo.h \
 		..\YUMI\license_viewer.h \
 		..\YUMI\yumi_network.h \
+		..\YUMI\debug_logs.h \
+		..\..\Qt\5.15.2\msvc2019_64\include\QtGui\QShowEvent \
 		..\YUMI\utils.h
 
 release\zipfiles_manager.obj: ..\YUMI\zipfiles_manager.cpp ..\..\Qt\5.15.2\msvc2019_64\include\QtCore\QVector \
@@ -8653,7 +13084,13 @@ release\moc_about_description.obj: release\moc_about_description.cpp
 
 release\moc_assets.obj: release\moc_assets.cpp 
 
+release\moc_debug_info.obj: release\moc_debug_info.cpp 
+
+release\moc_debug_logs.obj: release\moc_debug_logs.cpp 
+
 release\moc_downloading_window.obj: release\moc_downloading_window.cpp 
+
+release\moc_drop_mod_window.obj: release\moc_drop_mod_window.cpp 
 
 release\moc_game_details.obj: release\moc_game_details.cpp 
 

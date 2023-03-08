@@ -73,13 +73,18 @@
 ** Franklin Street, Fifth Floor, Boston, MA 02110 USA.
 */
 
+#include <QApplication>
 #include <QtDebug>
 #include <QFile>
 #include <QRegularExpression>
 #include "config.h"
 #include "yumi.h"
+#include "assets.h"
 
 Config* Config::_instance = NULL;
+QTranslator* Config::_frenchTranslator = NULL;
+QTranslator* Config::_frenchBaseTranslator = NULL;
+bool Config::_isFrenchTranslatorInstalled = false;
 
 Config::Config(void* yumiPtr)
 {
@@ -89,6 +94,10 @@ Config::Config(void* yumiPtr)
     this->checkVersionAtStartup = true;
     this->downloadRequestTimeout = DEFAULT_DOWNLOAD_REQUEST_TIMEOUT;
     this->getRequestTimeout = DEFAULT_GET_REQUEST_TIMEOUT;
+    this->language = DEFAULT_LANGUAGE;
+    this->_frenchTranslator = NULL;
+    this->_frenchBaseTranslator = NULL;
+    this->_isFrenchTranslatorInstalled = false;
     this->_yumiPtr = yumiPtr;
     this->loadThemePresets();
 }
@@ -128,7 +137,31 @@ QString Config::getExeTypeLabel(const int exeType)
         return "UnixX86";
     if (exeType == DARWIN_GAME)
         return "Darwin";
+    if (exeType == WIN_GAME_IL2CPP_X64)
+        return "WinX64_IL2CPP";
+    if (exeType == WIN_GAME_IL2CPP_X86)
+        return "WinX86_IL2CPP";
     return "Unknown";
+}
+
+QString Config::getBepInExNameFromExeType(int exeType)
+{
+    if (exeType == WIN_GAME_X64)
+        return WINX64_BEPINEX_NAME;
+    else if (exeType == WIN_GAME_X86)
+        return WINX86_BEPINEX_NAME;
+    else if (exeType == UNIX_GAME_X64)
+        return UNIX_BEPINEX_NAME;
+    else if (exeType == UNIX_GAME_X86)
+        return UNIX_BEPINEX_NAME;
+    else if (exeType == DARWIN_GAME)
+        return UNIX_BEPINEX_NAME;
+    else if (exeType == WIN_GAME_IL2CPP_X64)
+        return IL2CPPX64_BEPINEX_NAME;
+    else if (exeType == WIN_GAME_IL2CPP_X86)
+        return IL2CPPX86_BEPINEX_NAME;
+    else
+        return "";
 }
 
 void Config::parseGameLine(const QString& gameLine)
@@ -175,6 +208,45 @@ void Config::parseGameLine(const QString& gameLine)
         ((yumi*)_yumiPtr)->gamesInfo.append(GameInfo(elems[0], elems[1], elems[2], exeType));
         qDebug().nospace() << "Successfully loaded game " << elems[0] << " from configuration file. GamePath=" << elems[1] << " ExeType=" << getExeTypeLabel(exeType) << " ExePath=" << elems[2] << ".";
     }
+}
+
+bool Config::SwapLanguage(const QString& lang, QApplication* app)
+{
+    if (lang.compare("English") == 0)
+    {
+        if (_isFrenchTranslatorInstalled && app != NULL)
+        {
+            if (_frenchBaseTranslator != NULL)
+                app->removeTranslator(_frenchBaseTranslator);
+            if (_frenchTranslator != NULL)
+                app->removeTranslator(_frenchTranslator);
+        }
+        _isFrenchTranslatorInstalled = false;
+        return true;
+    }
+    else if (lang.compare("Français") == 0)
+    {
+        if (!_isFrenchTranslatorInstalled)
+        {
+            if (_frenchTranslator == NULL)
+            {
+                _frenchTranslator = new QTranslator();
+                _frenchTranslator->load(Assets::Instance()->frenchTranslation);
+            }
+            if (_frenchBaseTranslator == NULL)
+            {
+                _frenchBaseTranslator = new QTranslator();
+                _frenchBaseTranslator->load(Assets::Instance()->frenchBaseTranslation);
+            }
+            if (_frenchTranslator != NULL && app != NULL)
+                app->installTranslator(_frenchTranslator);
+            if (_frenchBaseTranslator != NULL && app != NULL)
+                app->installTranslator(_frenchBaseTranslator);
+        }
+        _isFrenchTranslatorInstalled = true;
+        return true;
+    }
+    return false;
 }
 
 int Config::loadConfig()
@@ -235,6 +307,8 @@ int Config::loadConfig()
     int gameDelimiterLen = gameDelimiter.length();
     QString licenseDelimiter("LicenseChecked=");
     int licenseDelimiterLen = licenseDelimiter.length();
+    QString languageDelimiter("Language=");
+    int languageDelimiterLen = languageDelimiter.length();
     QString themeDelimiter("Theme=");
     int themeDelimiterLen = themeDelimiter.length();
     QString logScriptErrorsDelimiter("LogScriptErrors=");
@@ -259,6 +333,12 @@ int Config::loadConfig()
             QString lineVal(trimmedLine.mid(licenseDelimiterLen));
             if (lineVal.compare("true", Qt::CaseInsensitive) == 0)
                 checkedNoticesAndLicense = true;
+        }
+        if (trimmedLineLen > languageDelimiterLen && trimmedLine.startsWith(languageDelimiter))
+        {
+            QString lineVal(trimmedLine.mid(languageDelimiterLen));
+            if (!lineVal.isEmpty() && (lineVal.compare("English", Qt::CaseInsensitive) == 0 || lineVal.compare("Français", Qt::CaseInsensitive) == 0))
+                language = lineVal;
         }
         if (trimmedLineLen > themeDelimiterLen && trimmedLine.startsWith(themeDelimiter))
         {
@@ -320,6 +400,12 @@ int Config::loadConfig()
             ((yumi*)_yumiPtr)->mainWidget->sideMenu->addAction(((yumi*)_yumiPtr)->gamesInfo[j]);
 
     qDebug().nospace() << "Configuration file has been parsed. " << nbGamesLoaded << " games were added to games list.";
+
+    if (language.compare(DEFAULT_LANGUAGE, Qt::CaseInsensitive) != 0)
+    {
+        Config::SwapLanguage(language, ((yumi*)_yumiPtr)->appPtr);
+    }
+
     return nbGamesLoaded;
 }
 
@@ -328,7 +414,7 @@ bool Config::saveConfig()
     QString configFilepath = getConfigFilepath();
     qDebug().nospace() << "Saving configuration to " << configFilepath << "...";
 
-    QString toSave = ("Theme=" + ((yumi*)_yumiPtr)->theme + "\n");
+    QString toSave = ("Language=" + this->language + "\nTheme=" + ((yumi*)_yumiPtr)->theme + "\n");
 
     if (this->logScriptErrors)
         toSave += "LogScriptErrors=true\n";
@@ -403,7 +489,7 @@ void Config::loadThemePresets()
     ThemeInfo defaultTheme;
     defaultTheme.name = "Default";
     defaultTheme.isValid = true;
-    defaultTheme.primaryFontFamily = "Gill Sans MT";
+    defaultTheme.primaryFontFamily = Assets::primaryFontFamily;
     defaultTheme.smallFontSizePx = "14";
     defaultTheme.regularFontSizePx = "16";
     defaultTheme.largeFontSizePx = "20";

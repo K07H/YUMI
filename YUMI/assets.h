@@ -97,7 +97,6 @@ private:
 
     bool extractBepInExArchive(const QString& bepInExName, const QString& downloadsFolderPath);
     bool downloadBepInExArchive(const QString& bepInExName, const QString& downloadsFolderPath);
-    bool isBepInExUpToDate(const QString& bepInExFolderPath);
     bool getLocalBepInEx(const QString& bepInExName, const QString& bepInExFolderPath, const QString& downloadsFolderPath);
 
     static Assets* _instance;
@@ -114,14 +113,18 @@ public:
     static Assets* Init(QObject* parent = NULL);
     static Assets* Instance();
 
+    bool isBepInExUpToDate(const QString& bepInExName, const QString& bepInExFolderPath);
     QList<BepInExFile*>* getUnixFiles();
     QList<BepInExFile*>* getX64Files();
     QList<BepInExFile*>* getX86Files();
     QList<BepInExFile*>* getIL2CPPX64Files();
     QList<BepInExFile*>* getIL2CPPX86Files();
+    QStringList getAllBepInExFiles();
     QString getColorBtnStyle(const QString& color);
     void updateStyles();
     void resetStyles();
+
+    static QString primaryFontFamily;
 
     const QString licenseFile = ":/yumiresources/FULL_LICENSE.txt";
 #ifdef Q_OS_DARWIN
@@ -137,6 +140,8 @@ public:
     const QIcon settingsIcon = QIcon(imgRsrcPath + "/settings.png");
     const QIcon exitIcon = QIcon(imgRsrcPath + "/exitsign.png");
     const QIcon bookIcon = QIcon(imgRsrcPath + "/book.png");
+    const QIcon discordIcon = QIcon(imgRsrcPath + "/discord.png");
+    const QIcon logsIcon = QIcon(imgRsrcPath + "/logs.png");
     const QIcon updatesIcon = QIcon(imgRsrcPath + "/updates.png");
     const QIcon infoIcon = QIcon(imgRsrcPath + "/info.png");
     const QIcon minimizeIcon = QIcon(imgRsrcPath + "/minimize.png");
@@ -150,7 +155,13 @@ public:
     const QIcon checkboxCheckedHover = QIcon(imgRsrcPath + "/checkbox_checked_hover.png");
     const QIcon checkboxCheckedPressed = QIcon(imgRsrcPath + "/checkbox_checked_pressed.png");
 
-    QString PRIMARY_FONT_FAMILY = QString("Gill Sans MT");
+    const QIcon englishFlagIcon = QIcon(imgRsrcPath + "/flag_en.png");
+    const QIcon frenchFlagIcon = QIcon(imgRsrcPath + "/flag_fr.png");
+
+    const QString frenchTranslation = QString(":/yumiresources/YUMI_Lang_fr.qm");
+    const QString frenchBaseTranslation = QString(":/yumiresources/qtbase_fr.qm");
+
+    QString PRIMARY_FONT_FAMILY = Assets::primaryFontFamily;
     QString SECONDARY_FONT_FAMILY = QString("Courier New");
 
     QString SM_FONT_SIZE_PX = QString("14");
@@ -266,24 +277,19 @@ public:
         "QCheckBox::indicator:indeterminate:pressed { image: url(" + imgRsrcPath + "/checkbox_indeterminated_pressed.png); }";
 
     QString menuBarStyle = "QMenuBar { font-family: \"" + PRIMARY_FONT_FAMILY + "\", sans-serif; font-weight: bold; font-size: " + DEFAULT_FONT_SIZE_PX + "px; color: " + SECONDARY_COLOR_HEX + "; background-color: " + PRIMARY_COLOR_LIGHT_HEX + "; border-top: 1px solid " + SECONDARY_COLOR_HEX + "; border-left: 1px solid " + SECONDARY_COLOR_HEX + "; border-right: 1px solid " + SECONDARY_COLOR_HEX + "; border-bottom: 2px solid " + SECONDARY_COLOR_HEX + "; border-top-left-radius: 10px; border-top-right-radius: 10px; padding: 0; margin: 0; } "
-#ifdef Q_OS_LINUX
-        "QMenuBar::item { padding: 10px 14px 10px 14px; margin-top: 0px; margin-bottom: 0px; border: none; } "
+#ifdef Q_OS_WINDOWS
+        "QMenuBar::item { padding: 9px 14px 8px 14px; margin-top: 0px; margin-bottom: 0px; border: 0px solid transparent; } "
 #else
-        "QMenuBar::item { padding: 9px 14px 8px 14px; margin-top: 0px; margin-bottom: 0px; border: none; } "
+        "QMenuBar::item { padding: 10px 14px 10px 14px; margin-top: 0px; margin-bottom: 0px; border: 0px solid transparent; } "
 #endif
         "QMenuBar::item:selected { background-color: " + PRIMARY_COLOR_HEX + "; } "
         "QMenuBar::item:pressed { background-color: " + PRIMARY_COLOR_DEEP_HEX + "; } "
         "QMenu { background-color: " + PRIMARY_COLOR_DEEP_HEX + "; color: " + SECONDARY_COLOR_HEX + "; padding: 5px; } "
         "QMenu::icon { padding-left: 5px; } "
-        "QMenu::item { color: " + SECONDARY_COLOR_HEX + "; min-width: 100px; font-weight: 600; font-size: " + SM_FONT_SIZE_PX + "px; padding: 7px; border: 1px solid transparent; border-radius: 6px; } "
+        "QMenu::item { color: " + SECONDARY_COLOR_HEX + "; min-width: 100px; font-weight: 600; font-size: " + SM_FONT_SIZE_PX + "px; padding: 7px; border: 0px solid transparent; border-radius: 6px; } "
         "QMenu::item:selected { background-color: " + PRIMARY_COLOR_LIGHT_HEX + "; }";
 
-#ifdef Q_OS_LINUX
-    const QString windowBtnsMenuBarStyle = "QMenuBar { border: none; background-color: transparent; } QMenuBar::item { border: none; padding: 12px 6px 11px 6px; margin: 0; }";
-#else
     const QString windowBtnsMenuBarStyle = "QMenuBar { border: none; background-color: transparent; } QMenuBar::item { border: none; padding: 0; margin: 8% 5%; }";
-#endif
-
     QString statusBarStyle = "QStatusBar { background-color: " + PRIMARY_COLOR_LIGHT_HEX + "; border: 1px solid " + SECONDARY_COLOR_HEX + "; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; font-style: italic; color: " + NEUTRAL_COLOR_LIGHT_HEX + "; } "
         "QStatusBar::item { font-style: italic; color: " + NEUTRAL_COLOR_LIGHT_HEX + "; } "
         "QSizeGrip { padding-right: 5px; padding-bottom: 5px; }";

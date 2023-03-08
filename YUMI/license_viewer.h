@@ -115,6 +115,9 @@ private:
     bool _windowMoving;
     QPoint _mousePos;
 
+    LicenseViewer() = delete;
+    LicenseViewer(const LicenseViewer& other) = delete;
+    LicenseViewer& operator=(const LicenseViewer&) = delete;
     void loadLicense();
 
 private slots:

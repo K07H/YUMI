@@ -85,6 +85,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QFormLayout>
 #include <QComboBox>
 #include <QSpinBox>
 #include <QColorDialog>
@@ -129,6 +130,9 @@ private:
     SaveThemeWindow* _saveThemePopup;
 
     QLabel* _generalSettingsLabel;
+    QLabel* _languageLabel;
+    QComboBox* _languageComboBox;
+    QHBoxLayout* _languageLayout;
     QCheckBox* _logScriptErrors;
     QCheckBox* _checkVersionAtStartup;
     QLabel* _downloadTimeoutLabel;
@@ -202,6 +206,7 @@ private:
     QLabel* _lightTextColorLabel;
     QPushButton* _lightTextColorButton;
 
+    QFormLayout* _appearanceLayout;
     QGroupBox* _appearanceGroupBox;
     QScrollArea* _appearanceScrollArea;
     QPushButton* _saveButton;
@@ -216,6 +221,7 @@ private slots:
     void cancel();
     void removeSelectedPreset();
     void shareSelectedPreset();
+    void languageChanged(QString language);
     void presetChanged(QString preset);
     void fontFamilyChanged(QString fontFamily);
     void smallFontSizeChanged(QString fontSize);

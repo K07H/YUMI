@@ -4,6 +4,8 @@
         <file>images/mac/yumilogo_transparent.png</file>
         <file>images/mac/exitsign.png</file>
         <file>images/mac/info.png</file>
+        <file>images/mac/discord.png</file>
+        <file>images/mac/logs.png</file>
         <file>images/mac/updates.png</file>
         <file>images/mac/book.png</file>
         <file>images/mac/close.png</file>
@@ -21,10 +23,14 @@
         <file>images/mac/checkbox_unchecked_pressed.png</file>
         <file>images/mac/checkbox_indeterminated_hover.png</file>
         <file>images/mac/checkbox_indeterminated_pressed.png</file>
+        <file>images/mac/flag_en.png</file>
+        <file>images/mac/flag_fr.png</file>
         <file>images/win/yumilogo.png</file>
         <file>images/win/yumilogo_transparent.png</file>
         <file>images/win/exitsign.png</file>
         <file>images/win/info.png</file>
+        <file>images/win/discord.png</file>
+        <file>images/win/logs.png</file>
         <file>images/win/updates.png</file>
         <file>images/win/book.png</file>
         <file>images/win/close.png</file>
@@ -42,6 +48,10 @@
         <file>images/win/checkbox_unchecked_pressed.png</file>
         <file>images/win/checkbox_indeterminated_hover.png</file>
         <file>images/win/checkbox_indeterminated_pressed.png</file>
+        <file>images/win/flag_en.png</file>
+        <file>images/win/flag_fr.png</file>
         <file>FULL_LICENSE.txt</file>
+        <file>YUMI_Lang_fr.qm</file>
+        <file>qtbase_fr.qm</file>
     </qresource>
 </RCC>

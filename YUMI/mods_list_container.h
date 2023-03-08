@@ -121,7 +121,7 @@ private:
     QVBoxLayout* _modsListBox;
 
     void showErrorMsg(int errNo);
-    ModInfo* getSelectedMod();
+    ModInfo* getSelectedMod(bool showErrorTooltip = true);
     bool isSelectedModDisabled();
     bool removeModFromList(QList<ModInfo>* list, ModInfo* mod);
     bool swapModFromLists(ModInfo* mod, const bool fromDisabled);

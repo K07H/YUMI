@@ -81,7 +81,9 @@
 #include <QAction>
 #include <QIcon>
 #include <QVector>
+#include <QDateTime>
 #include <QtConcurrent/QtConcurrentRun>
+#include <tuple>
 #include "game_info.h"
 #include "main_widget.h"
 #include "about.h"
@@ -90,19 +92,21 @@
 #include "license_viewer.h"
 #include "yumi_settings.h"
 #include "yumi_network.h"
+#include "debug_logs.h"
 
 class yumi : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit yumi(QWidget *parent = nullptr);
+    explicit yumi(QApplication* app, QWidget *parent = nullptr);
     ~yumi();
 
     static QString appPath;
     static int initialWindowWidth;
     static int initialWindowHeight;
 
+    QApplication* appPtr;
     MainWidget* mainWidget;
     Config* configuration;
     YumiNetwork* network;
@@ -110,6 +114,8 @@ public:
     QList<GameInfo> gamesInfo;
     GameInfo* selectedGame;
     QString theme;
+    bool yumiIsStarting;
+    bool pendingDragAndDrop;
 
     void updateStyles();
     QPoint getCenter();
@@ -120,9 +126,11 @@ public:
     void setSelectedGame(GameInfo* currentGame);
     void showStatusBarMsg(const QString& text);
     GameInfo* getGameInfo(const QString& gameName, const QString& gamePath);
+    GameInfo* getGameInfo(const QString& gameName);
     YumiSettings* getSettingsWidget();
     void showLicense();
     void showGetLatestVersionResult(const bool success, const QString& msg, const bool isStartup);
+    void forceRefreshModsMonitoring();
 
 public slots:
     void gameFolderOpen();
@@ -139,18 +147,27 @@ protected:
     void resizeEvent(QResizeEvent* event) override;
     void closeEvent(QCloseEvent* event) override;
     QAction* addWindowAction(const QIcon& icon, const QString& statusTip, const char* slot);
-
 private:
+    yumi(QWidget *parent);
+    yumi();
+    int codeMetrics_calcNbLines();
     void setupYumiActions();
     void setupHelpActions();
     void setupWindowActions();
+    std::tuple<QString, QDateTime> getMonitoredElem(const QString& toSearch);
+    void updateCacheMonitoredFolder(const QString& modsFolderPath, const QDir& modsFolder);
+    bool hasFileChange(const QString& modsFolderPath, const QDir& modsFolder);
     void monitorModsFolder();
-    int codeMetrics_calcNbLines();
 
     About* _aboutWidget;
     LicenseViewer* _licenseWidget;
+    DebugLogs* _debugLogsWidget;
     YumiSettings* _settingsWidget;
+    QPixmap* _appIcon;
     QLabel* _menuBarAppIcon;
+    QVBoxLayout* _menuBarAppIconLayout;
+    QWidget* _menuBarAppIconWidget;
+    QMenu* _windowMenu;
     QMenuBar* _windowButtons;
     QHBoxLayout* _windowButtonsLayout;
     QWidget* _windowButtonsWidget;
@@ -165,14 +182,15 @@ private:
     bool _pointerEnabled;
     QPoint _mousePos;
 
-    bool _yumiIsStarting;
     QFuture<void> _modsMonitoring;
     bool _monitoringInitialized;
     bool _monitoringIsRunning;
-    QStringList _monitoredFolder;
+    QVector<std::tuple<QString, QDateTime>> _monitoredFolder;
 
 private slots:
     void wiki();
+    void discord();
+    void logs();
     void about();
     void doMaximizeWindow();
 

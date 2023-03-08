@@ -87,6 +87,7 @@
 #include "downloading_window.h"
 
 Assets* Assets::_instance = NULL;
+QString Assets::primaryFontFamily = "Gill Sans MT";
 
 Assets::Assets(QObject* parent) : QObject(parent)
 {
@@ -171,17 +172,22 @@ bool Assets::extractBepInExArchive(const QString& bepInExName, const QString& do
         QFile bepInExArchive(outputFilePath);
         if (bepInExArchive.exists())
         {
+            QString oldBepInExFolderPath(Utils::toUnixPath(downloadsFolderPath + QDir::separator() + bepInExName));
+            QDir oldBepInExFolder(oldBepInExFolderPath);
+            if (oldBepInExFolder.exists())
+                if (!oldBepInExFolder.removeRecursively())
+                    qWarning() << "Failed to delete old BepInEx folder at " << oldBepInExFolderPath << ".";
             if (ZipfilesManager::Instance()->unzip(outputFilePath, downloadsFolderPath))
             {
                 extracted = true;
                 qInfo().nospace() << "Successfully extracted BepInEx folder " << bepInExName << " to " << downloadsFolderPath << ".";
                 outputFile.close();
                 zipFileClosed = true;
-                if (!bepInExArchive.remove())
-                    qWarning().nospace() << "Failed to remove downloaded BepInEx archive at " << outputFilePath << " to save disk space.";
             }
             else
                 qWarning().nospace() << "Failed to extract archive " << outputFilePath << " in folder " << downloadsFolderPath << ".";
+            if (!bepInExArchive.remove())
+                qWarning().nospace() << "Failed to remove downloaded BepInEx archive at " << outputFilePath << " to save disk space.";
         }
         else
             qWarning().nospace() << "Failed to write BepInEx archive to " << outputFilePath << ".";
@@ -208,7 +214,11 @@ bool Assets::downloadBepInExArchive(const QString& bepInExName, const QString& d
     QTimer timer;
     timer.setSingleShot(true);
     QEventLoop loop;
+#if IS_DEVELOPMENT
+    QString downloadBepInExUrl(QString(DOWNLOAD_BEPINEX_URL) + bepInExName + "_dev.zip");
+#else
     QString downloadBepInExUrl(QString(DOWNLOAD_BEPINEX_URL) + bepInExName + ".zip");
+#endif
     _fileDownloader = new YumiFileDownloader(downloadBepInExUrl, this);
     connect(_fileDownloader, SIGNAL(downloaded()), &loop, SLOT(quit()));
     connect(&timer, SIGNAL(timeout()), &loop, SLOT(quit()));
@@ -223,6 +233,8 @@ bool Assets::downloadBepInExArchive(const QString& bepInExName, const QString& d
             if (downloading->isVisible())
                 downloading->close();
             delete downloading;
+            delete _fileDownloader;
+            _fileDownloader = NULL;
             return res;
         }
         else
@@ -232,7 +244,7 @@ bool Assets::downloadBepInExArchive(const QString& bepInExName, const QString& d
                 downloading->close();
             delete downloading;
             qWarning().nospace() << "Unable to download BepInEx from " << downloadBepInExUrl << ". Error message: " << _fileDownloader->errorMsg();
-            QMessageBox downloadFailed = QMessageBox(QMessageBox::Warning, QCoreApplication::translate("Assets", "Download failed", "Popup title"), QCoreApplication::translate("Assets", "Unable to download BepInEx from \"%1\" (Error message: \"%2\").", "Popup text").arg(downloadBepInExUrl, _fileDownloader->errorMsg()), QMessageBox::Ok);
+            QMessageBox downloadFailed = QMessageBox(QMessageBox::Warning, QCoreApplication::translate("Assets", "Download failed", "Popup title"), QCoreApplication::translate("Assets", "Unable to download mods loader from \"%1\" (Error message: \"%2\").", "Popup text").arg(downloadBepInExUrl, _fileDownloader->errorMsg()), QMessageBox::Ok);
             downloadFailed.exec();
         }
     }
@@ -243,7 +255,7 @@ bool Assets::downloadBepInExArchive(const QString& bepInExName, const QString& d
             downloading->close();
         delete downloading;
         qWarning().nospace() << "Unable to download BepInEx from " << downloadBepInExUrl << ". Check internet connection or increase download timeout in settings.";
-        QMessageBox downloadFailed = QMessageBox(QMessageBox::Warning, QCoreApplication::translate("Assets", "Download failed", "Popup title"), QCoreApplication::translate("Assets", "Unable to download BepInEx from \"%1\". Please check your internet connection or try to increase download timeout in settings.", "Popup text").arg(downloadBepInExUrl), QMessageBox::Ok);
+        QMessageBox downloadFailed = QMessageBox(QMessageBox::Warning, QCoreApplication::translate("Assets", "Download failed", "Popup title"), QCoreApplication::translate("Assets", "Unable to download mods loader from \"%1\". Please check your internet connection or try to increase download timeout in settings.", "Popup text").arg(downloadBepInExUrl), QMessageBox::Ok);
         downloadFailed.exec();
     }
     delete _fileDownloader;
@@ -251,13 +263,16 @@ bool Assets::downloadBepInExArchive(const QString& bepInExName, const QString& d
     return false;
 }
 
-bool Assets::isBepInExUpToDate(const QString& bepInExFolderPath)
+bool Assets::isBepInExUpToDate(const QString& bepInExName, const QString& bepInExFolderPath)
 {
     QDir bepInExFolder(bepInExFolderPath);
     if (!bepInExFolder.exists())
+    {
+        qWarning().nospace() << "Unable to find BepInEx folder at " << bepInExFolderPath << ".";
         return false;
+    }
 
-    QString bepInExVersionFilePath(Utils::toUnixPath(bepInExFolderPath + QDir::separator() + ".yumi_bepinex_version"));
+    QString bepInExVersionFilePath(Utils::toUnixPath(bepInExFolderPath + "/.yumi_bepinex_version"));
     QFile bepInExVersionFile(bepInExVersionFilePath);
     if (bepInExVersionFile.exists())
     {
@@ -270,17 +285,24 @@ bool Assets::isBepInExUpToDate(const QString& bepInExFolderPath)
             bepInExVersionFile.close();
 
             if (data.isEmpty())
+            {
+                qWarning().nospace() << "Unable to get current BepInEx version from file at " << bepInExVersionFilePath << ".";
                 return false;
+            }
 
-            QString latestVersion = YumiNetwork::Instance()->sendGetRequestSync(YUMI_BEPINEX_VERSION_CHECK_URL);
+            QString latestVersion = YumiNetwork::Instance()->sendGetRequestSync(QString(YUMI_BEPINEX_VERSION_CHECK_URL) + "?bepinex=" + bepInExName);
             if (latestVersion.startsWith("ERROR: "))
             {
+                qWarning().nospace() << "Failed to check latest BepInEx version (" << latestVersion << ").";
                 QMessageBox checkLatestVersionFailed = QMessageBox(QMessageBox::Warning, QCoreApplication::translate("Assets", "Mods loader version check failed", "Popup title"), QCoreApplication::translate("Assets", "Unable to check if your mods loader version is up to date. Please check your internet connection. YUMI will now try to download latest mods loader version.", "Popup text"), QMessageBox::Ok);
                 checkLatestVersionFailed.exec();
                 return false;
             }
             if (latestVersion.isEmpty())
+            {
+                qWarning() << "Unable to get latest BepInEx version ID (received empty string from web server).";
                 return false;
+            }
             if (data.compare(latestVersion) == 0)
             {
                 qInfo() << "BepInEx version is up-to-date.";
@@ -297,7 +319,7 @@ bool Assets::isBepInExUpToDate(const QString& bepInExFolderPath)
 
 bool Assets::getLocalBepInEx(const QString& bepInExName, const QString& bepInExFolderPath, const QString& downloadsFolderPath)
 {
-    if (isBepInExUpToDate(bepInExFolderPath))
+    if (isBepInExUpToDate(bepInExName, bepInExFolderPath))
         return true;
     if (downloadBepInExArchive(bepInExName, downloadsFolderPath))
         return true;
@@ -315,7 +337,7 @@ QList<BepInExFile*>* Assets::getUnixFiles()
 {
     if (_unixBepInEx == NULL)
     {
-        QString downloadsFolderPath(Utils::toUnixPath(yumi::appPath + QDir::separator() + "downloads"));
+        QString downloadsFolderPath(Utils::toUnixPath(yumi::appPath + "/downloads"));
         QString bepInExFolderPath(Utils::toUnixPath(downloadsFolderPath + QDir::separator() + UNIX_BEPINEX_NAME));
 
         if (getLocalBepInEx(UNIX_BEPINEX_NAME, bepInExFolderPath, downloadsFolderPath))
@@ -346,6 +368,7 @@ QList<BepInExFile*>* Assets::getUnixFiles()
             _unixBepInEx->append(new BepInExFile("libdoorstop_x86.so", "doorstop_libs", new QFile(bepInExFolderPath + "/doorstop_libs/libdoorstop_x86.so")));
             _unixBepInEx->append(new BepInExFile("run_bepinex.sh", "", new QFile(bepInExFolderPath + "/run_bepinex.sh")));
             _unixBepInEx->append(new BepInExFile("run_yumi_bepinex.sh", "", new QFile(bepInExFolderPath + "/run_yumi_bepinex.sh")));
+            _unixBepInEx->append(new BepInExFile(".yumi_bepinex_version", "", new QFile(bepInExFolderPath + "/.yumi_bepinex_version")));
         }
     }
     return _unixBepInEx;
@@ -355,7 +378,7 @@ QList<BepInExFile*>* Assets::getX64Files()
 {
     if (_x64BepInEx == NULL)
     {
-        QString downloadsFolderPath(Utils::toUnixPath(yumi::appPath + QDir::separator() + "downloads"));
+        QString downloadsFolderPath(Utils::toUnixPath(yumi::appPath + "/downloads"));
         QString bepInExFolderPath(Utils::toUnixPath(downloadsFolderPath + QDir::separator() + WINX64_BEPINEX_NAME));
 
         if (getLocalBepInEx(WINX64_BEPINEX_NAME, bepInExFolderPath, downloadsFolderPath))
@@ -382,6 +405,7 @@ QList<BepInExFile*>* Assets::getX64Files()
             _x64BepInEx->append(new BepInExFile("MonoMod.Utils.xml", "BepInEx/core", new QFile(bepInExFolderPath + "/BepInEx/core/MonoMod.Utils.xml")));
             _x64BepInEx->append(new BepInExFile("doorstop_config.ini", "", new QFile(bepInExFolderPath + "/doorstop_config.ini")));
             _x64BepInEx->append(new BepInExFile("winhttp.dll", "", new QFile(bepInExFolderPath + "/winhttp.dll")));
+            _x64BepInEx->append(new BepInExFile(".yumi_bepinex_version", "", new QFile(bepInExFolderPath + "/.yumi_bepinex_version")));
         }
     }
     return _x64BepInEx;
@@ -391,7 +415,7 @@ QList<BepInExFile*>* Assets::getX86Files()
 {
     if (_x86BepInEx == NULL)
     {
-        QString downloadsFolderPath(Utils::toUnixPath(yumi::appPath + QDir::separator() + "downloads"));
+        QString downloadsFolderPath(Utils::toUnixPath(yumi::appPath + "/downloads"));
         QString bepInExFolderPath(Utils::toUnixPath(downloadsFolderPath + QDir::separator() + WINX86_BEPINEX_NAME));
 
         if (getLocalBepInEx(WINX86_BEPINEX_NAME, bepInExFolderPath, downloadsFolderPath))
@@ -418,6 +442,7 @@ QList<BepInExFile*>* Assets::getX86Files()
             _x86BepInEx->append(new BepInExFile("MonoMod.Utils.xml", "BepInEx/core", new QFile(bepInExFolderPath + "/BepInEx/core/MonoMod.Utils.xml")));
             _x86BepInEx->append(new BepInExFile("doorstop_config.ini", "", new QFile(bepInExFolderPath + "/doorstop_config.ini")));
             _x86BepInEx->append(new BepInExFile("winhttp.dll", "", new QFile(bepInExFolderPath + "/winhttp.dll")));
+            _x86BepInEx->append(new BepInExFile(".yumi_bepinex_version", "", new QFile(bepInExFolderPath + "/.yumi_bepinex_version")));
         }
         else
         {
@@ -434,7 +459,7 @@ QList<BepInExFile*>* Assets::getIL2CPPX64Files()
 {
     if (_il2cppx64BepInEx == NULL)
     {
-        QString downloadsFolderPath(Utils::toUnixPath(yumi::appPath + QDir::separator() + "downloads"));
+        QString downloadsFolderPath(Utils::toUnixPath(yumi::appPath + "/downloads"));
         QString bepInExFolderPath(Utils::toUnixPath(downloadsFolderPath + QDir::separator() + IL2CPPX64_BEPINEX_NAME));
 
         if (getLocalBepInEx(IL2CPPX64_BEPINEX_NAME, bepInExFolderPath, downloadsFolderPath))
@@ -661,6 +686,7 @@ QList<BepInExFile*>* Assets::getIL2CPPX64Files()
             _il2cppx64BepInEx->append(new BepInExFile(".doorstop_version", "", new QFile(bepInExFolderPath + "/.doorstop_version")));
             _il2cppx64BepInEx->append(new BepInExFile("doorstop_config.ini", "", new QFile(bepInExFolderPath + "/doorstop_config.ini")));
             _il2cppx64BepInEx->append(new BepInExFile("winhttp.dll", "", new QFile(bepInExFolderPath + "/winhttp.dll")));
+            _il2cppx64BepInEx->append(new BepInExFile(".yumi_bepinex_version", "", new QFile(bepInExFolderPath + "/.yumi_bepinex_version")));
         }
     }
     return _il2cppx64BepInEx;
@@ -670,7 +696,7 @@ QList<BepInExFile*>* Assets::getIL2CPPX86Files()
 {
     if (_il2cppx86BepInEx == NULL)
     {
-        QString downloadsFolderPath(Utils::toUnixPath(yumi::appPath + QDir::separator() + "downloads"));
+        QString downloadsFolderPath(Utils::toUnixPath(yumi::appPath + "/downloads"));
         QString bepInExFolderPath(Utils::toUnixPath(downloadsFolderPath + QDir::separator() + IL2CPPX86_BEPINEX_NAME));
 
         if (getLocalBepInEx(IL2CPPX86_BEPINEX_NAME, bepInExFolderPath, downloadsFolderPath))
@@ -897,9 +923,256 @@ QList<BepInExFile*>* Assets::getIL2CPPX86Files()
             _il2cppx86BepInEx->append(new BepInExFile(".doorstop_version", "", new QFile(bepInExFolderPath + "/.doorstop_version")));
             _il2cppx86BepInEx->append(new BepInExFile("doorstop_config.ini", "", new QFile(bepInExFolderPath + "/doorstop_config.ini")));
             _il2cppx86BepInEx->append(new BepInExFile("winhttp.dll", "", new QFile(bepInExFolderPath + "/winhttp.dll")));
+            _il2cppx86BepInEx->append(new BepInExFile(".yumi_bepinex_version", "", new QFile(bepInExFolderPath + "/.yumi_bepinex_version")));
         }
     }
     return _il2cppx86BepInEx;
+}
+
+QStringList Assets::getAllBepInExFiles()
+{
+    QStringList res = QStringList();
+    res << "/.doorstop_version";
+    res << "/.yumi_bepinex_version";
+    res << "/BepInEx/core/0Harmony.dll";
+    res << "/BepInEx/core/0Harmony.xml";
+    res << "/BepInEx/core/0Harmony20.dll";
+    res << "/BepInEx/core/AsmResolver.DotNet.dll";
+    res << "/BepInEx/core/AsmResolver.PE.File.dll";
+    res << "/BepInEx/core/AsmResolver.PE.dll";
+    res << "/BepInEx/core/AsmResolver.dll";
+    res << "/BepInEx/core/AssetRipper.VersionUtilities.dll";
+    res << "/BepInEx/core/BepInEx.Core.dll";
+    res << "/BepInEx/core/BepInEx.Harmony.dll";
+    res << "/BepInEx/core/BepInEx.Harmony.xml";
+    res << "/BepInEx/core/BepInEx.Preloader.Core.dll";
+    res << "/BepInEx/core/BepInEx.Preloader.dll";
+    res << "/BepInEx/core/BepInEx.Preloader.xml";
+    res << "/BepInEx/core/BepInEx.Unity.Common.dll";
+    res << "/BepInEx/core/BepInEx.Unity.IL2CPP.dll";
+    res << "/BepInEx/core/BepInEx.Unity.IL2CPP.dll.config";
+    res << "/BepInEx/core/BepInEx.dll";
+    res << "/BepInEx/core/BepInEx.xml";
+    res << "/BepInEx/core/Cpp2IL.Core.dll";
+    res << "/BepInEx/core/Disarm.dll";
+    res << "/BepInEx/core/Gee.External.Capstone.dll";
+    res << "/BepInEx/core/HarmonyXInterop.dll";
+    res << "/BepInEx/core/Iced.dll";
+    res << "/BepInEx/core/Il2CppInterop.Common.dll";
+    res << "/BepInEx/core/Il2CppInterop.Generator.dll";
+    res << "/BepInEx/core/Il2CppInterop.HarmonySupport.dll";
+    res << "/BepInEx/core/Il2CppInterop.Runtime.dll";
+    res << "/BepInEx/core/LibCpp2IL.dll";
+    res << "/BepInEx/core/Mono.Cecil.Mdb.dll";
+    res << "/BepInEx/core/Mono.Cecil.Pdb.dll";
+    res << "/BepInEx/core/Mono.Cecil.Rocks.dll";
+    res << "/BepInEx/core/Mono.Cecil.dll";
+    res << "/BepInEx/core/MonoMod.RuntimeDetour.dll";
+    res << "/BepInEx/core/MonoMod.RuntimeDetour.xml";
+    res << "/BepInEx/core/MonoMod.Utils.dll";
+    res << "/BepInEx/core/MonoMod.Utils.xml";
+    res << "/BepInEx/core/SemanticVersioning.dll";
+    res << "/BepInEx/core/StableNameDotNet.dll";
+    res << "/BepInEx/core/WasmDisassembler.dll";
+    res << "/BepInEx/core/dobby.dll";
+    res << "/doorstop_config.ini";
+    res << "/doorstop_libs/libdoorstop_x64.dylib";
+    res << "/doorstop_libs/libdoorstop_x64.so";
+    res << "/doorstop_libs/libdoorstop_x86.dylib";
+    res << "/doorstop_libs/libdoorstop_x86.so";
+    res << "/dotnet/.version";
+    res << "/dotnet/Microsoft.Bcl.AsyncInterfaces.dll";
+    res << "/dotnet/Microsoft.CSharp.dll";
+    res << "/dotnet/Microsoft.DiaSymReader.Native.amd64.dll";
+    res << "/dotnet/Microsoft.DiaSymReader.Native.x86.dll";
+    res << "/dotnet/Microsoft.Extensions.DependencyInjection.Abstractions.dll";
+    res << "/dotnet/Microsoft.Extensions.DependencyInjection.dll";
+    res << "/dotnet/Microsoft.Extensions.Logging.Abstractions.dll";
+    res << "/dotnet/Microsoft.Extensions.Logging.dll";
+    res << "/dotnet/Microsoft.Extensions.Options.dll";
+    res << "/dotnet/Microsoft.Extensions.Primitives.dll";
+    res << "/dotnet/Microsoft.NETCore.App.deps.json";
+    res << "/dotnet/Microsoft.NETCore.App.runtimeconfig.json";
+    res << "/dotnet/Microsoft.VisualBasic.Core.dll";
+    res << "/dotnet/Microsoft.VisualBasic.dll";
+    res << "/dotnet/Microsoft.Win32.Primitives.dll";
+    res << "/dotnet/Microsoft.Win32.Registry.dll";
+    res << "/dotnet/System.AppContext.dll";
+    res << "/dotnet/System.Buffers.dll";
+    res << "/dotnet/System.Collections.Concurrent.dll";
+    res << "/dotnet/System.Collections.Immutable.dll";
+    res << "/dotnet/System.Collections.NonGeneric.dll";
+    res << "/dotnet/System.Collections.Specialized.dll";
+    res << "/dotnet/System.Collections.dll";
+    res << "/dotnet/System.ComponentModel.Annotations.dll";
+    res << "/dotnet/System.ComponentModel.DataAnnotations.dll";
+    res << "/dotnet/System.ComponentModel.EventBasedAsync.dll";
+    res << "/dotnet/System.ComponentModel.Primitives.dll";
+    res << "/dotnet/System.ComponentModel.TypeConverter.dll";
+    res << "/dotnet/System.ComponentModel.dll";
+    res << "/dotnet/System.Configuration.dll";
+    res << "/dotnet/System.Console.dll";
+    res << "/dotnet/System.Core.dll";
+    res << "/dotnet/System.Data.Common.dll";
+    res << "/dotnet/System.Data.DataSetExtensions.dll";
+    res << "/dotnet/System.Data.dll";
+    res << "/dotnet/System.Diagnostics.Contracts.dll";
+    res << "/dotnet/System.Diagnostics.Debug.dll";
+    res << "/dotnet/System.Diagnostics.DiagnosticSource.dll";
+    res << "/dotnet/System.Diagnostics.FileVersionInfo.dll";
+    res << "/dotnet/System.Diagnostics.Process.dll";
+    res << "/dotnet/System.Diagnostics.StackTrace.dll";
+    res << "/dotnet/System.Diagnostics.TextWriterTraceListener.dll";
+    res << "/dotnet/System.Diagnostics.Tools.dll";
+    res << "/dotnet/System.Diagnostics.TraceSource.dll";
+    res << "/dotnet/System.Diagnostics.Tracing.dll";
+    res << "/dotnet/System.Drawing.Primitives.dll";
+    res << "/dotnet/System.Drawing.dll";
+    res << "/dotnet/System.Dynamic.Runtime.dll";
+    res << "/dotnet/System.Formats.Asn1.dll";
+    res << "/dotnet/System.Globalization.Calendars.dll";
+    res << "/dotnet/System.Globalization.Extensions.dll";
+    res << "/dotnet/System.Globalization.dll";
+    res << "/dotnet/System.IO.Compression.Brotli.dll";
+    res << "/dotnet/System.IO.Compression.FileSystem.dll";
+    res << "/dotnet/System.IO.Compression.Native.dll";
+    res << "/dotnet/System.IO.Compression.ZipFile.dll";
+    res << "/dotnet/System.IO.Compression.dll";
+    res << "/dotnet/System.IO.FileSystem.AccessControl.dll";
+    res << "/dotnet/System.IO.FileSystem.DriveInfo.dll";
+    res << "/dotnet/System.IO.FileSystem.Primitives.dll";
+    res << "/dotnet/System.IO.FileSystem.Watcher.dll";
+    res << "/dotnet/System.IO.FileSystem.dll";
+    res << "/dotnet/System.IO.IsolatedStorage.dll";
+    res << "/dotnet/System.IO.MemoryMappedFiles.dll";
+    res << "/dotnet/System.IO.Pipes.AccessControl.dll";
+    res << "/dotnet/System.IO.Pipes.dll";
+    res << "/dotnet/System.IO.UnmanagedMemoryStream.dll";
+    res << "/dotnet/System.IO.dll";
+    res << "/dotnet/System.Linq.Expressions.dll";
+    res << "/dotnet/System.Linq.Parallel.dll";
+    res << "/dotnet/System.Linq.Queryable.dll";
+    res << "/dotnet/System.Linq.dll";
+    res << "/dotnet/System.Memory.dll";
+    res << "/dotnet/System.Net.Http.Json.dll";
+    res << "/dotnet/System.Net.Http.dll";
+    res << "/dotnet/System.Net.HttpListener.dll";
+    res << "/dotnet/System.Net.Mail.dll";
+    res << "/dotnet/System.Net.NameResolution.dll";
+    res << "/dotnet/System.Net.NetworkInformation.dll";
+    res << "/dotnet/System.Net.Ping.dll";
+    res << "/dotnet/System.Net.Primitives.dll";
+    res << "/dotnet/System.Net.Quic.dll";
+    res << "/dotnet/System.Net.Requests.dll";
+    res << "/dotnet/System.Net.Security.dll";
+    res << "/dotnet/System.Net.ServicePoint.dll";
+    res << "/dotnet/System.Net.Sockets.dll";
+    res << "/dotnet/System.Net.WebClient.dll";
+    res << "/dotnet/System.Net.WebHeaderCollection.dll";
+    res << "/dotnet/System.Net.WebProxy.dll";
+    res << "/dotnet/System.Net.WebSockets.Client.dll";
+    res << "/dotnet/System.Net.WebSockets.dll";
+    res << "/dotnet/System.Net.dll";
+    res << "/dotnet/System.Numerics.Vectors.dll";
+    res << "/dotnet/System.Numerics.dll";
+    res << "/dotnet/System.ObjectModel.dll";
+    res << "/dotnet/System.Private.CoreLib.dll";
+    res << "/dotnet/System.Private.DataContractSerialization.dll";
+    res << "/dotnet/System.Private.Uri.dll";
+    res << "/dotnet/System.Private.Xml.Linq.dll";
+    res << "/dotnet/System.Private.Xml.dll";
+    res << "/dotnet/System.Reflection.DispatchProxy.dll";
+    res << "/dotnet/System.Reflection.Emit.ILGeneration.dll";
+    res << "/dotnet/System.Reflection.Emit.Lightweight.dll";
+    res << "/dotnet/System.Reflection.Emit.dll";
+    res << "/dotnet/System.Reflection.Extensions.dll";
+    res << "/dotnet/System.Reflection.Metadata.dll";
+    res << "/dotnet/System.Reflection.Primitives.dll";
+    res << "/dotnet/System.Reflection.TypeExtensions.dll";
+    res << "/dotnet/System.Reflection.dll";
+    res << "/dotnet/System.Resources.Reader.dll";
+    res << "/dotnet/System.Resources.ResourceManager.dll";
+    res << "/dotnet/System.Resources.Writer.dll";
+    res << "/dotnet/System.Runtime.CompilerServices.Unsafe.dll";
+    res << "/dotnet/System.Runtime.CompilerServices.VisualC.dll";
+    res << "/dotnet/System.Runtime.Extensions.dll";
+    res << "/dotnet/System.Runtime.Handles.dll";
+    res << "/dotnet/System.Runtime.InteropServices.RuntimeInformation.dll";
+    res << "/dotnet/System.Runtime.InteropServices.dll";
+    res << "/dotnet/System.Runtime.Intrinsics.dll";
+    res << "/dotnet/System.Runtime.Loader.dll";
+    res << "/dotnet/System.Runtime.Numerics.dll";
+    res << "/dotnet/System.Runtime.Serialization.Formatters.dll";
+    res << "/dotnet/System.Runtime.Serialization.Json.dll";
+    res << "/dotnet/System.Runtime.Serialization.Primitives.dll";
+    res << "/dotnet/System.Runtime.Serialization.Xml.dll";
+    res << "/dotnet/System.Runtime.Serialization.dll";
+    res << "/dotnet/System.Runtime.dll";
+    res << "/dotnet/System.Security.AccessControl.dll";
+    res << "/dotnet/System.Security.Claims.dll";
+    res << "/dotnet/System.Security.Cryptography.Algorithms.dll";
+    res << "/dotnet/System.Security.Cryptography.Cng.dll";
+    res << "/dotnet/System.Security.Cryptography.Csp.dll";
+    res << "/dotnet/System.Security.Cryptography.Encoding.dll";
+    res << "/dotnet/System.Security.Cryptography.OpenSsl.dll";
+    res << "/dotnet/System.Security.Cryptography.Primitives.dll";
+    res << "/dotnet/System.Security.Cryptography.X509Certificates.dll";
+    res << "/dotnet/System.Security.Principal.Windows.dll";
+    res << "/dotnet/System.Security.Principal.dll";
+    res << "/dotnet/System.Security.SecureString.dll";
+    res << "/dotnet/System.Security.dll";
+    res << "/dotnet/System.ServiceModel.Web.dll";
+    res << "/dotnet/System.ServiceProcess.dll";
+    res << "/dotnet/System.Text.Encoding.CodePages.dll";
+    res << "/dotnet/System.Text.Encoding.Extensions.dll";
+    res << "/dotnet/System.Text.Encoding.dll";
+    res << "/dotnet/System.Text.Encodings.Web.dll";
+    res << "/dotnet/System.Text.Json.dll";
+    res << "/dotnet/System.Text.RegularExpressions.dll";
+    res << "/dotnet/System.Threading.Channels.dll";
+    res << "/dotnet/System.Threading.Overlapped.dll";
+    res << "/dotnet/System.Threading.Tasks.Dataflow.dll";
+    res << "/dotnet/System.Threading.Tasks.Extensions.dll";
+    res << "/dotnet/System.Threading.Tasks.Parallel.dll";
+    res << "/dotnet/System.Threading.Tasks.dll";
+    res << "/dotnet/System.Threading.Thread.dll";
+    res << "/dotnet/System.Threading.ThreadPool.dll";
+    res << "/dotnet/System.Threading.Timer.dll";
+    res << "/dotnet/System.Threading.dll";
+    res << "/dotnet/System.Transactions.Local.dll";
+    res << "/dotnet/System.Transactions.dll";
+    res << "/dotnet/System.ValueTuple.dll";
+    res << "/dotnet/System.Web.HttpUtility.dll";
+    res << "/dotnet/System.Web.dll";
+    res << "/dotnet/System.Windows.dll";
+    res << "/dotnet/System.Xml.Linq.dll";
+    res << "/dotnet/System.Xml.ReaderWriter.dll";
+    res << "/dotnet/System.Xml.Serialization.dll";
+    res << "/dotnet/System.Xml.XDocument.dll";
+    res << "/dotnet/System.Xml.XPath.XDocument.dll";
+    res << "/dotnet/System.Xml.XPath.dll";
+    res << "/dotnet/System.Xml.XmlDocument.dll";
+    res << "/dotnet/System.Xml.XmlSerializer.dll";
+    res << "/dotnet/System.Xml.dll";
+    res << "/dotnet/System.dll";
+    res << "/dotnet/WindowsBase.dll";
+    res << "/dotnet/clretwrc.dll";
+    res << "/dotnet/clrjit.dll";
+    res << "/dotnet/coreclr.dll";
+    res << "/dotnet/dbgshim.dll";
+    res << "/dotnet/hostpolicy.dll";
+    res << "/dotnet/mscordaccore.dll";
+    res << "/dotnet/mscordaccore_amd64_amd64_6.0.722.32202.dll";
+    res << "/dotnet/mscordaccore_x86_x86_6.0.722.32202.dll";
+    res << "/dotnet/mscordbi.dll";
+    res << "/dotnet/mscorlib.dll";
+    res << "/dotnet/mscorrc.dll";
+    res << "/dotnet/msquic.dll";
+    res << "/dotnet/netstandard.dll";
+    res << "/run_bepinex.sh";
+    res << "/run_yumi_bepinex.sh";
+    res << "/winhttp.dll";
+    return res;
 }
 
 QString Assets::getColorBtnStyle(const QString& color)
@@ -995,18 +1268,17 @@ void Assets::updateStyles()
         "QCheckBox::indicator:indeterminate:pressed { image: url(" + imgRsrcPath + "/checkbox_indeterminated_pressed.png); }";
 
     menuBarStyle = "QMenuBar { font-family: \"" + PRIMARY_FONT_FAMILY + "\", sans-serif; font-weight: bold; font-size: " + DEFAULT_FONT_SIZE_PX + "px; color: " + SECONDARY_COLOR_HEX + "; background-color: " + PRIMARY_COLOR_LIGHT_HEX + "; border-top: 1px solid " + SECONDARY_COLOR_HEX + "; border-left: 1px solid " + SECONDARY_COLOR_HEX + "; border-right: 1px solid " + SECONDARY_COLOR_HEX + "; border-bottom: 2px solid " + SECONDARY_COLOR_HEX + "; border-top-left-radius: 10px; border-top-right-radius: 10px; padding: 0; margin: 0; } "
-#ifdef Q_OS_LINUX
-        "QMenuBar::item { padding: 10px 14px 10px 14px; margin-top: 0px; margin-bottom: 0px; border: none; } "
+#ifdef Q_OS_WINDOWS
+            "QMenuBar::item { padding: 9px 14px 8px 14px; margin-top: 0px; margin-bottom: 0px; border: 0px solid transparent; } "
 #else
-        "QMenuBar::item { padding: 9px 14px 8px 14px; margin-top: 0px; margin-bottom: 0px; border: none; } "
+            "QMenuBar::item { padding: 10px 14px 10px 14px; margin-top: 0px; margin-bottom: 0px; border: 0px solid transparent; } "
 #endif
-        "QMenuBar::item:selected { background-color: " + PRIMARY_COLOR_HEX + "; } "
-        "QMenuBar::item:pressed { background-color: " + PRIMARY_COLOR_DEEP_HEX + "; } "
-        "QMenu { background-color: " + PRIMARY_COLOR_DEEP_HEX + "; color: " + SECONDARY_COLOR_HEX + "; padding: 5px; } "
-        "QMenu::icon { padding-left: 5px; } "
-        "QMenu::item { color: " + SECONDARY_COLOR_HEX + "; min-width: 100px; font-weight: 600; font-size: " + SM_FONT_SIZE_PX + "px; padding: 7px; border: 1px solid transparent; border-radius: 6px; } "
-        "QMenu::item:selected { background-color: " + PRIMARY_COLOR_LIGHT_HEX + "; }";
-
+            "QMenuBar::item:selected { background-color: " + PRIMARY_COLOR_HEX + "; } "
+            "QMenuBar::item:pressed { background-color: " + PRIMARY_COLOR_DEEP_HEX + "; } "
+            "QMenu { background-color: " + PRIMARY_COLOR_DEEP_HEX + "; color: " + SECONDARY_COLOR_HEX + "; padding: 5px; } "
+            "QMenu::icon { padding-left: 5px; } "
+            "QMenu::item { color: " + SECONDARY_COLOR_HEX + "; min-width: 100px; font-weight: 600; font-size: " + SM_FONT_SIZE_PX + "px; padding: 7px; border: 0px solid transparent; border-radius: 6px; } "
+            "QMenu::item:selected { background-color: " + PRIMARY_COLOR_LIGHT_HEX + "; }";
     statusBarStyle = "QStatusBar { background-color: " + PRIMARY_COLOR_LIGHT_HEX + "; border: 1px solid " + SECONDARY_COLOR_HEX + "; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; font-style: italic; color: " + NEUTRAL_COLOR_LIGHT_HEX + "; } "
         "QStatusBar::item { font-style: italic; color: " + NEUTRAL_COLOR_LIGHT_HEX + "; } "
         "QSizeGrip { padding-right: 5px; padding-bottom: 5px; }";
@@ -1014,7 +1286,7 @@ void Assets::updateStyles()
 
 void Assets::resetStyles()
 {
-    PRIMARY_FONT_FAMILY = QString("Gill Sans MT");
+    PRIMARY_FONT_FAMILY = Assets::primaryFontFamily;
 
     SM_FONT_SIZE_PX = QString("14");
     DEFAULT_FONT_SIZE_PX = QString("16");

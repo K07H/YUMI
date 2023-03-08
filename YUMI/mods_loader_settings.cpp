@@ -133,7 +133,7 @@ ModsLoaderSettings::ModsLoaderSettings(void* yumiPtr, GameInfo* gameInfo, void* 
     this->_gameExeTypeLabel->setStyleSheet("QLabel {" + Assets::Instance()->REGULAR_LABEL_STYLE + "}");
 
     this->_gameExeType = new QComboBox();
-    this->_gameExeType->addItems(QStringList() << "Windows 64 bits" << "Windows 32 bits" << "Unix 64 bits (Linux, SteamOS, ...)" << "Unix 32 bits (Linux, SteamOS, ...)" << "Darwin (iOS/macOS)" << "Unknown");
+    this->_gameExeType->addItems(QStringList() << "Windows 64 bits" << "Windows 32 bits" << "Windows 64 bits (IL2CPP)" << "Windows 32 bits (IL2CPP)" << "Unix 64 bits (Linux, SteamOS, ...)" << "Unix 32 bits (Linux, SteamOS, ...)" << "Darwin (iOS/macOS)" << "Unknown");
     this->_gameExeType->setCurrentText(getExeTypeComboBoxStr(this->_gameInfo->exeType));
     this->_gameExeType->setCursor(Qt::PointingHandCursor);
     this->_gameExeType->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::MinimumExpanding);

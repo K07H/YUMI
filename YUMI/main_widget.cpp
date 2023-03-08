@@ -174,6 +174,10 @@ void MainWidget::toggleSideMenu()
 
 void MainWidget::updateStyles()
 {
+    _noGamesInListLbl.setText(QCoreApplication::translate("MainWindow", "You didn't add any game yet.", "Label text"));
+    _addAGameBtn.setText(QCoreApplication::translate("MainWindow", "&Add a game", "Button text"));
+    _addAGameBtn.setStatusTip(" " + QCoreApplication::translate("MainWindow", "Add a new game to the games list.", "Tooltip text"));
+    _gamesListLbl.setText(QCoreApplication::translate("MainWindow", "GAMES LIST", "Label text"));
     _noGamesInListLbl.setStyleSheet("QLabel { " + Assets::Instance()->ITALIC_LABEL_STYLE + " }");
     _addAGameBtn.setStyleSheet(Assets::Instance()->mainBtnStyle);
     _scrollArea.setStyleSheet("QScrollArea { " + Assets::Instance()->SIDE_MENU_SCROLL_AREA_STYLE + " }");

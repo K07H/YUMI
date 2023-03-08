@@ -87,12 +87,15 @@
 #include "mods_loader.h"
 #include "yumi.h"
 #include "assets.h"
+#include "utils.h"
 
 GameDetails::GameDetails(void* yumiPtr, QWidget* parent) : QWidget(parent)
 {
     _uninstallWindow = NULL;
     _modsLoaderSettingsWindow = NULL;
+    _dropNewModWindow = NULL;
     _yumiPtr = yumiPtr;
+    _updatesChecked = QVector<QString>();
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setHeight();
 
@@ -126,6 +129,12 @@ GameDetails::GameDetails(void* yumiPtr, QWidget* parent) : QWidget(parent)
     _removeGameBtnShadow->setOffset(3, 3);
     _removeGameBtn.setGraphicsEffect(_removeGameBtnShadow);
 
+    _addNewModBtn.setText(QCoreApplication::translate("GameDetails", "&Add new mod", "Button text"));
+    _addNewModBtn.setStatusTip(" " + QCoreApplication::translate("GameDetails", "Add a new mod for \"%1\".", "Tooltip text").arg("Game Name"));
+    _addNewModBtn.setStyleSheet(Assets::Instance()->secondaryBtnStyle);
+    _addNewModBtn.setCursor(Qt::PointingHandCursor);
+    connect(&_addNewModBtn, SIGNAL(clicked()), this, SLOT(addNewModBtnClicked()));
+
     _uninstallModsLoaderBtn.setText(QCoreApplication::translate("GameDetails", "&Uninstall mods loader", "Button text"));
     _uninstallModsLoaderBtn.setStatusTip(" " + QCoreApplication::translate("GameDetails", "Uninstall mods loader for \"%1\".", "Tooltip text").arg("Game Name"));
     _uninstallModsLoaderBtn.setStyleSheet(Assets::Instance()->secondaryBtnStyle);
@@ -141,6 +150,8 @@ GameDetails::GameDetails(void* yumiPtr, QWidget* parent) : QWidget(parent)
     _modsLoaderBtnsLayout = new QHBoxLayout();
     _modsLoaderBtnsLayout->setSpacing(0);
     _modsLoaderBtnsLayout->setContentsMargins(0, 0, 0, 0);
+    _modsLoaderBtnsLayout->addWidget(&_addNewModBtn);
+    _modsLoaderBtnsLayout->addSpacing(10);
     _modsLoaderBtnsLayout->addWidget(&_uninstallModsLoaderBtn);
     _modsLoaderBtnsLayout->addSpacing(10);
     _modsLoaderBtnsLayout->addWidget(&_openModsLoaderSettingsBtn);
@@ -169,6 +180,7 @@ GameDetails::GameDetails(void* yumiPtr, QWidget* parent) : QWidget(parent)
 
     _uninstallModsLoaderBtn.setVisible(false);
     _openModsLoaderSettingsBtn.setVisible(false);
+    _addNewModBtn.setVisible(false);
     _pluginsListContainer->setVisible(false);
     _patchersListContainer->setVisible(false);
 }
@@ -177,10 +189,17 @@ GameDetails::~GameDetails() { }
 
 void GameDetails::updateStyles()
 {
+    _installModsLoaderBtn.setText(QCoreApplication::translate("GameDetails", "&Install mods loader", "Button text"));
+    _removeGameBtn.setText(QCoreApplication::translate("GameDetails", "&Remove from games list", "Button text"));
+    _addNewModBtn.setText(QCoreApplication::translate("GameDetails", "&Add new mod", "Button text"));
+    _uninstallModsLoaderBtn.setText(QCoreApplication::translate("GameDetails", "&Uninstall mods loader", "Button text"));
+    _openModsLoaderSettingsBtn.setText(QCoreApplication::translate("GameDetails", "&Mods loader settings", "Button text"));
+
     _gameNameLbl.setStyleSheet("QLabel { " + Assets::Instance()->TITLE_LABEL_STYLE + " }");
     _modsLoaderNotInstalledLbl.setStyleSheet("QLabel { margin-top: 40px; " + Assets::Instance()->ITALIC_LABEL_STYLE + " }");
     _installModsLoaderBtn.setStyleSheet(Assets::Instance()->mainBtnStyle);
     _removeGameBtn.setStyleSheet(Assets::Instance()->mainBtnStyle);
+    _addNewModBtn.setStyleSheet(Assets::Instance()->secondaryBtnStyle);
     _uninstallModsLoaderBtn.setStyleSheet(Assets::Instance()->secondaryBtnStyle);
     _openModsLoaderSettingsBtn.setStyleSheet(Assets::Instance()->secondaryBtnStyle);
 
@@ -190,6 +209,8 @@ void GameDetails::updateStyles()
         _uninstallWindow->updateStyles();
     if (_modsLoaderSettingsWindow != NULL)
         _modsLoaderSettingsWindow->updateStyles();
+    if (_dropNewModWindow != NULL)
+        _dropNewModWindow->updateStyles();
 
     adjustSize();
     update();
@@ -204,6 +225,18 @@ void GameDetails::setHeight(int height)
 void GameDetails::adjustMinHeight()
 {
     setMinimumHeight(_minimumHeight);
+}
+
+void GameDetails::addNewModBtnClicked()
+{
+#if IS_DEBUG && DEBUG_CLICK_EVENTS
+    qDebug().nospace() << "Add new mod button clicked!";
+#endif
+    if (_dropNewModWindow == NULL)
+        _dropNewModWindow = new DropModWindow(_yumiPtr, NULL);
+    if (_dropNewModWindow->isVisible())
+        _dropNewModWindow->close();
+    _dropNewModWindow->doShowAt(((yumi*)_yumiPtr)->getCenter());
 }
 
 void GameDetails::openModsLoaderSettingsBtnClicked()
@@ -294,6 +327,18 @@ QString GameDetails::askSteamFolderLocation()
     return "";
 }
 
+bool GameDetails::isModsLoaderUpToDate(GameInfo* details)
+{
+    qDebug().nospace() << "Checking if BepInEx is up-to-date for game " << details->name << "...";
+    QString bepInExName = Config::Instance()->getBepInExNameFromExeType(details->exeType);
+    if (bepInExName.isEmpty())
+    {
+        qWarning().nospace() << "Could not find BepInEx name for game " << details->name << " (exe type: " << Config::Instance()->getExeTypeLabel(details->exeType) << ").";
+        return false;
+    }
+    return Assets::Instance()->isBepInExUpToDate(bepInExName, details->path);
+}
+
 void GameDetails::updateGameDetails(GameInfo* details)
 {
     if (details == NULL)
@@ -309,12 +354,15 @@ void GameDetails::updateGameDetails(GameInfo* details)
     bool bepInExIsInstalled = ModsLoader::Instance()->isBepInExInstalled(details, gameFolder, this);
     if (!bepInExIsInstalled)
     {
-        _modsLoaderNotInstalledLbl.setText(QCoreApplication::translate("GameDetails", "Mods loader is not installed for \"%1\".", "Button text").arg(details->name));
+        _modsLoaderNotInstalledLbl.setText(QCoreApplication::translate("GameDetails", "Mods loader is not installed for \"%1\".", "Label text").arg(details->name));
         _installModsLoaderBtn.setStatusTip(" " + QCoreApplication::translate("GameDetails", "Install mods loader for \"%1\".", "Tooltip text").arg(details->name));
         _removeGameBtn.setStatusTip(" " + QCoreApplication::translate("GameDetails", "Remove \"%1\" from the games list.", "Tooltip text").arg(details->name));
     }
     else
     {
+        _addNewModBtn.setStatusTip(" " + QCoreApplication::translate("GameDetails", "Add a new mod for \"%1\".", "Tooltip text").arg(details->name));
+        _uninstallModsLoaderBtn.setStatusTip(" " + QCoreApplication::translate("GameDetails", "Uninstall mods loader for \"%1\".", "Tooltip text").arg(details->name));
+        _openModsLoaderSettingsBtn.setStatusTip(" " + QCoreApplication::translate("GameDetails", "Open mods loader settings for \"%1\".", "Tooltip text").arg(details->name));
         _pluginsListContainer->mods = ModsLoader::Instance()->getModsList(ModsLoader::Instance()->getBepInExSubFolderPath(gameFolder, "plugins"));
         if (_pluginsListContainer->mods != NULL)
         {
@@ -347,12 +395,19 @@ void GameDetails::updateGameDetails(GameInfo* details)
                 for (int i = 0; i < len; i++)
                     _patchersListContainer->addNewItem((*_patchersListContainer->disabledMods)[i].name, true);
         }
+        if (!_updatesChecked.contains(details->path))
+        {
+            _updatesChecked.push_back(details->path);
+            if (!isModsLoaderUpToDate(details))
+                ModsLoader::Instance()->updateBepInEx(details, _yumiPtr, this);
+        }
     }
     _modsLoaderNotInstalledLbl.setVisible(!bepInExIsInstalled);
     _installModsLoaderBtn.setVisible(!bepInExIsInstalled);
     _removeGameBtn.setVisible(!bepInExIsInstalled);
     _uninstallModsLoaderBtn.setVisible(bepInExIsInstalled);
     _openModsLoaderSettingsBtn.setVisible(bepInExIsInstalled);
+    _addNewModBtn.setVisible(bepInExIsInstalled);
     _pluginsListContainer->setVisible(bepInExIsInstalled);
     _patchersListContainer->setVisible(bepInExIsInstalled);
     update();

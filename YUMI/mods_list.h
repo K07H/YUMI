@@ -107,6 +107,7 @@ public:
     void addNewItem(const QString& item, const bool disabled);
     void clearItems();
     void updateStyles();
+    void updatePrefix(const QString& prefix);
 
     QPushButton* selectedMod;
 };

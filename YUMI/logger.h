@@ -80,13 +80,13 @@
 #include <QFile>
 
 #define LOG_FILENAME "YUMI_Output.log"
-#define BACKUP_LOG_FILENAME "YUMI_OutputBackup.log"
+#define BACKUP_LOG_FILENAME_A "YUMI_OutputBackup1.log"
+#define BACKUP_LOG_FILENAME_B "YUMI_OutputBackup2.log"
+#define BACKUP_LOG_FILENAME_C "YUMI_OutputBackup3.log"
 
 class Logger
 {
 private:
-    static QString logFilename;
-    static QString backupLogFilename;
     static QFile outputLogFile;
     static QtMessageHandler qtDefaultMsgHandler;
 

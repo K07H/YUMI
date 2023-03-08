@@ -78,8 +78,10 @@
 
 #include <QString>
 #include <QList>
+#include <QTranslator>
 #define CONFIGURATION_FILENAME "YUMI_Config.txt"
 #define THEMES_FILENAME "YUMI_Themes.txt"
+#define DEFAULT_LANGUAGE "English"
 
 struct ThemeInfo
 {
@@ -118,6 +120,9 @@ private:
     void loadThemePresets();
 
     static Config* _instance;
+    static QTranslator* _frenchTranslator;
+    static QTranslator* _frenchBaseTranslator;
+    static bool _isFrenchTranslatorInstalled;
 
     void* _yumiPtr;
     QList<ThemeInfo> _themePresets;
@@ -125,10 +130,12 @@ private:
 public:
     static Config* Init(void* yumiPtr);
     static Config* Instance();
+    static bool SwapLanguage(const QString& lang, QApplication* app);
 
     const QString getConfigFilepath();
     const QString getThemesFilepath();
     QString getExeTypeLabel(const int exeType);
+    QString getBepInExNameFromExeType(int exeType);
     void parseGameLine(const QString& gameLine);
     int loadConfig();
     bool saveConfig();
@@ -146,6 +153,7 @@ public:
     bool checkVersionAtStartup;
     int downloadRequestTimeout;
     int getRequestTimeout;
+    QString language;
 };
 
 #endif

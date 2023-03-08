@@ -81,38 +81,46 @@
 #define CALC_CODE_METRICS true
 #define DEBUG_PAINTING false
 #define DEBUG_CLICK_EVENTS true
+#define IS_DEVELOPMENT true
 #else
 #define IS_DEBUG false
 #define CALC_CODE_METRICS false
 #define DEBUG_PAINTING false
 #define DEBUG_CLICK_EVENTS false
+#define IS_DEVELOPMENT false
 #endif
 #ifndef QT_NO_SSL
 #define QT_NO_SSL
 #endif
 
-#define APP_VERSION "1.0.1"
+#define APP_VERSION "1.0.3"
+#if IS_DEVELOPMENT
+#define YUMI_BEPINEX_VERSION_CHECK_URL "http://osubmarin.fr/yumi/latest_bepinex_version_dev.php"
+#define YUMI_VERSION_CHECK_URL "http://osubmarin.fr/yumi/latest_version_dev.php"
+#else
+#define YUMI_BEPINEX_VERSION_CHECK_URL "http://osubmarin.fr/yumi/latest_bepinex_version.php"
+#define YUMI_VERSION_CHECK_URL "http://osubmarin.fr/yumi/latest_version.php"
+#endif
+
 #define RUN_YUMI_SCRIPT_NAME "run_yumi_bepinex"
 #define SHOW_LICENSE_AT_STARTUP false
 #define YUMI_LICENSE_URL "https://lc-it-solutions.com/resources/yumi-open-source-license"
 #define YUMI_SHARE_THEME_URL "http://osubmarin.fr/yumi/share_theme.php"
-#define YUMI_VERSION_CHECK_URL "http://osubmarin.fr/yumi/latest_version.php"
-#define YUMI_BEPINEX_VERSION_CHECK_URL "http://osubmarin.fr/yumi/latest_bepinex_version.php"
-
 #define DOWNLOAD_BEPINEX_URL "http://osubmarin.fr/yumi/bepinex/"
+
+#define YUMI_WIKI_URL "https://github.com/K07H/YUMI/wiki"
+#define YUMI_REPOSITORY_URL "https://github.com/K07H/YUMI"
+#define YUMI_AUTHOR_EMAIL "contact@osubmarin.fr"
+#define YUMI_DISCORD_URL "https://discord.gg/WDvjt7csWh"
+#define MODDING_DISCORD_URL "https://discord.gg/VAMuXyd"
+#define WEBSITE_QT_URL "https://www.qt.io/"
+#define WEBSITE_BEPINEX_URL "https://github.com/BepInEx/BepInEx/"
+
 #define UNIX_BEPINEX_NAME "unix_bepinex"
 #define WINX64_BEPINEX_NAME "winx64_bepinex"
 #define WINX86_BEPINEX_NAME "winx86_bepinex"
 #define IL2CPPX64_BEPINEX_NAME "il2cppx64_bepinex"
 #define IL2CPPX86_BEPINEX_NAME "il2cppx86_bepinex"
-
-#define YUMI_WIKI_URL "https://github.com/K07H/YUMI/wiki"
-#define YUMI_REPOSITORY_URL "https://github.com/K07H/YUMI"
-#define YUMI_AUTHOR_EMAIL "contact@osubmarin.com"
-#define YUMI_DISCORD_URL "https://discord.gg/WDvjt7csWh"
-#define MODDING_DISCORD_URL "https://discord.gg/VAMuXyd"
-#define WEBSITE_QT_URL "https://www.qt.io/"
-#define WEBSITE_BEPINEX_URL "https://github.com/BepInEx/BepInEx/"
 
 #define DEFAULT_DOWNLOAD_REQUEST_TIMEOUT 300
 #define DEFAULT_GET_REQUEST_TIMEOUT 60

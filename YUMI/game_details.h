@@ -91,6 +91,7 @@
 #include "mods_list_container.h"
 #include "uninstall_window.h"
 #include "mods_loader_settings.h"
+#include "drop_mod_window.h"
 
 class GameDetails : public QWidget
 {
@@ -116,6 +117,9 @@ protected:
 private:
     GameDetails() = delete;
     GameDetails(QWidget* parent) = delete;
+    QString getBepInExNameFromExeType(int exeType);
+    bool isModsLoaderUpToDate(GameInfo* details);
+    bool updateModsLoader(GameInfo* details);
 
     const int _preferedHeight = 400;
     const int _minimumHeight = 220;
@@ -127,6 +131,7 @@ private:
     QLabel _modsLoaderNotInstalledLbl;
     QPushButton _installModsLoaderBtn;
     QPushButton _removeGameBtn;
+    QPushButton _addNewModBtn;
     QPushButton _uninstallModsLoaderBtn;
     QPushButton _openModsLoaderSettingsBtn;
     QHBoxLayout* _modsLoaderBtnsLayout;
@@ -135,6 +140,8 @@ private:
     ModsListContainer* _patchersListContainer;
     UninstallWindow* _uninstallWindow;
     ModsLoaderSettings* _modsLoaderSettingsWindow;
+    DropModWindow* _dropNewModWindow;
+    QVector<QString> _updatesChecked;
 
 protected:
 #if IS_DEBUG && DEBUG_PAINTING
@@ -147,6 +154,7 @@ private slots:
     void adjustMinHeight();
     void uninstallModsLoaderBtnClicked();
     void openModsLoaderSettingsBtnClicked();
+    void addNewModBtnClicked();
 };
 
 #endif

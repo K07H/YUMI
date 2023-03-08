@@ -78,7 +78,6 @@
 #include <QStyleOption>
 #include <QPainter>
 #include <QPainterPath>
-#include <QFormLayout>
 #include <QStringList>
 #include <QFontDatabase>
 #include <QMessageBox>
@@ -109,6 +108,24 @@ YumiSettings::YumiSettings(void* yumiPtr, QWidget* parent) : QWidget(parent)
 
     this->_generalSettingsLabel = new QLabel(QCoreApplication::translate("Settings", "General settings", "Label text"));
     this->_generalSettingsLabel->setStyleSheet("QLabel { margin-left: 5px; " + Assets::Instance()->SMALLER_TITLE_LABEL_STYLE + " }");
+
+    this->_languageLabel = new QLabel(QCoreApplication::translate("Settings", "Language:", "Label text"));
+    this->_languageLabel->setStyleSheet("QLabel { " + Assets::Instance()->REGULAR_LABEL_STYLE + " }");
+
+    this->_languageComboBox = new QComboBox();
+    this->_languageComboBox->addItem(Assets::Instance()->englishFlagIcon, "English");
+    this->_languageComboBox->addItem(Assets::Instance()->frenchFlagIcon, "Français");
+    this->_languageComboBox->setCurrentText(Config::Instance()->language);
+    this->_languageComboBox->setCursor(Qt::PointingHandCursor);
+    this->_languageComboBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::MinimumExpanding);
+    connect(this->_languageComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(languageChanged(QString)));
+
+    this->_languageLayout = new QHBoxLayout();
+    this->_languageLayout->setContentsMargins(10, 0, 10, 0);
+    this->_languageLayout->setSpacing(0);
+    this->_languageLayout->addWidget(this->_languageLabel);
+    this->_languageLayout->addSpacing(5);
+    this->_languageLayout->addWidget(this->_languageComboBox);
 
     this->_logScriptErrors = new QCheckBox(QCoreApplication::translate("Settings", "Log launcher script errors to file \"run_yumi_bepinex.err\".", "Checkbox label text"));
     this->_logScriptErrors->setStyleSheet(Assets::Instance()->checkboxStyle);
@@ -192,28 +209,44 @@ YumiSettings::YumiSettings(void* yumiPtr, QWidget* parent) : QWidget(parent)
     this->_smallFontSize->setMaximum(20);
     this->_smallFontSize->setSingleStep(2);
     this->_smallFontSize->setValue(Assets::Instance()->SM_FONT_SIZE_PX.toInt());
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+    connect(this->_smallFontSize, SIGNAL(valueChanged(QString)), this, SLOT(smallFontSizeChanged(QString)));
+#else
     connect(this->_smallFontSize, SIGNAL(textChanged(QString)), this, SLOT(smallFontSizeChanged(QString)));
+#endif
 
     this->_regularFontSize = new QSpinBox();
     this->_regularFontSize->setMinimum(10);
     this->_regularFontSize->setMaximum(24);
     this->_regularFontSize->setSingleStep(2);
     this->_regularFontSize->setValue(Assets::Instance()->DEFAULT_FONT_SIZE_PX.toInt());
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+    connect(this->_regularFontSize, SIGNAL(valueChanged(QString)), this, SLOT(regularFontSizeChanged(QString)));
+#else
     connect(this->_regularFontSize, SIGNAL(textChanged(QString)), this, SLOT(regularFontSizeChanged(QString)));
+#endif
 
     this->_largeFontSize = new QSpinBox();
     this->_largeFontSize->setMinimum(12);
     this->_largeFontSize->setMaximum(30);
     this->_largeFontSize->setSingleStep(2);
     this->_largeFontSize->setValue(Assets::Instance()->XL_FONT_SIZE_PX.toInt());
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+    connect(this->_largeFontSize, SIGNAL(valueChanged(QString)), this, SLOT(largeFontSizeChanged(QString)));
+#else
     connect(this->_largeFontSize, SIGNAL(textChanged(QString)), this, SLOT(largeFontSizeChanged(QString)));
+#endif
 
     this->_extraLargeFontSize = new QSpinBox();
     this->_extraLargeFontSize->setMinimum(16);
     this->_extraLargeFontSize->setMaximum(36);
     this->_extraLargeFontSize->setSingleStep(2);
     this->_extraLargeFontSize->setValue(Assets::Instance()->XXL_FONT_SIZE_PX.toInt());
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+    connect(this->_extraLargeFontSize, SIGNAL(valueChanged(QString)), this, SLOT(extraLargeFontSizeChanged(QString)));
+#else
     connect(this->_extraLargeFontSize, SIGNAL(textChanged(QString)), this, SLOT(extraLargeFontSizeChanged(QString)));
+#endif
 
     this->_primaryColor = new QColorDialog(Assets::Instance()->primaryColor);
     this->_primaryColorButton = new QPushButton(Assets::Instance()->PRIMARY_COLOR_HEX);
@@ -311,11 +344,6 @@ YumiSettings::YumiSettings(void* yumiPtr, QWidget* parent) : QWidget(parent)
     this->_lightTextColorButton->setCursor(Qt::PointingHandCursor);
     connect(this->_lightTextColorButton, SIGNAL(clicked()), this, SLOT(changeLightTextColor()));
 
-    this->_appearanceGroupBox = new QGroupBox();
-    this->_appearanceGroupBox->setStyleSheet("QGroupBox { border: none; background-color: transparent; }");
-    QFormLayout *appearanceLayout = new QFormLayout();
-    appearanceLayout->setContentsMargins(5, 5, 20, 5);
-
     this->_fontFamilyLabel = new QLabel(QCoreApplication::translate("Settings", "Font family:", "Label text"));
     this->_fontFamilyLabel->setStyleSheet("QLabel { " + Assets::Instance()->ALTERNATE_LABEL_STYLE + " }");
     this->_smallFontSizeLabel = new QLabel(QCoreApplication::translate("Settings", "Small font size:", "Label text"));
@@ -359,28 +387,35 @@ YumiSettings::YumiSettings(void* yumiPtr, QWidget* parent) : QWidget(parent)
     this->_lightTextColorLabel = new QLabel(QCoreApplication::translate("Settings", "Alternate text color:", "Label text"));
     this->_lightTextColorLabel->setStyleSheet("QLabel { " + Assets::Instance()->ALTERNATE_LABEL_STYLE + " }");
 
-    appearanceLayout->addRow(this->_fontFamilyLabel, this->_fontFamily);
-    appearanceLayout->addRow(this->_smallFontSizeLabel, this->_smallFontSize);
-    appearanceLayout->addRow(this->_regularFontSizeLabel, this->_regularFontSize);
-    appearanceLayout->addRow(this->_largeFontSizeLabel, this->_largeFontSize);
-    appearanceLayout->addRow(this->_extraLargeFontSizeLabel, this->_extraLargeFontSize);
-    appearanceLayout->addRow(this->_primaryColorLabel, this->_primaryColorButton);
-    appearanceLayout->addRow(this->_primaryColorLightLabel, this->_primaryColorLightButton);
-    appearanceLayout->addRow(this->_primaryColorDeepLabel, this->_primaryColorDeepButton);
-    appearanceLayout->addRow(this->_altPrimaryColorLabel, this->_altPrimaryColorButton);
-    appearanceLayout->addRow(this->_altPrimaryColorLightLabel, this->_altPrimaryColorLightButton);
-    appearanceLayout->addRow(this->_altPrimaryColorDeepLabel, this->_altPrimaryColorDeepButton);
-    appearanceLayout->addRow(this->_secondaryColorLabel, this->_secondaryColorButton);
-    appearanceLayout->addRow(this->_secondaryColorLightLabel, this->_secondaryColorLightButton);
-    appearanceLayout->addRow(this->_secondaryColorLighterLabel, this->_secondaryColorLighterButton);
-    appearanceLayout->addRow(this->_secondaryColorDeepLabel, this->_secondaryColorDeepButton);
-    appearanceLayout->addRow(this->_altSecondaryColorLabel, this->_altSecondaryColorButton);
-    appearanceLayout->addRow(this->_altSecondaryColorLightLabel, this->_altSecondaryColorLightButton);
-    appearanceLayout->addRow(this->_neutralColorLabel, this->_neutralColorButton);
-    appearanceLayout->addRow(this->_neutralColorLightLabel, this->_neutralColorLightButton);
-    appearanceLayout->addRow(this->_neutralColorLighterLabel, this->_neutralColorLighterButton);
-    appearanceLayout->addRow(this->_lightTextColorLabel, this->_lightTextColorButton);
-    this->_appearanceGroupBox->setLayout(appearanceLayout);
+    this->_appearanceLayout = new QFormLayout();
+    this->_appearanceLayout->setContentsMargins(5, 5, 5, 5);
+    this->_appearanceLayout->setFieldGrowthPolicy(QFormLayout::FieldGrowthPolicy::AllNonFixedFieldsGrow);
+    this->_appearanceLayout->setRowWrapPolicy(QFormLayout::RowWrapPolicy::DontWrapRows);
+    this->_appearanceLayout->addRow(this->_fontFamilyLabel, this->_fontFamily);
+    this->_appearanceLayout->addRow(this->_smallFontSizeLabel, this->_smallFontSize);
+    this->_appearanceLayout->addRow(this->_regularFontSizeLabel, this->_regularFontSize);
+    this->_appearanceLayout->addRow(this->_largeFontSizeLabel, this->_largeFontSize);
+    this->_appearanceLayout->addRow(this->_extraLargeFontSizeLabel, this->_extraLargeFontSize);
+    this->_appearanceLayout->addRow(this->_primaryColorLabel, this->_primaryColorButton);
+    this->_appearanceLayout->addRow(this->_primaryColorLightLabel, this->_primaryColorLightButton);
+    this->_appearanceLayout->addRow(this->_primaryColorDeepLabel, this->_primaryColorDeepButton);
+    this->_appearanceLayout->addRow(this->_altPrimaryColorLabel, this->_altPrimaryColorButton);
+    this->_appearanceLayout->addRow(this->_altPrimaryColorLightLabel, this->_altPrimaryColorLightButton);
+    this->_appearanceLayout->addRow(this->_altPrimaryColorDeepLabel, this->_altPrimaryColorDeepButton);
+    this->_appearanceLayout->addRow(this->_secondaryColorLabel, this->_secondaryColorButton);
+    this->_appearanceLayout->addRow(this->_secondaryColorLightLabel, this->_secondaryColorLightButton);
+    this->_appearanceLayout->addRow(this->_secondaryColorLighterLabel, this->_secondaryColorLighterButton);
+    this->_appearanceLayout->addRow(this->_secondaryColorDeepLabel, this->_secondaryColorDeepButton);
+    this->_appearanceLayout->addRow(this->_altSecondaryColorLabel, this->_altSecondaryColorButton);
+    this->_appearanceLayout->addRow(this->_altSecondaryColorLightLabel, this->_altSecondaryColorLightButton);
+    this->_appearanceLayout->addRow(this->_neutralColorLabel, this->_neutralColorButton);
+    this->_appearanceLayout->addRow(this->_neutralColorLightLabel, this->_neutralColorLightButton);
+    this->_appearanceLayout->addRow(this->_neutralColorLighterLabel, this->_neutralColorLighterButton);
+    this->_appearanceLayout->addRow(this->_lightTextColorLabel, this->_lightTextColorButton);
+
+    this->_appearanceGroupBox = new QGroupBox();
+    this->_appearanceGroupBox->setStyleSheet("QGroupBox { border: none; background-color: transparent; }");
+    this->_appearanceGroupBox->setLayout(this->_appearanceLayout);
 
     this->_saveButton = new QPushButton();
     this->_saveButton->setText(QCoreApplication::translate("Settings", "&Save", "Button text"));
@@ -408,13 +443,16 @@ YumiSettings::YumiSettings(void* yumiPtr, QWidget* parent) : QWidget(parent)
     this->_appearanceScrollArea->setAlignment(Qt::AlignTop);
     this->_appearanceScrollArea->setStyleSheet("QScrollArea { margin-left: 10px; margin-right: 10px; " + Assets::Instance()->REGULAR_SCROLL_AREA_STYLE + " }");
     this->_appearanceScrollArea->setMaximumHeight(400);
-    this->_appearanceScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    this->_appearanceScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     this->_appearanceScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    this->_appearanceScrollArea->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::MinimumExpanding);
 
     this->_layout.addWidget(this->_title);
     this->_layout.addSpacing(5);
     this->_layout.addWidget(this->_generalSettingsLabel);
     this->_layout.addSpacing(2);
+    this->_layout.addLayout(this->_languageLayout);
+    this->_layout.addSpacing(5);
 #ifndef Q_OS_WIN
     this->_layout.addWidget(this->_logScriptErrors);
     this->_layout.addSpacing(5);
@@ -437,6 +475,8 @@ YumiSettings::YumiSettings(void* yumiPtr, QWidget* parent) : QWidget(parent)
     this->setStyleSheet("YumiSettings { " + Assets::Instance()->DEFAULT_WINDOW_STYLE + " }");
     this->setLayout(&this->_layout);
     this->_appearanceScrollArea->setWidget(this->_appearanceGroupBox);
+    adjustSize();
+    this->_appearanceScrollArea->setMinimumWidth(this->_appearanceLayout->sizeHint().width() + 50);
 }
 
 void YumiSettings::showEvent(QShowEvent*)
@@ -539,6 +579,7 @@ void YumiSettings::updateStyles()
         this->_saveThemePopup->updateStyles();
 
     adjustSize();
+    this->_appearanceScrollArea->setMinimumWidth(this->_appearanceLayout->sizeHint().width() + 50);
     update();
 }
 
@@ -576,6 +617,14 @@ void YumiSettings::save()
     {
         Config::Instance()->downloadRequestTimeout = downloadTimeout;
         saveConfig = true;
+    }
+    QString lang = this->_languageComboBox->currentText();
+    if (!lang.isEmpty() && (lang.compare("English", Qt::CaseInsensitive) == 0 || lang.compare("Français", Qt::CaseInsensitive) == 0) && Config::Instance()->language.compare(lang, Qt::CaseInsensitive) != 0)
+    {
+        Config::Instance()->language = lang;
+        saveConfig = true;
+        QMessageBox restartRequired(QMessageBox::Information, QCoreApplication::translate("Settings", "Please restart YUMI", "Popup title"), QCoreApplication::translate("Settings", "Please restart YUMI to load new language.", "Popup text"), QMessageBox::Ok, this);
+        restartRequired.exec();
     }
     if (saveConfig)
         Config::Instance()->saveConfig();
@@ -700,6 +749,11 @@ void YumiSettings::restoreTheme()
 
 void YumiSettings::cancel()
 {
+    if (this->_languageComboBox->currentText().compare(Config::Instance()->language, Qt::CaseInsensitive) != 0)
+    {
+        this->_languageComboBox->setCurrentText(Config::Instance()->language);
+        Config::SwapLanguage(Config::Instance()->language, ((yumi*)_yumiPtr)->appPtr);
+    }
     this->_presetsComboBox->setCurrentText(((yumi*)_yumiPtr)->theme);
     this->restoreTheme();
     this->updateStyles();
@@ -820,6 +874,18 @@ void YumiSettings::showSharingResult(bool success, const QString& msg)
         QMessageBox sharingError = QMessageBox(QMessageBox::Warning, QCoreApplication::translate("Settings", "Sharing theme failed", "Popup title"), QCoreApplication::translate("Settings", "An error happened when sharing your custom theme over network, please try again. You can also get help on the Discord server.\n\nError message:\n%1", "Popup text").arg(msg), QMessageBox::Ok, this);
         sharingError.exec();
     }
+}
+
+void YumiSettings::languageChanged(QString lang)
+{
+#if IS_DEBUG && DEBUG_CLICK_EVENTS
+    qDebug().nospace() << "Language changed to: " << lang;
+#endif
+    if (lang.isEmpty())
+        return;
+    if (!Config::SwapLanguage(lang, ((yumi*)_yumiPtr)->appPtr))
+        return;
+    this->updateStyles();
 }
 
 void YumiSettings::presetChanged(QString preset)

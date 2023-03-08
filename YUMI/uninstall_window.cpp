@@ -180,13 +180,13 @@ void UninstallWindow::doUninstall()
     catch (const std::exception& ex)
     {
         qCritical().nospace() << "BepInEx uninstallation error: An exception got caught while uninstalling mods loader for " << this->_game->name << " (Exception: " << ex.what() << ").";
-        QMessageBox confirmBox(QMessageBox::Critical, QCoreApplication::translate("UninstallWindow", "Uninstall failed", "Popup title"), QCoreApplication::translate("UninstallWindow", "An exception got caught while uninstalling mods loader for \"%1\". Exception: %2", "Popup text").arg(this->_game->name, ex.what()), QMessageBox::Ok, this);
+        QMessageBox confirmBox(QMessageBox::Critical, QCoreApplication::translate("UninstallWindow", "Uninstall failed", "Popup title"), QCoreApplication::translate("UninstallWindow", "An error happened while uninstalling mods loader for \"%1\" (Error message: %2).", "Popup text").arg(this->_game->name, ex.what()), QMessageBox::Ok, this);
         confirmBox.exec();
     }
     catch (...)
     {
         qCritical().nospace() << "BepInEx uninstallation error: An exception got caught while uninstalling mods loader for " << this->_game->name << ".";
-        QMessageBox confirmBox(QMessageBox::Critical, QCoreApplication::translate("UninstallWindow", "Uninstall failed", "Popup title"), QCoreApplication::translate("UninstallWindow", "An exception got caught while uninstalling mods loader for \"%1\".", "Popup text").arg(this->_game->name), QMessageBox::Ok, this);
+        QMessageBox confirmBox(QMessageBox::Critical, QCoreApplication::translate("UninstallWindow", "Uninstall failed", "Popup title"), QCoreApplication::translate("UninstallWindow", "An error happened while uninstalling mods loader for \"%1\".", "Popup text").arg(this->_game->name), QMessageBox::Ok, this);
         confirmBox.exec();
     }
     close();

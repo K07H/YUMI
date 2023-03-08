@@ -89,6 +89,10 @@ public:
     static QString toUnixPath(const QString& path);
     static QString capitalizeFirstLetter(const QString& str);
     static QString stripSpecialCharacters(const QString& str);
+    static QString toReadableFileSize(const qint64 size);
+    static QString base64Encode(const QString& str);
+    static QString base64Decode(const QString& str);
+    static bool copyRecursively(QString sourceFolder, QString destFolder, bool overwrite = true);
 };
 
 #endif

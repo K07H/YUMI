@@ -73,6 +73,7 @@
 ** Franklin Street, Fifth Floor, Boston, MA 02110 USA.
 */
 
+#include <QCoreApplication>
 #include <QDebug>
 #include <QFile>
 #include <QMessageBox>
@@ -91,12 +92,22 @@ ModsListContainer::ModsListContainer(void* yumiPtr, const bool isForPatchers, QW
     mods = NULL;
     disabledMods = NULL;
 
-    _typeName = _isForPatchers ? tr("patcher") : tr("plugin");
-    _topLabel = _isForPatchers ? tr("Installed patchers:") : tr("Installed plugins:");
-    _topDescription = _isForPatchers ? tr("Patchers are mods loaded before the game starts.") : tr("Plugins are mods loaded when the game starts.");
+    if (_isForPatchers)
+    {
+        _typeName = QCoreApplication::translate("ModsListContainer", "patcher", "Mod type name");
+        _topLabel = QCoreApplication::translate("ModsListContainer", "Installed patchers:", "Patchers list label");
+        _topDescription = QCoreApplication::translate("ModsListContainer", "Patchers are mods loaded before the game starts.", "Patchers description");
+    }
+    else
+    {
+        _typeName = QCoreApplication::translate("ModsListContainer", "plugin", "Mod type name");
+        _topLabel = QCoreApplication::translate("ModsListContainer", "Installed plugins:", "Plugins list label");
+        _topDescription = QCoreApplication::translate("ModsListContainer", "Plugins are mods loaded when the game starts.", "Plugins description");
+    }
+
     _modsFolderName = (_isForPatchers ? "patchers" : "plugins");
     _disabledModsFolderName = (_isForPatchers ? "disabled_patchers" : "disabled_plugins");
-    _disabledPrefix = "<" + tr("DISABLED") + "> ";
+    _disabledPrefix = "<" + QCoreApplication::translate("ModsListContainer", "DISABLED", "Disabled mod label") + "> ";
 
     _modsListLbl.setText(_topLabel);
     _modsListLbl.setStatusTip(" " + _topDescription);
@@ -114,11 +125,13 @@ ModsListContainer::ModsListContainer(void* yumiPtr, const bool isForPatchers, QW
     _disableModBtn.setText("Disable selected mod");
     _disableModBtn.setStyleSheet(Assets::Instance()->secondaryBtnStyle);
     _disableModBtn.setCursor(Qt::PointingHandCursor);
+    _disableModBtn.setStatusTip(" This will disable mod \"ModName\".");
     connect(&_disableModBtn, SIGNAL(clicked()), this, SLOT(disableModButtonClicked()));
 
-    _deleteModBtn.setText(tr("Delete selected %1").arg(_typeName));
+    _deleteModBtn.setText(QCoreApplication::translate("ModsListContainer", "Delete selected %1", "Delete patcher or plugin label").arg(_typeName));
     _deleteModBtn.setStyleSheet(Assets::Instance()->secondaryBtnStyle);
     _deleteModBtn.setCursor(Qt::PointingHandCursor);
+    _deleteModBtn.setStatusTip(" This will delete mod \"ModName\".");
     connect(&_deleteModBtn, SIGNAL(clicked()), this, SLOT(deleteModButtonClicked()));
 
     _buttonsBox.addWidget(&_disableModBtn);
@@ -143,6 +156,25 @@ ModsListContainer::ModsListContainer(void* yumiPtr, const bool isForPatchers, QW
 
 void ModsListContainer::updateStyles()
 {
+    if (_isForPatchers)
+    {
+        _typeName = QCoreApplication::translate("ModsListContainer", "patcher", "Mod type name");
+        _topLabel = QCoreApplication::translate("ModsListContainer", "Installed patchers:", "Patchers list label");
+        _topDescription = QCoreApplication::translate("ModsListContainer", "Patchers are mods loaded before the game starts.", "Patchers description");
+    }
+    else
+    {
+        _typeName = QCoreApplication::translate("ModsListContainer", "plugin", "Mod type name");
+        _topLabel = QCoreApplication::translate("ModsListContainer", "Installed plugins:", "Plugins list label");
+        _topDescription = QCoreApplication::translate("ModsListContainer", "Plugins are mods loaded when the game starts.", "Plugins description");
+    }
+    _modsListLbl.setText(_topLabel);
+    _modsListLbl.setStatusTip(" " + _topDescription);
+    _modsListScrollArea.setStatusTip(" " + _topDescription);
+    this->_disabledPrefix = "<" + QCoreApplication::translate("ModsListContainer", "DISABLED", "Disabled mod label") + "> ";
+    _modsList->updatePrefix(this->_disabledPrefix);
+    _deleteModBtn.setText(QCoreApplication::translate("ModsListContainer", "Delete selected %1", "Delete patcher or plugin label").arg(_typeName));
+
     _modsListLbl.setStyleSheet("QLabel { " + Assets::Instance()->REGULAR_LABEL_STYLE + " }");
     _modsListScrollArea.setStyleSheet("QScrollArea { " + Assets::Instance()->REGULAR_SCROLL_AREA_STYLE + " }");
     _disableModBtn.setStyleSheet(Assets::Instance()->secondaryBtnStyle);
@@ -157,43 +189,45 @@ void ModsListContainer::updateStyles()
 void ModsListContainer::showErrorMsg(int errNo)
 {
     if (errNo == 0)
-        return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("No %1 selected.").arg(_typeName));
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "No %1 selected.", "No patcher/plugin selected error label").arg(_typeName));
     if (errNo == 1)
-        return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("Selection error."));
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Selection error.", "Error label"));
     if (errNo == 2)
-        return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("BepInEx folder not found."));
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "BepInEx folder not found.", "Error label"));
     if (errNo == 3)
-        return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("Unable to create disabled %1 folder.").arg(_typeName));
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Unable to create disabled %1 folder.", "Unable to create disabled patcher/plugin folder error label").arg(_typeName));
     if (errNo == 4)
-        return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("Disabled %1 folder not found.").arg(_typeName));
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Disabled %1 folder not found.", "Disabled patcher/plugin folder not found error label").arg(_typeName));
     if (errNo == 5)
-        return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("Unable to parse %1 name.").arg(_typeName));
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Unable to parse %1 name.", "Unable to parse patcher/plugin name error label").arg(_typeName));
     if (errNo == 6)
-        return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("%1 file not found.").arg(Utils::capitalizeFirstLetter(_typeName)));
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "%1 file not found.", "Patcher/plugin file not found error label").arg(Utils::capitalizeFirstLetter(_typeName)));
     if (errNo == 7)
-        return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("Unable to copy %1 file.").arg(_typeName));
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Unable to copy %1 file.", "Unable to copy patcher/plugin file error label").arg(_typeName));
     if (errNo == 8)
-        return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("%1 folder not found.").arg(Utils::capitalizeFirstLetter(_typeName)));
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "%1 folder not found.", "Patcher/plugin folder not found error label").arg(Utils::capitalizeFirstLetter(_typeName)));
     if (errNo == 9)
-        return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("Unable to copy %1 folder.").arg(_typeName));
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Unable to copy %1 folder.", "Unable to copy patcher/plugin folder error label").arg(_typeName));
     if (errNo == 10)
-        return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("Unable to delete %1 file.").arg(_typeName));
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Unable to delete %1 file.", "Unable to delete patcher/plugin file error label").arg(_typeName));
     if (errNo == 11)
-        return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("Unable to delete %1 folder.").arg(_typeName));
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Unable to delete %1 folder.", "Unable to delete patcher/plugin folder error label").arg(_typeName));
 
-    return ((yumi*)_yumiPtr)->showStatusBarMsg(tr("Unknown error.").arg(_typeName));
+    return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Unknown error.", "Error label").arg(_typeName));
 }
 
-ModInfo* ModsListContainer::getSelectedMod()
+ModInfo* ModsListContainer::getSelectedMod(bool showErrorTooltip)
 {
     if (_modsList == NULL || _modsList->selectedMod == NULL)
     {
-        showErrorMsg(0);
+        if (showErrorTooltip)
+            showErrorMsg(0);
         return NULL;
     }
     if (mods == NULL)
     {
-        showErrorMsg(1);
+        if (showErrorTooltip)
+            showErrorMsg(1);
         return NULL;
     }
     int len = mods->count();
@@ -216,7 +250,8 @@ ModInfo* ModsListContainer::getSelectedMod()
                 if ((*mods)[i].name.compare(modName) == 0)
                     return &((*mods)[i]);
     }
-    showErrorMsg(1);
+    if (showErrorTooltip)
+        showErrorMsg(1);
     return NULL;
 }
 
@@ -306,8 +341,20 @@ void ModsListContainer::disableModButtonClicked()
     QString destFolderName(destinationPath.left(destinationPath.lastIndexOf('/')));
     bool isFile = selectedModPath.endsWith(".dll", Qt::CaseInsensitive);
 
-    QString title(tr("Confirm action"));
-    QString msg(tr("There is already %1 %5 called \"%2\" in folder \"%3\". Continue and %4 %5 \"%6\" (this will replace previous copy of the %5)?").arg((selectedModDisabled ? tr("an enabled") : tr("a disabled")), modFileName, destFolderName, (selectedModDisabled ? tr("enable") : tr("disable")), _typeName, selectedMod->name));
+    QString title(QCoreApplication::translate("ModsListContainer", "Confirm action", "Popup title"));
+    QString argA;
+    QString argB;
+    if (selectedModDisabled)
+    {
+        argA = QCoreApplication::translate("ModsListContainer", "an enabled", "Popup text element");
+        argB = QCoreApplication::translate("ModsListContainer", "enable", "Popup text element");
+    }
+    else
+    {
+        argA = QCoreApplication::translate("ModsListContainer", "a disabled", "Popup text element");
+        argB = QCoreApplication::translate("ModsListContainer", "disable", "Popup text element");
+    }
+    QString msg(QCoreApplication::translate("ModsListContainer", "There is already %1 %5 called \"%2\" in folder \"%3\". Continue and %4 %5 \"%6\" (this will replace previous copy of the %5)?", "Popup text (%1=an enabled/a disabled, %2=Mod file name, %3=Destination folder name, %4=enable/disable, %5=patcher/plugin, %6=Mod name)").arg(argA, modFileName, destFolderName, argB, _typeName, selectedMod->name));
     if (isFile)
     {
         QFile destFile(destinationPath);
@@ -365,7 +412,7 @@ void ModsListContainer::deleteModButtonClicked()
     if (selectedMod == NULL)
         return;
     QString modName(selectedMod->name);
-    QMessageBox confirmBox(QMessageBox::Question, tr("Confirm removal"), tr("Are you sure that you want to delete \"%1\" mod?").arg(modName), QMessageBox::Yes | QMessageBox::No, (GameDetails*)_parent);
+    QMessageBox confirmBox(QMessageBox::Question, QCoreApplication::translate("ModsListContainer", "Confirm removal", "Popup title"), QCoreApplication::translate("ModsListContainer", "Are you sure that you want to delete \"%1\" mod?", "Popup text (%1=Mod name)").arg(modName), QMessageBox::Yes | QMessageBox::No, (GameDetails*)_parent);
     int clickedBtn = confirmBox.exec();
     if (clickedBtn != QMessageBox::Yes)
         return;
@@ -405,7 +452,22 @@ void ModsListContainer::toggleButtons(const bool visible)
 
 void ModsListContainer::updateDisableButtonText()
 {
-    _disableModBtn.setText(isSelectedModDisabled() ? tr("Enable selected %1").arg(_typeName) : tr("Disable selected %1").arg(_typeName));
+    bool selectedModDisabled = isSelectedModDisabled();
+
+    ModInfo* selectedMod = getSelectedMod();
+    QString modName = (selectedMod == NULL ? "ModName" : selectedMod->name);
+
+    if (selectedModDisabled)
+    {
+        _disableModBtn.setText(QCoreApplication::translate("ModsListContainer", "Enable selected %1", "Enable selected plugin or patcher button text").arg(_typeName));
+        _disableModBtn.setStatusTip(" " + QCoreApplication::translate("ModsListContainer", "Enable %1 \"%2\".", "Enable selected plugin or patcher tooltip text").arg(_typeName, modName));
+    }
+    else
+    {
+        _disableModBtn.setText(QCoreApplication::translate("ModsListContainer", "Disable selected %1", "Disable selected plugin or patcher button text").arg(_typeName));
+        _disableModBtn.setStatusTip(" " + QCoreApplication::translate("ModsListContainer", "Disable %1 \"%2\".", "Disable selected plugin or patcher tooltip text").arg(_typeName, modName));
+    }
+    _deleteModBtn.setStatusTip(" " + QCoreApplication::translate("ModsListContainer", "Delete %1 \"%2\".", "Delete selected plugin or patcher tooltip text").arg(_typeName, modName));
 }
 
 void ModsListContainer::addNewItem(const QString& item, const bool isDisabled)

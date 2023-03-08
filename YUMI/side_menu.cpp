@@ -140,6 +140,7 @@ bool SideMenu::eventFilter(QObject*, QEvent* event)
 {
     if (this->_pointerEnabled && event->type() == QEvent::Leave)
     {
+        ((yumi*)_yumiPtr)->showStatusBarMsg("");
         this->setCursor(Qt::ArrowCursor);
         this->_pointerEnabled = false;
     }
@@ -262,6 +263,7 @@ void SideMenu::mouseMoveEvent(QMouseEvent* event)
         this->_hoveringAction = NULL;
         if (this->_pointerEnabled)
         {
+            ((yumi*)_yumiPtr)->showStatusBarMsg("");
             this->setCursor(Qt::ArrowCursor);
             this->_pointerEnabled = false;
         }
@@ -278,6 +280,7 @@ void SideMenu::mouseMoveEvent(QMouseEvent* event)
         }
         if (!this->_pointerEnabled)
         {
+            ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("SideMenu", "View \"%1\" details.", "View game details tooltip text").arg(currentElem.action->text()));
             this->setCursor(Qt::PointingHandCursor);
             this->_pointerEnabled = true;
         }
@@ -286,6 +289,7 @@ void SideMenu::mouseMoveEvent(QMouseEvent* event)
     this->_hoveringAction = currentElem.action;
     if (!this->_pointerEnabled)
     {
+        ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("SideMenu", "View \"%1\" details.", "View game details tooltip text").arg(currentElem.action->text()));
         this->setCursor(Qt::PointingHandCursor);
         this->_pointerEnabled = true;
     }
@@ -296,6 +300,12 @@ void SideMenu::mouseMoveEvent(QMouseEvent* event)
 void SideMenu::leaveEvent(QEvent* event)
 {
     this->_hoveringAction = NULL;
+    if (this->_pointerEnabled)
+    {
+        ((yumi*)_yumiPtr)->showStatusBarMsg("");
+        this->setCursor(Qt::ArrowCursor);
+        this->_pointerEnabled = false;
+    }
     update();
     QWidget::leaveEvent(event);
 }
