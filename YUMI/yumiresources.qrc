@@ -25,6 +25,7 @@
         <file>images/mac/checkbox_indeterminated_pressed.png</file>
         <file>images/mac/flag_en.png</file>
         <file>images/mac/flag_fr.png</file>
+        <file>images/mac/flag_tr.png</file>
         <file>images/win/yumilogo.png</file>
         <file>images/win/yumilogo_transparent.png</file>
         <file>images/win/exitsign.png</file>
@@ -50,8 +51,11 @@
         <file>images/win/checkbox_indeterminated_pressed.png</file>
         <file>images/win/flag_en.png</file>
         <file>images/win/flag_fr.png</file>
+        <file>images/win/flag_tr.png</file>
         <file>FULL_LICENSE.txt</file>
         <file>YUMI_Lang_fr.qm</file>
         <file>qtbase_fr.qm</file>
+        <file>YUMI_Lang_tr.qm</file>
+        <file>qtbase_tr.qm</file>
     </qresource>
 </RCC>

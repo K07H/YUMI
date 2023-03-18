@@ -363,6 +363,8 @@ void GameDetails::updateGameDetails(GameInfo* details)
         _addNewModBtn.setStatusTip(" " + QCoreApplication::translate("GameDetails", "Add a new mod for \"%1\".", "Tooltip text").arg(details->name));
         _uninstallModsLoaderBtn.setStatusTip(" " + QCoreApplication::translate("GameDetails", "Uninstall mods loader for \"%1\".", "Tooltip text").arg(details->name));
         _openModsLoaderSettingsBtn.setStatusTip(" " + QCoreApplication::translate("GameDetails", "Open mods loader settings for \"%1\".", "Tooltip text").arg(details->name));
+        if (_pluginsListContainer->mods != NULL)
+            delete _pluginsListContainer->mods;
         _pluginsListContainer->mods = ModsLoader::Instance()->getModsList(ModsLoader::Instance()->getBepInExSubFolderPath(gameFolder, "plugins"));
         if (_pluginsListContainer->mods != NULL)
         {
@@ -371,6 +373,8 @@ void GameDetails::updateGameDetails(GameInfo* details)
                 for (int i = 0; i < len; i++)
                     _pluginsListContainer->addNewItem((*_pluginsListContainer->mods)[i].name, false);
         }
+        if (_pluginsListContainer->disabledMods != NULL)
+            delete _pluginsListContainer->disabledMods;
         _pluginsListContainer->disabledMods = ModsLoader::Instance()->getModsList(ModsLoader::Instance()->getBepInExSubFolderPath(gameFolder, "disabled_plugins"));
         if (_pluginsListContainer->disabledMods != NULL)
         {
@@ -379,6 +383,8 @@ void GameDetails::updateGameDetails(GameInfo* details)
                 for (int i = 0; i < len; i++)
                     _pluginsListContainer->addNewItem((*_pluginsListContainer->disabledMods)[i].name, true);
         }
+        if (_patchersListContainer->mods != NULL)
+            delete _patchersListContainer->mods;
         _patchersListContainer->mods = ModsLoader::Instance()->getModsList(ModsLoader::Instance()->getBepInExSubFolderPath(gameFolder, "patchers"));
         if (_patchersListContainer->mods != NULL)
         {
@@ -387,6 +393,8 @@ void GameDetails::updateGameDetails(GameInfo* details)
                 for (int i = 0; i < len; i++)
                     _patchersListContainer->addNewItem((*_patchersListContainer->mods)[i].name, false);
         }
+        if (_patchersListContainer->disabledMods != NULL)
+            delete _patchersListContainer->disabledMods;
         _patchersListContainer->disabledMods = ModsLoader::Instance()->getModsList(ModsLoader::Instance()->getBepInExSubFolderPath(gameFolder, "disabled_patchers"));
         if (_patchersListContainer->disabledMods != NULL)
         {

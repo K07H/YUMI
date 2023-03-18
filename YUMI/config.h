@@ -123,6 +123,9 @@ private:
     static QTranslator* _frenchTranslator;
     static QTranslator* _frenchBaseTranslator;
     static bool _isFrenchTranslatorInstalled;
+    static QTranslator* _turkishTranslator;
+    static QTranslator* _turkishBaseTranslator;
+    static bool _isTurkishTranslatorInstalled;
 
     void* _yumiPtr;
     QList<ThemeInfo> _themePresets;

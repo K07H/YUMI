@@ -157,9 +157,13 @@ public:
 
     const QIcon englishFlagIcon = QIcon(imgRsrcPath + "/flag_en.png");
     const QIcon frenchFlagIcon = QIcon(imgRsrcPath + "/flag_fr.png");
+    const QIcon turkishFlagIcon = QIcon(imgRsrcPath + "/flag_tr.png");
 
     const QString frenchTranslation = QString(":/yumiresources/YUMI_Lang_fr.qm");
     const QString frenchBaseTranslation = QString(":/yumiresources/qtbase_fr.qm");
+
+    const QString turkishTranslation = QString(":/yumiresources/YUMI_Lang_tr.qm");
+    const QString turkishBaseTranslation = QString(":/yumiresources/qtbase_tr.qm");
 
     QString PRIMARY_FONT_FAMILY = Assets::primaryFontFamily;
     QString SECONDARY_FONT_FAMILY = QString("Courier New");
@@ -220,8 +224,9 @@ public:
     const QString MAIN_BUTTON_STYLE_DEFAULT = QString("border-color: navy;");
 
     QString SECONDARY_BUTTON_STYLE = QString("min-height: 25px; padding-left: 5px; padding-right: 5px; font-size: " + SM_FONT_SIZE_PX + "px; color: " + LIGHT_TEXT_COLOR_HEX + "; font-family: \"" + PRIMARY_FONT_FAMILY + "\", sans-serif; border: 1px solid " + SECONDARY_COLOR_HEX + "; border-radius: 6px; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 " + SECONDARY_COLOR_LIGHTER_HEX + ", stop: 1 " + SECONDARY_COLOR_HEX + ");");
-    QString SECONDARY_BUTTON_STYLE_DISABLED = QString("min-height: 25px; padding-left: 5px; padding-right: 5px; font-size: " + SM_FONT_SIZE_PX + "px; color: " + LIGHT_TEXT_COLOR_HEX + "; font-family: \"" + PRIMARY_FONT_FAMILY + "\", sans-serif; border: 1px solid " + SECONDARY_COLOR_HEX + "; border-radius: 6px; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 " + NEUTRAL_COLOR_LIGHTER_HEX + ", stop: 1 " + NEUTRAL_COLOR_HEX + ");");
+    QString SECONDARY_BUTTON_STYLE_DISABLED = QString("min-height: 25px; padding-left: 5px; padding-right: 5px; font-size: " + SM_FONT_SIZE_PX + "px; color: " + LIGHT_TEXT_COLOR_HEX + "; font-family: \"" + PRIMARY_FONT_FAMILY + "\", sans-serif; border: 1px solid " + SECONDARY_COLOR_HEX + "; border-radius: 6px; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 " + NEUTRAL_COLOR_LIGHT_HEX + ", stop: 1 " + NEUTRAL_COLOR_HEX + ");");
     QString SECONDARY_BUTTON_STYLE_SELECTED = QString("min-height: 30px; padding-left: 5px; padding-right: 5px; font-size: " + SM_FONT_SIZE_PX + "px; font-weight: 500; color: " + LIGHT_TEXT_COLOR_HEX + "; font-family: \"" + PRIMARY_FONT_FAMILY + "\", sans-serif; border: 3px solid " + SECONDARY_COLOR_HEX + "; border-radius: 6px; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 " + ALT_PRIMARY_COLOR_HEX + ", stop: 1 " + ALT_PRIMARY_COLOR_DEEP_HEX + ");");
+    QString SECONDARY_BUTTON_STYLE_DISABLED_SELECTED = QString("min-height: 30px; padding-left: 5px; padding-right: 5px; font-size: " + SM_FONT_SIZE_PX + "px; font-weight: 500; color: " + LIGHT_TEXT_COLOR_HEX + "; font-family: \"" + PRIMARY_FONT_FAMILY + "\", sans-serif; border: 3px solid " + SECONDARY_COLOR_HEX + "; border-radius: 6px; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 " + NEUTRAL_COLOR_LIGHTER_HEX + ", stop: 1 " + NEUTRAL_COLOR_HEX + ");");
     QString SECONDARY_BUTTON_STYLE_HOVER = QString("background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 " + ALT_SECONDARY_COLOR_LIGHT_HEX + ", stop: 1 " + ALT_SECONDARY_COLOR_HEX + ");");
     QString SECONDARY_BUTTON_STYLE_SELECTED_HOVER = QString("background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 " + ALT_PRIMARY_COLOR_HEX + ", stop: 1 " + ALT_PRIMARY_COLOR_DEEP_HEX + ");");
     QString SECONDARY_BUTTON_STYLE_PRESSED = QString("background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 " + ALT_PRIMARY_COLOR_LIGHT_HEX + ", stop: 1 " + ALT_PRIMARY_COLOR_HEX + ");");
@@ -258,7 +263,7 @@ public:
         "QPushButton:flat { " + SECONDARY_BUTTON_STYLE_FLAT + " } "
         "QPushButton:default { " + SECONDARY_BUTTON_STYLE_DEFAULT + " }";
 
-    QString secondaryBtnStyleSelectedDisabled = "QPushButton { " + SECONDARY_BUTTON_STYLE_DISABLED +  " } "
+    QString secondaryBtnStyleSelectedDisabled = "QPushButton { " + SECONDARY_BUTTON_STYLE_DISABLED_SELECTED +  " } "
         "QPushButton:hover { " + SECONDARY_BUTTON_STYLE_SELECTED_HOVER + " } "
         "QPushButton:pressed { " + SECONDARY_BUTTON_STYLE_PRESSED + " } "
         "QPushButton:flat { " + SECONDARY_BUTTON_STYLE_FLAT + " } "

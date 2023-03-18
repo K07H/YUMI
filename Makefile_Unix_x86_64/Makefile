@@ -372,7 +372,9 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_yumiresources.cpp
 qrc_yumiresources.cpp: ../YUMI/yumiresources.qrc \
 		../Qt/5.12.12/gcc_64/bin/rcc \
+		../YUMI/YUMI_Lang_tr.qm \
 		../YUMI/FULL_LICENSE.txt \
+		../YUMI/qtbase_tr.qm \
 		../YUMI/YUMI_Lang_fr.qm \
 		../YUMI/qtbase_fr.qm \
 		../YUMI/images/win/book.png \
@@ -390,6 +392,7 @@ qrc_yumiresources.cpp: ../YUMI/yumiresources.qrc \
 		../YUMI/images/win/filesave.png \
 		../YUMI/images/win/settings.png \
 		../YUMI/images/win/checkbox_unchecked_hover.png \
+		../YUMI/images/win/flag_tr.png \
 		../YUMI/images/win/checkbox_indeterminated_pressed.png \
 		../YUMI/images/win/yumilogo_transparent.png \
 		../YUMI/images/win/fileopen.png \
@@ -415,6 +418,7 @@ qrc_yumiresources.cpp: ../YUMI/yumiresources.qrc \
 		../YUMI/images/mac/filesave.png \
 		../YUMI/images/mac/settings.png \
 		../YUMI/images/mac/checkbox_unchecked_hover.png \
+		../YUMI/images/mac/flag_tr.png \
 		../YUMI/images/mac/checkbox_indeterminated_pressed.png \
 		../YUMI/images/mac/yumilogo_transparent.png \
 		../YUMI/images/mac/fileopen.png \

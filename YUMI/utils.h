@@ -92,7 +92,10 @@ public:
     static QString toReadableFileSize(const qint64 size);
     static QString base64Encode(const QString& str);
     static QString base64Decode(const QString& str);
-    static bool copyRecursively(QString sourceFolder, QString destFolder, bool overwrite = true);
+    static bool copyRecursively(const QString& sourceFolder, const QString& destFolder, const bool overwrite = true);
+    static bool removeRecursively(const QString& folderPath, const QString& folderName);
+    static bool removeFile(const QString& filePath, const QString& fileName);
+    static bool removeFolderIfEmpty(const QString& folderPath);
 };
 
 #endif

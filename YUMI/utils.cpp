@@ -167,7 +167,7 @@ QString Utils::base64Decode(const QString& str)
     return res;
 }
 
-bool Utils::copyRecursively(QString sourceFolder, QString destFolder, bool overwrite)
+bool Utils::copyRecursively(const QString& sourceFolder, const QString& destFolder, const bool overwrite)
 {
     QDir sourceDir(sourceFolder);
 
@@ -203,5 +203,64 @@ bool Utils::copyRecursively(QString sourceFolder, QString destFolder, bool overw
             return false;
     }
 
+    return true;
+}
+
+bool Utils::removeRecursively(const QString& folderPath, const QString& folderName)
+{
+    QString cleanFolderName = (folderName.isEmpty() ? "Folder" : folderName + " folder");
+    QString unixFolderPath = Utils::toUnixPath(folderPath);
+    QDir unixFolder(unixFolderPath);
+    if (unixFolder.exists())
+    {
+        if (unixFolder.removeRecursively())
+            qInfo().nospace() << Utils::capitalizeFirstLetter(cleanFolderName) << " at " << unixFolderPath << " has been removed.";
+        else
+        {
+            qWarning().nospace() << "Failed to remove " << cleanFolderName << " at " << unixFolderPath << ".";
+            return false;
+        }
+    }
+    else
+        qInfo().nospace() << Utils::capitalizeFirstLetter(cleanFolderName) << " was not found at " << unixFolderPath << ". Skipping removal.";
+    return true;
+}
+
+bool Utils::removeFile(const QString& filePath, const QString& fileName)
+{
+    QString cleanFileName = (fileName.isEmpty() ? "File" : fileName + " file");
+    QString unixFilePath = Utils::toUnixPath(filePath);
+    QFile unixFile(unixFilePath);
+    if (unixFile.exists())
+    {
+        if (unixFile.remove())
+            qInfo().nospace() << cleanFileName << " at " << unixFilePath << " has been removed.";
+        else
+        {
+            qWarning().nospace() << "Failed to remove " << cleanFileName << " at " << unixFilePath << " (Error message: " << unixFile.errorString() << ").";
+            return false;
+        }
+    }
+    else
+        qInfo().nospace() << cleanFileName << " was not found at " << unixFilePath << ". Skipping removal.";
+    return true;
+}
+
+bool Utils::removeFolderIfEmpty(const QString& folderPath)
+{
+    QString unixFolderPath = Utils::toUnixPath(folderPath);
+    QDir unixFolder(unixFolderPath);
+    if (unixFolder.exists() && unixFolder.isEmpty())
+    {
+        if (unixFolder.removeRecursively())
+            qInfo().nospace() << "Empty folder at " << unixFolderPath << " has been removed.";
+        else
+        {
+            qWarning().nospace() << "Unable to remove empty folder at " << unixFolderPath << ".";
+            return false;
+        }
+    }
+    else
+        qInfo().nospace() << "Folder at " << unixFolderPath << " is not empty. Skipping removal.";
     return true;
 }

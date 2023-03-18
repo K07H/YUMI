@@ -212,6 +212,18 @@ void ModsListContainer::showErrorMsg(int errNo)
         return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Unable to delete %1 file.", "Unable to delete patcher/plugin file error label").arg(_typeName));
     if (errNo == 11)
         return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Unable to delete %1 folder.", "Unable to delete patcher/plugin folder error label").arg(_typeName));
+    if (errNo == 12)
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Could not find disabled %1 (list is empty).", "Unable to find disabled plugin/patcher error label").arg(_typeName));
+    if (errNo == 13)
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Could not find %1 (list is empty).", "Unable to find plugin/patcher error label").arg(_typeName));
+    if (errNo == 14)
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Could not find disabled %1 (no %1 in the list).", "Unable to find disabled plugin/patcher error label").arg(_typeName));
+    if (errNo == 15)
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Could not find %1 (no %1 in the list).", "Unable to find plugin/patcher error label").arg(_typeName));
+    if (errNo == 16)
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Could not find disabled %1.", "Unable to find disabled plugin/patcher error label").arg(_typeName));
+    if (errNo == 17)
+        return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Could not find %1.", "Unable to find plugin/patcher error label").arg(_typeName));
 
     return ((yumi*)_yumiPtr)->showStatusBarMsg(QCoreApplication::translate("ModsListContainer", "Unknown error.", "Error label").arg(_typeName));
 }
@@ -224,34 +236,59 @@ ModInfo* ModsListContainer::getSelectedMod(bool showErrorTooltip)
             showErrorMsg(0);
         return NULL;
     }
-    if (mods == NULL)
+
+    bool isDisabledMod = false;
+    QString modName = _modsList->selectedMod->text();
+    if (modName.startsWith(_disabledPrefix))
+    {
+        isDisabledMod = true;
+        modName = modName.mid(_disabledPrefix.length());
+    }
+
+    int len = 0;
+    if (isDisabledMod)
+    {
+        if (disabledMods == NULL)
+        {
+            if (showErrorTooltip)
+                showErrorMsg(12);
+            return NULL;
+        }
+        len = disabledMods->count();
+    }
+    else
+    {
+        if (mods == NULL)
+        {
+            if (showErrorTooltip)
+                showErrorMsg(13);
+            return NULL;
+        }
+        len = mods->count();
+    }
+
+    if (len <= 0)
     {
         if (showErrorTooltip)
-            showErrorMsg(1);
+            showErrorMsg(isDisabledMod ? 14 : 15);
         return NULL;
     }
-    int len = mods->count();
-    if (len > 0)
+
+    for (int i = 0; i < len; i++)
     {
-        bool isDisabledMod = false;
-        QString modName = _modsList->selectedMod->text();
-        if (modName.startsWith(_disabledPrefix))
+        if (isDisabledMod)
         {
-            isDisabledMod = true;
-            modName = modName.mid(_disabledPrefix.length());
+            if ((*disabledMods)[i].name.compare(modName) == 0)
+                return &((*disabledMods)[i]);
         }
-        for (int i = 0; i < len; i++)
-            if (isDisabledMod)
-            {
-                if ((*disabledMods)[i].name.compare(modName) == 0)
-                    return &((*disabledMods)[i]);
-            }
-            else
-                if ((*mods)[i].name.compare(modName) == 0)
-                    return &((*mods)[i]);
+        else
+        {
+            if ((*mods)[i].name.compare(modName) == 0)
+                return &((*mods)[i]);
+        }
     }
     if (showErrorTooltip)
-        showErrorMsg(1);
+        showErrorMsg(isDisabledMod ? 16 : 17);
     return NULL;
 }
 

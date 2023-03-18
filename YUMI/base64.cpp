@@ -128,17 +128,17 @@ const signed char* Base64::b64GetInverse()
     return &tab[0];
 }
 
-const std::size_t Base64::encodedSize(std::size_t n)
+std::size_t Base64::encodedSize(const std::size_t n)
 {
     return 4 * ((n + 2) / 3);
 }
 
-const std::size_t Base64::decodedSize(std::size_t n)
+std::size_t Base64::decodedSize(const std::size_t n)
 {
     return n / 4 * 3;
 }
 
-std::size_t Base64::b64Encode(void* dest, const void* src, std::size_t len)
+std::size_t Base64::b64Encode(void* dest, const void* src, const std::size_t len)
 {
     char* out = static_cast<char*>(dest);
     const char* in = static_cast<const char*>(src);

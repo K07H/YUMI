@@ -112,6 +112,8 @@ QString ModsLoader::getBepInExSubFolderPath(const QDir& gameFolder, const QStrin
 {
     if (subFolderName.isEmpty())
         return "";
+    if (!gameFolder.exists())
+        return "";
     QDir bepInExFolder(gameFolder);
     if (!bepInExFolder.exists())
         return "";
@@ -119,7 +121,7 @@ QString ModsLoader::getBepInExSubFolderPath(const QDir& gameFolder, const QStrin
         return "";
     if (!bepInExFolder.cd(subFolderName))
         return "";
-    return bepInExFolder.absolutePath();
+    return Utils::toUnixPath(bepInExFolder.absolutePath());
 }
 
 QList<ModInfo>* ModsLoader::getModsList(const QString& modsFolderPath)
@@ -132,11 +134,12 @@ QList<ModInfo>* ModsLoader::getModsList(const QString& modsFolderPath)
 
     QStringList allMods = pluginsFolder.entryList(QDir::Dirs | QDir::NoDotAndDotDot | QDir::NoSymLinks);
     QStringList files = pluginsFolder.entryList(QDir::Files | QDir::NoDotAndDotDot | QDir::NoSymLinks);
+
+    if (files.count() > 1)
+        files.sort();
     for (const QString& file : files)
-    {
         if (file.endsWith(".dll", Qt::CaseInsensitive))
             allMods.push_back(file);
-    }
 
     QList<ModInfo>* retval = NULL;
     int len = allMods.count();
@@ -144,7 +147,6 @@ QList<ModInfo>* ModsLoader::getModsList(const QString& modsFolderPath)
     {
         if (len > 1)
             allMods.sort();
-        retval = new QList<ModInfo>();
         for (int i = 0; i < len; i++)
             if (pluginsFolder.exists(allMods[i]))
             {
@@ -152,6 +154,8 @@ QList<ModInfo>* ModsLoader::getModsList(const QString& modsFolderPath)
                 if (modName.length() > 4 && modName.endsWith(".dll", Qt::CaseInsensitive))
                     modName = modName.left(modName.length() - 4);
                 QString modPath(Utils::toUnixPath(pluginsFolder.absolutePath() + QDir::separator() + allMods[i]));
+                if (retval == NULL)
+                    retval = new QList<ModInfo>();
                 retval->push_back(ModInfo(modName, modPath));
             }
     }
@@ -619,22 +623,6 @@ bool ModsLoader::copyBepInExFiles(const QDir& gameFolder, const QString& gameFol
     }
     qDebug().nospace() << "Successfully copied " << bepInExFiles.count() << " BepInEx files to game folder.";
     return true;
-}
-
-bool ModsLoader::removeEmptyFolder(const QString& folderPath)
-{
-    QDir folder(folderPath);
-    if (folder.exists() && folder.isEmpty())
-    {
-        if (folder.removeRecursively())
-        {
-            qInfo().nospace() << "Empty folder at " << folderPath << " has been removed.";
-            return true;
-        }
-        else
-            qWarning().nospace() << "Unable to remove empty folder at " << folderPath << ".";
-    }
-    return false;
 }
 
 bool ModsLoader::removeAllBepInExFiles(const QString& gameFolderPath)
@@ -1931,15 +1919,6 @@ std::tuple<QString, bool> ModsLoader::getActualTempModFolderPathForPlugin(const 
     return std::tuple<QString, bool>("", false);
 }
 
-void ModsLoader::removeTemporaryExtractionFolder()
-{
-    QString tempModsDirPath = Utils::toUnixPath(yumi::appPath + QDir::separator() + "temp_mods");
-    QDir tempModsDir(tempModsDirPath);
-    if (tempModsDir.exists())
-        if (!tempModsDir.removeRecursively())
-            qWarning().nospace() << "Unable to remove temporary mods extraction folder at " << tempModsDirPath << ".";
-}
-
 QString ModsLoader::askModForWhichGame(void* yumiPtr, const QString& modName)
 {
     QTimer timer;
@@ -1963,7 +1942,7 @@ QString ModsLoader::askModForWhichGame(void* yumiPtr, const QString& modName)
 QString ModsLoader::getGameNameFromModInfoFile(const QString& actualTempModFolderPath)
 {
     QString modForGameName = "";
-    QString modInfoFilePath = Utils::toUnixPath(actualTempModFolderPath + QDir::separator() + "mod_info.txt");
+    QString modInfoFilePath = Utils::toUnixPath(actualTempModFolderPath + "/mod_info.txt");
     QFile modInfoFile(modInfoFilePath);
     if (modInfoFile.exists())
         if (modInfoFile.open(QIODevice::ReadOnly))
@@ -2302,16 +2281,19 @@ void ModsLoader::installMods(void* yumiPtr)
 
     if ((nbCompressedModsToInstall + nbModFoldersToInstall) > 0)
     {
+        if (installModInfo->size() > 0)
+            installModInfo->clear();
+
+        if (((yumi*)yumiPtr)->mainWidget != NULL && ((yumi*)yumiPtr)->mainWidget->gameDetails != NULL && ((yumi*)yumiPtr)->selectedGame != NULL)
+            ((yumi*)yumiPtr)->mainWidget->gameDetails->updateGameDetails(((yumi*)yumiPtr)->selectedGame);
+
         int nbModsSkipped = ((nbCompressedModsToInstall + nbModFoldersToInstall) - nbModsInstalled);
         qInfo().nospace() << nbModsInstalled << " mods have been installed and " << nbModsSkipped << " mods have been skipped.";
         QMessageBox summary = QMessageBox(QMessageBox::Information, QCoreApplication::translate("MainWindow", "Installation results", "Popup title"), QCoreApplication::translate("MainWindow", "%1 mods were installed and %2 mods were skipped.", "Popup text").arg(QString::number(nbModsInstalled), QString::number(nbModsSkipped)), QMessageBox::Ok, NULL);
         summary.exec();
-
-        if (installModInfo->size() > 0)
-            installModInfo->clear();
     }
 
-    removeTemporaryExtractionFolder();
+    Utils::removeRecursively(yumi::appPath + "/temp_mods", "temporary mods");
 
     installInProgress = false;
 }
@@ -2320,105 +2302,52 @@ bool ModsLoader::updateBepInEx(GameInfo* details, void* yumiPtr, void* gameDetai
 {
     QMessageBox updateBepInEx = QMessageBox(QMessageBox::Information, QCoreApplication::translate("GameDetails", "Updating mods loader", "Popup title"), QCoreApplication::translate("GameDetails", "Mods loader seems outdated for \"%1\". Update mods loader?", "Popup text").arg(details->name), QMessageBox::No | QMessageBox::Yes, (GameDetails*)gameDetails);
     int clicked = updateBepInEx.exec();
-    if (clicked == QMessageBox::Yes)
+    if (clicked != QMessageBox::Yes)
     {
-        QDir gameFolder(details->path);
-        if (gameFolder.exists())
-        {
-            QList<BepInExFile*>* bepInExFiles = getBepInExFiles(details->exePath, details->exeType);
-            if (bepInExFiles == NULL)
-            {
-                qCritical() << "Removing old BepInEx files failed: Could not retrieve BepInEx files from YUMI (Exe path: " << details->exePath << ", exe type: " << Config::Instance()->getExeTypeLabel(details->exeType) << ").";
-                ((yumi*)yumiPtr)->showStatusBarMsg(QCoreApplication::translate("GameDetails", "Mods loader was not updated.", "Tooltip text"));
-                QMessageBox updateFailed(QMessageBox::Critical, QCoreApplication::translate("GameDetails", "Update failed", "Popup title"), QCoreApplication::translate("GameDetails", "Mods loader was not updated for \"%1\" because it was not possible to identify mods loader files associated to the executable at \"%2\" (Executable type: %3).", "Popup text").arg(details->name, details->exePath, Config::Instance()->getExeTypeLabel(details->exeType)), QMessageBox::Ok, (GameDetails*)gameDetails);
-                updateFailed.exec();
-                return false;
-            }
-            if (!removeAllBepInExFiles(details->path))
-                qWarning().nospace() << "Some BepInEx files could not be removed from game folder at " << details->path << ".";
-            QString bepInExCachePath(Utils::toUnixPath(details->path + "/BepInEx/cache"));
-            QDir bepInExCache(bepInExCachePath);
-            if (bepInExCache.exists())
-            {
-                if (bepInExCache.removeRecursively())
-                    qInfo().nospace() << "BepInEx cache folder at " << bepInExCachePath << " has been removed.";
-                else
-                    qWarning().nospace() << "Failed to remove BepInEx cache folder at " << bepInExCachePath << ".";
-            }
-            else
-                qInfo().nospace() << "BepInEx cache folder was not found at " << bepInExCachePath << ". Skipping BepInEx cache folder removal.";
-            QString bepInExInteropPath(Utils::toUnixPath(details->path + "/BepInEx/interop"));
-            QDir bepInExInterop(bepInExInteropPath);
-            if (bepInExInterop.exists())
-            {
-                if (bepInExInterop.removeRecursively())
-                    qInfo().nospace() << "BepInEx interop folder at " << bepInExInteropPath << " has been removed.";
-                else
-                    qWarning().nospace() << "Failed to remove BepInEx interop folder at " << bepInExInteropPath << ".";
-            }
-            else
-                qInfo().nospace() << "BepInEx interop folder was not found at " << bepInExInteropPath << ". Skipping BepInEx interop folder removal.";
-            QString bepInExUnityLibsPath(Utils::toUnixPath(details->path + "/BepInEx/unity-libs"));
-            QDir bepInExUnityLibs(bepInExUnityLibsPath);
-            if (bepInExUnityLibs.exists())
-            {
-                if (bepInExUnityLibs.removeRecursively())
-                    qInfo().nospace() << "BepInEx unity-libs folder at " << bepInExUnityLibsPath << " has been removed.";
-                else
-                    qWarning().nospace() << "Failed to remove BepInEx unity-libs folder at " << bepInExUnityLibsPath << ".";
-            }
-            else
-                qInfo().nospace() << "BepInEx unity-libs folder was not found at " << bepInExUnityLibsPath << ". Skipping BepInEx unity-libs folder removal.";
-            QString bepInExCorePath(Utils::toUnixPath(details->path + "/BepInEx/core"));
-            QDir bepInExCore(bepInExCorePath);
-            if (bepInExCore.exists())
-            {
-                if (bepInExCore.removeRecursively())
-                    qInfo().nospace() << "BepInEx core folder at " << bepInExCorePath << " has been removed.";
-                else
-                    qWarning().nospace() << "Failed to remove BepInEx core folder at " << bepInExCorePath << ".";
-            }
-            else
-                qInfo().nospace() << "BepInEx core folder was not found at " << bepInExCorePath << ". Skipping BepInEx core folder removal.";
-            QString bepInExDotnetPath(Utils::toUnixPath(details->path + "/dotnet"));
-            QDir bepInExDotnet(bepInExDotnetPath);
-            if (bepInExDotnet.exists())
-            {
-                if (bepInExDotnet.removeRecursively())
-                    qInfo().nospace() << "BepInEx dotnet folder at " << bepInExDotnetPath << " has been removed.";
-                else
-                    qWarning().nospace() << "Failed to remove BepInEx dotnet folder at " << bepInExDotnetPath << ".";
-            }
-            else
-                qInfo().nospace() << "BepInEx dotnet folder was not found at " << bepInExDotnetPath << ". Skipping BepInEx dotnet folder removal.";
-            if (copyBepInExFiles(gameFolder, details->path, *bepInExFiles))
-            {
-                qInfo().nospace() << "BepInEx was updated for game " << details->name << " at " << details->path << ".";
-                ((yumi*)yumiPtr)->showStatusBarMsg(QCoreApplication::translate("GameDetails", "Mods loader was successfully updated.", "Tooltip text"));
-                QMessageBox updateSuccess(QMessageBox::Information, QCoreApplication::translate("GameDetails", "Update success", "Popup title"), QCoreApplication::translate("GameDetails", "Mods loader was successfully updated for \"%1\".", "Popup text").arg(details->name), QMessageBox::Ok, (GameDetails*)gameDetails);
-                updateSuccess.exec();
-                return true;
-            }
-            else
-            {
-                qCritical().nospace() << "BepInEx update error: Could not copy BepInEx files to game folder at " << details->path << ".";
-                ((yumi*)yumiPtr)->showStatusBarMsg(QCoreApplication::translate("GameDetails", "Mods loader was not updated.", "Tooltip text"));
-                QMessageBox updateFailed(QMessageBox::Critical, QCoreApplication::translate("GameDetails", "Update failed", "Popup title"), QCoreApplication::translate("GameDetails", "Mods loader update failed for \"%1\": Error when copying files to folder \"%2\". Please make sure YUMI has write permissions on the game folder then try again. You can also get help on the Discord server.", "Popup text").arg(details->name, details->path), QMessageBox::Ok, (GameDetails*)gameDetails);
-                updateFailed.exec();
-                return false;
-            }
-        }
-        else
-        {
-            qCritical().nospace() << "BepInEx update error: Could not find game folder at " << details->path << ".";
-            ((yumi*)yumiPtr)->showStatusBarMsg(QCoreApplication::translate("GameDetails", "Mods loader was not updated.", "Tooltip text"));
-            QMessageBox updateFailed(QMessageBox::Critical, QCoreApplication::translate("GameDetails", "Update failed", "Popup title"), QCoreApplication::translate("GameDetails", "Mods loader update failed for \"%1\": Game folder was not found at \"%2\".", "Popup text").arg(details->name, details->path), QMessageBox::Ok, (GameDetails*)gameDetails);
-            updateFailed.exec();
-            return false;
-        }
+        qInfo().nospace() << "BepInEx update has been skipped by user for game " << details->name << ".";
+        return true;
     }
-    qInfo().nospace() << "BepInEx update has been skipped by user for game " << details->name << ".";
-    return true;
+    QDir gameFolder(details->path);
+    if (!gameFolder.exists())
+    {
+        qCritical().nospace() << "BepInEx update error: Could not find game folder at " << details->path << ".";
+        ((yumi*)yumiPtr)->showStatusBarMsg(QCoreApplication::translate("GameDetails", "Mods loader was not updated.", "Tooltip text"));
+        QMessageBox updateFailed(QMessageBox::Critical, QCoreApplication::translate("GameDetails", "Update failed", "Popup title"), QCoreApplication::translate("GameDetails", "Mods loader update failed for \"%1\": Game folder was not found at \"%2\".", "Popup text").arg(details->name, details->path), QMessageBox::Ok, (GameDetails*)gameDetails);
+        updateFailed.exec();
+        return false;
+    }
+    QList<BepInExFile*>* bepInExFiles = getBepInExFiles(details->exePath, details->exeType);
+    if (bepInExFiles == NULL)
+    {
+        qCritical() << "Removing old BepInEx files failed: Could not retrieve BepInEx files from YUMI (Exe path: " << details->exePath << ", exe type: " << Config::Instance()->getExeTypeLabel(details->exeType) << ").";
+        ((yumi*)yumiPtr)->showStatusBarMsg(QCoreApplication::translate("GameDetails", "Mods loader was not updated.", "Tooltip text"));
+        QMessageBox updateFailed(QMessageBox::Critical, QCoreApplication::translate("GameDetails", "Update failed", "Popup title"), QCoreApplication::translate("GameDetails", "Mods loader was not updated for \"%1\" because it was not possible to identify mods loader files associated to the executable at \"%2\" (Executable type: %3).", "Popup text").arg(details->name, details->exePath, Config::Instance()->getExeTypeLabel(details->exeType)), QMessageBox::Ok, (GameDetails*)gameDetails);
+        updateFailed.exec();
+        return false;
+    }
+    if (!removeAllBepInExFiles(details->path))
+        qWarning().nospace() << "Some BepInEx files could not be removed from game folder at " << details->path << ".";
+    Utils::removeRecursively(details->path + "/BepInEx/cache", "BepInEx cache");
+    Utils::removeRecursively(details->path + "/BepInEx/interop", "BepInEx interop");
+    Utils::removeRecursively(details->path + "/BepInEx/unity-libs", "BepInEx unity-libs");
+    Utils::removeRecursively(details->path + "/BepInEx/core", "BepInEx core");
+    Utils::removeRecursively(details->path + "/dotnet", "BepInEx dotnet");
+    if (copyBepInExFiles(gameFolder, details->path, *bepInExFiles))
+    {
+        qInfo().nospace() << "BepInEx was updated for game " << details->name << " at " << details->path << ".";
+        ((yumi*)yumiPtr)->showStatusBarMsg(QCoreApplication::translate("GameDetails", "Mods loader was successfully updated.", "Tooltip text"));
+        QMessageBox updateSuccess(QMessageBox::Information, QCoreApplication::translate("GameDetails", "Update success", "Popup title"), QCoreApplication::translate("GameDetails", "Mods loader was successfully updated for \"%1\".", "Popup text").arg(details->name), QMessageBox::Ok, (GameDetails*)gameDetails);
+        updateSuccess.exec();
+        return true;
+    }
+    else
+    {
+        qCritical().nospace() << "BepInEx update error: Could not copy BepInEx files to game folder at " << details->path << ".";
+        ((yumi*)yumiPtr)->showStatusBarMsg(QCoreApplication::translate("GameDetails", "Mods loader was not updated.", "Tooltip text"));
+        QMessageBox updateFailed(QMessageBox::Critical, QCoreApplication::translate("GameDetails", "Update failed", "Popup title"), QCoreApplication::translate("GameDetails", "Mods loader update failed for \"%1\": Error when copying files to folder \"%2\". Please make sure YUMI has write permissions on the game folder then try again. You can also get help on the Discord server.", "Popup text").arg(details->name, details->path), QMessageBox::Ok, (GameDetails*)gameDetails);
+        updateFailed.exec();
+        return false;
+    }
 }
 
 bool ModsLoader::installBepInEx(void* yumiPtr, void* gameDetails, GameInfo* game, const bool forEveryone)
@@ -2523,26 +2452,26 @@ bool ModsLoader::installBepInEx(void* yumiPtr, void* gameDetails, GameInfo* game
         installFailed.exec();
         return false;
     }
-    QMessageBox startGameToFinishInstall(QMessageBox::Information, QCoreApplication::translate("MainWindow", "Launch game now", "Popup title"), QCoreApplication::translate("MainWindow", "Please launch %1 to finish installation (if it's a Steam game, launch it from Steam).", "Popup text").arg(game->name), QMessageBox::Ok, (GameDetails*)gameDetails);
+    QMessageBox startGameToFinishInstall(QMessageBox::Information, QCoreApplication::translate("MainWindow", "Launch game now", "Popup title"), QCoreApplication::translate("MainWindow", "Please launch \"%1\" to finish installation (if it's a Steam game, launch it from Steam).", "Popup text").arg(game->name), QMessageBox::Ok, (GameDetails*)gameDetails);
     startGameToFinishInstall.exec();
     bool checkPluginsFolderExists = true;
     while (checkPluginsFolderExists)
     {
         if (!pluginsFolderExists(gameFolder))
         {
-            QMessageBox gameStillNotStarted(QMessageBox::Information, QCoreApplication::translate("MainWindow", "Launch game now", "Popup title"), QCoreApplication::translate("MainWindow", "It seems that you did not launched %1 yet. Please launch the game now to finish installation (if it's a Steam game, launch it from Steam) then click on \"OK\", or click on \"Cancel\" if you want to launch the game later.", "Popup text").arg(game->name), QMessageBox::Cancel | QMessageBox::Ok, (GameDetails*)gameDetails);
+            QMessageBox gameStillNotStarted(QMessageBox::Information, QCoreApplication::translate("MainWindow", "Launch game now", "Popup title"), QCoreApplication::translate("MainWindow", "It seems that you did not launched \"%1\" yet. Please launch the game now to finish installation (if it's a Steam game, launch it from Steam) then click on \"OK\", or click on \"Cancel\" if you want to launch the game later.", "Popup text").arg(game->name), QMessageBox::Cancel | QMessageBox::Ok, (GameDetails*)gameDetails);
             int clickedBtn = gameStillNotStarted.exec();
             if (clickedBtn != QMessageBox::Ok)
             {
                 checkPluginsFolderExists = false;
                 qWarning() << "BepInEx installation is not completely finished (user asked to launch the game later).";
-                QDir configFolder(Utils::toUnixPath(game->path + QDir::separator() + "BepInEx" + QDir::separator() + "config"));
+                QDir configFolder(Utils::toUnixPath(game->path + "/BepInEx/config"));
                 if (!configFolder.exists())
                     gameFolder.mkpath("BepInEx/config");
-                QDir patchersFolder(Utils::toUnixPath(game->path + QDir::separator() + "BepInEx" + QDir::separator() + "patchers"));
+                QDir patchersFolder(Utils::toUnixPath(game->path + "/BepInEx/patchers"));
                 if (!patchersFolder.exists())
                     gameFolder.mkpath("BepInEx/patchers");
-                QDir pluginsFolder(Utils::toUnixPath(game->path + QDir::separator() + "BepInEx" + QDir::separator() + "plugins"));
+                QDir pluginsFolder(Utils::toUnixPath(game->path + "/BepInEx/plugins"));
                 if (!pluginsFolder.exists())
                     gameFolder.mkpath("BepInEx/plugins");
             }
@@ -2608,141 +2537,32 @@ bool ModsLoader::uninstallBepInEx(void* yumiPtr, void* gameDetails, GameInfo* ga
     }
     if (!removeAllBepInExFiles(game->path))
         qWarning().nospace() << "Some BepInEx files could not be removed from game folder at " << game->path << ".";
-    QString bepInExCachePath(Utils::toUnixPath(game->path + "/BepInEx/cache"));
-    QDir bepInExCache(bepInExCachePath);
-    if (bepInExCache.exists())
-    {
-        if (bepInExCache.removeRecursively())
-            qInfo().nospace() << "BepInEx cache folder at " << bepInExCachePath << " has been removed.";
-        else
-            qWarning().nospace() << "Failed to remove BepInEx cache folder at " << bepInExCachePath << ".";
-    }
-    else
-        qInfo().nospace() << "BepInEx cache folder was not found at " << bepInExCachePath << ". Skipping BepInEx cache folder removal.";
-    QString bepInExInteropPath(Utils::toUnixPath(game->path + "/BepInEx/interop"));
-    QDir bepInExInterop(bepInExInteropPath);
-    if (bepInExInterop.exists())
-    {
-        if (bepInExInterop.removeRecursively())
-            qInfo().nospace() << "BepInEx interop folder at " << bepInExInteropPath << " has been removed.";
-        else
-            qWarning().nospace() << "Failed to remove BepInEx interop folder at " << bepInExInteropPath << ".";
-    }
-    else
-        qInfo().nospace() << "BepInEx interop folder was not found at " << bepInExInteropPath << ". Skipping BepInEx interop folder removal.";
-    QString bepInExUnityLibsPath(Utils::toUnixPath(game->path + "/BepInEx/unity-libs"));
-    QDir bepInExUnityLibs(bepInExUnityLibsPath);
-    if (bepInExUnityLibs.exists())
-    {
-        if (bepInExUnityLibs.removeRecursively())
-            qInfo().nospace() << "BepInEx unity-libs folder at " << bepInExUnityLibsPath << " has been removed.";
-        else
-            qWarning().nospace() << "Failed to remove BepInEx unity-libs folder at " << bepInExUnityLibsPath << ".";
-    }
-    else
-        qInfo().nospace() << "BepInEx unity-libs folder was not found at " << bepInExUnityLibsPath << ". Skipping BepInEx unity-libs folder removal.";
-    QString bepInExCorePath(Utils::toUnixPath(game->path + "/BepInEx/core"));
-    QDir bepInExCore(bepInExCorePath);
-    if (bepInExCore.exists())
-    {
-        if (bepInExCore.removeRecursively())
-            qInfo().nospace() << "BepInEx core folder at " << bepInExCorePath << " has been removed.";
-        else
-            qWarning().nospace() << "Failed to remove BepInEx core folder at " << bepInExCorePath << ".";
-    }
-    else
-        qInfo().nospace() << "BepInEx core folder was not found at " << bepInExCorePath << ". Skipping BepInEx core folder removal.";
-    QString bepInExDotnetPath(Utils::toUnixPath(game->path + "/dotnet"));
-    QDir bepInExDotnet(bepInExDotnetPath);
-    if (bepInExDotnet.exists())
-    {
-        if (bepInExDotnet.removeRecursively())
-            qInfo().nospace() << "BepInEx dotnet folder at " << bepInExDotnetPath << " has been removed.";
-        else
-            qWarning().nospace() << "Failed to remove BepInEx dotnet folder at " << bepInExDotnetPath << ".";
-    }
-    else
-        qInfo().nospace() << "BepInEx dotnet folder was not found at " << bepInExDotnetPath << ". Skipping BepInEx dotnet folder removal.";
+    Utils::removeRecursively(game->path + "/BepInEx/cache", "BepInEx cache");
+    Utils::removeRecursively(game->path + "/BepInEx/interop", "BepInEx interop");
+    Utils::removeRecursively(game->path + "/BepInEx/unity-libs", "BepInEx unity-libs");
+    Utils::removeRecursively(game->path + "/BepInEx/core", "BepInEx core");
+    Utils::removeRecursively(game->path + "/dotnet", "BepInEx dotnet");
     if (includingBepInExConfigFile)
-    {
-        QString configFilePath(Utils::toUnixPath(game->path + QDir::separator() + "BepInEx" + QDir::separator() + "config" + QDir::separator() + "BepInEx.cfg"));
-        QFile configFile(configFilePath);
-        if (!configFile.exists())
-            qWarning().nospace() << "BepInEx config file was not found at " << configFilePath << ". Skipping BepInEx config file removal.";
-        else
-        {
-            if (!configFile.remove())
-                qWarning().nospace() << "Failed to remove BepInEx config file at " << configFilePath << " (Error message: " << configFile.errorString() << ").";
-            else
-                qInfo().nospace() << "BepInEx config file at " << configFilePath << " has been removed.";
-        }
-    }
+        Utils::removeFile(game->path + "/BepInEx/config/BepInEx.cfg", "BepInEx config");
     if (includingAllModsAndSavedData)
     {
-        QString configFolderPath(Utils::toUnixPath(game->path + QDir::separator() + "BepInEx" + QDir::separator() + "config"));
-        QDir configFolder(configFolderPath);
-        if (!configFolder.exists())
-            qWarning().nospace() << "BepInEx config folder was not found at " << configFolderPath << ". Skipping removal.";
-        else
-        {
-            if (!configFolder.removeRecursively())
-                qWarning().nospace() << "Failed to remove BepInEx config folder at " << configFolderPath << ".";
-            else
-                qInfo().nospace() << "BepInEx config folder at " << configFolderPath << " has been removed.";
-        }
-        QString patchersFolderPath(Utils::toUnixPath(game->path + QDir::separator() + "BepInEx" + QDir::separator() + "patchers"));
-        QDir patchersFolder(patchersFolderPath);
-        if (!patchersFolder.exists())
-            qWarning().nospace() << "BepInEx patchers folder was not found at " << patchersFolderPath << ". Skipping removal.";
-        else
-        {
-            if (!patchersFolder.removeRecursively())
-                qWarning().nospace() << "Failed to remove BepInEx patchers folder at " << patchersFolderPath << ".";
-            else
-                qInfo().nospace() << "BepInEx patchers folder at " << patchersFolderPath << " has been removed.";
-        }
-        QString pluginsFolderPath(Utils::toUnixPath(game->path + QDir::separator() + "BepInEx" + QDir::separator() + "plugins"));
-        QDir pluginsFolder(pluginsFolderPath);
-        if (!pluginsFolder.exists())
-            qWarning().nospace() << "BepInEx plugins folder was not found at " << pluginsFolderPath << ". Skipping removal.";
-        else
-        {
-            if (!pluginsFolder.removeRecursively())
-                qWarning().nospace() << "Failed to remove BepInEx plugins folder at " << pluginsFolderPath << ".";
-            else
-                qInfo().nospace() << "BepInEx plugins folder at " << pluginsFolderPath << " has been removed.";
-        }
-        QString disabledPatchersFolderPath(Utils::toUnixPath(game->path + QDir::separator() + "BepInEx" + QDir::separator() + "patchers"));
-        QDir disabledPatchersFolder(disabledPatchersFolderPath);
-        if (!disabledPatchersFolder.exists())
-            qInfo().nospace() << "Disabled patchers folder was not found at " << disabledPatchersFolderPath << ". Skipping removal.";
-        else
-        {
-            if (!disabledPatchersFolder.removeRecursively())
-                qWarning().nospace() << "Failed to remove disabled patchers folder at " << disabledPatchersFolderPath << ".";
-            else
-                qInfo().nospace() << "Disabled patchers folder at " << disabledPatchersFolderPath << " has been removed.";
-        }
-        QString disabledPluginsFolderPath(Utils::toUnixPath(game->path + QDir::separator() + "BepInEx" + QDir::separator() + "plugins"));
-        QDir disabledPluginsFolder(disabledPatchersFolderPath);
-        if (!disabledPluginsFolder.exists())
-            qInfo().nospace() << "Disabled plugins folder was not found at " << disabledPluginsFolderPath << ". Skipping removal.";
-        else
-        {
-            if (!disabledPluginsFolder.removeRecursively())
-                qWarning().nospace() << "Failed to remove disabled plugins folder at " << disabledPluginsFolderPath << ".";
-            else
-                qInfo().nospace() << "Disabled plugins folder at " << disabledPluginsFolderPath << " has been removed.";
-        }
+        Utils::removeRecursively(game->path + "/BepInEx/config", "BepInEx config");
+        Utils::removeRecursively(game->path + "/BepInEx/patchers", "BepInEx patchers");
+        Utils::removeRecursively(game->path + "/BepInEx/plugins", "BepInEx plugins");
+        Utils::removeRecursively(game->path + "/BepInEx/disabled_patchers", "BepInEx disabled patchers");
+        Utils::removeRecursively(game->path + "/BepInEx/disabled_plugins", "BepInEx disabled plugins");
     }
-    removeEmptyFolder(Utils::toUnixPath(game->path + "/BepInEx/config"));
-    removeEmptyFolder(Utils::toUnixPath(game->path + "/BepInEx/core"));
-    removeEmptyFolder(Utils::toUnixPath(game->path + "/BepInEx/patchers"));
-    removeEmptyFolder(Utils::toUnixPath(game->path + "/BepInEx/plugins"));
-    removeEmptyFolder(Utils::toUnixPath(game->path + "/BepInEx/disabled_patchers"));
-    removeEmptyFolder(Utils::toUnixPath(game->path + "/BepInEx/disabled_plugins"));
-    removeEmptyFolder(Utils::toUnixPath(game->path + "/BepInEx"));
-    removeEmptyFolder(Utils::toUnixPath(game->path + "/dotnet"));
+    Utils::removeFolderIfEmpty(game->path + "/BepInEx/cache");
+    Utils::removeFolderIfEmpty(game->path + "/BepInEx/interop");
+    Utils::removeFolderIfEmpty(game->path + "/BepInEx/unity-libs");
+    Utils::removeFolderIfEmpty(game->path + "/BepInEx/core");
+    Utils::removeFolderIfEmpty(game->path + "/BepInEx/config");
+    Utils::removeFolderIfEmpty(game->path + "/BepInEx/patchers");
+    Utils::removeFolderIfEmpty(game->path + "/BepInEx/plugins");
+    Utils::removeFolderIfEmpty(game->path + "/BepInEx/disabled_patchers");
+    Utils::removeFolderIfEmpty(game->path + "/BepInEx/disabled_plugins");
+    Utils::removeFolderIfEmpty(game->path + "/BepInEx");
+    Utils::removeFolderIfEmpty(game->path + "/dotnet");
     QString gameName(game->name);
     ((GameDetails*)gameDetails)->updateGameDetails(game);
     qInfo().nospace() << "BepInEx has been uninstalled for " << gameName << ".";

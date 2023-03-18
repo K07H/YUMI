@@ -85,6 +85,9 @@ Config* Config::_instance = NULL;
 QTranslator* Config::_frenchTranslator = NULL;
 QTranslator* Config::_frenchBaseTranslator = NULL;
 bool Config::_isFrenchTranslatorInstalled = false;
+QTranslator* Config::_turkishTranslator = NULL;
+QTranslator* Config::_turkishBaseTranslator = NULL;
+bool Config::_isTurkishTranslatorInstalled = false;
 
 Config::Config(void* yumiPtr)
 {
@@ -221,13 +224,30 @@ bool Config::SwapLanguage(const QString& lang, QApplication* app)
             if (_frenchTranslator != NULL)
                 app->removeTranslator(_frenchTranslator);
         }
+        if (_isTurkishTranslatorInstalled && app != NULL)
+        {
+            if (_turkishBaseTranslator != NULL)
+                app->removeTranslator(_turkishBaseTranslator);
+            if (_turkishTranslator != NULL)
+                app->removeTranslator(_turkishTranslator);
+        }
         _isFrenchTranslatorInstalled = false;
+        _isTurkishTranslatorInstalled = false;
         return true;
     }
     else if (lang.compare("Français") == 0)
     {
         if (!_isFrenchTranslatorInstalled)
         {
+            if (_isTurkishTranslatorInstalled && app != NULL)
+            {
+                if (_turkishBaseTranslator != NULL)
+                    app->removeTranslator(_turkishBaseTranslator);
+                if (_turkishTranslator != NULL)
+                    app->removeTranslator(_turkishTranslator);
+            }
+            _isTurkishTranslatorInstalled = false;
+
             if (_frenchTranslator == NULL)
             {
                 _frenchTranslator = new QTranslator();
@@ -244,6 +264,37 @@ bool Config::SwapLanguage(const QString& lang, QApplication* app)
                 app->installTranslator(_frenchBaseTranslator);
         }
         _isFrenchTranslatorInstalled = true;
+        return true;
+    }
+    else if (lang.compare("Türk") == 0)
+    {
+        if (!_isTurkishTranslatorInstalled)
+        {
+            if (_isFrenchTranslatorInstalled && app != NULL)
+            {
+                if (_frenchBaseTranslator != NULL)
+                    app->removeTranslator(_frenchBaseTranslator);
+                if (_frenchTranslator != NULL)
+                    app->removeTranslator(_frenchTranslator);
+            }
+            _isFrenchTranslatorInstalled = false;
+
+            if (_turkishTranslator == NULL)
+            {
+                _turkishTranslator = new QTranslator();
+                _turkishTranslator->load(Assets::Instance()->turkishTranslation);
+            }
+            if (_turkishBaseTranslator == NULL)
+            {
+                _turkishBaseTranslator = new QTranslator();
+                _turkishBaseTranslator->load(Assets::Instance()->turkishBaseTranslation);
+            }
+            if (_turkishTranslator != NULL && app != NULL)
+                app->installTranslator(_turkishTranslator);
+            if (_turkishBaseTranslator != NULL && app != NULL)
+                app->installTranslator(_turkishBaseTranslator);
+        }
+        _isTurkishTranslatorInstalled = true;
         return true;
     }
     return false;
@@ -337,7 +388,7 @@ int Config::loadConfig()
         if (trimmedLineLen > languageDelimiterLen && trimmedLine.startsWith(languageDelimiter))
         {
             QString lineVal(trimmedLine.mid(languageDelimiterLen));
-            if (!lineVal.isEmpty() && (lineVal.compare("English", Qt::CaseInsensitive) == 0 || lineVal.compare("Français", Qt::CaseInsensitive) == 0))
+            if (!lineVal.isEmpty() && (lineVal.compare("English", Qt::CaseInsensitive) == 0 || lineVal.compare("Français", Qt::CaseInsensitive) == 0 || lineVal.compare("Türk", Qt::CaseInsensitive) == 0))
                 language = lineVal;
         }
         if (trimmedLineLen > themeDelimiterLen && trimmedLine.startsWith(themeDelimiter))
@@ -435,17 +486,17 @@ bool Config::saveConfig()
 
     int nbGames = ((yumi*)_yumiPtr)->gamesInfo.count();
     if (nbGames <= 0)
-    {
-        qDebug().nospace() << "No valid games were found in the list. Skipping save.";
-        return false;
-    }
+        qDebug().nospace() << "No valid games were found in the list.";
 
     int nbGamesSaved = 0;
-    QList<GameInfo> games(((yumi*)_yumiPtr)->gamesInfo);
-    for (const GameInfo& gi : games)
+    if (nbGames > 0)
     {
-        nbGamesSaved++;
-        toSave += "Game=" + gi.name + "#;#" + gi.path + "#;#" + gi.exePath + "#;#" + QString::number(gi.exeType) + "\n";
+        QList<GameInfo> games(((yumi*)_yumiPtr)->gamesInfo);
+        for (const GameInfo& gi : games)
+        {
+            nbGamesSaved++;
+            toSave += "Game=" + gi.name + "#;#" + gi.path + "#;#" + gi.exePath + "#;#" + QString::number(gi.exeType) + "\n";
+        }
     }
 
     QFile file(configFilepath);

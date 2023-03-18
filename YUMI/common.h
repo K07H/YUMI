@@ -93,7 +93,7 @@
 #define QT_NO_SSL
 #endif
 
-#define APP_VERSION "1.0.3"
+#define APP_VERSION "1.0.4"
 #if IS_DEVELOPMENT
 #define YUMI_BEPINEX_VERSION_CHECK_URL "http://osubmarin.fr/yumi/latest_bepinex_version_dev.php"
 #define YUMI_VERSION_CHECK_URL "http://osubmarin.fr/yumi/latest_version_dev.php"

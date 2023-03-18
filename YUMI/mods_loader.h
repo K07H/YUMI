@@ -154,7 +154,6 @@ private:
     QString moveModFolderToTempFolder(QDir& yumiDir, const QString& modsFolderPath, const QString& modFolderName);
     QString getActualTempModFolderPathForMod(const QString& tempModDirPath, const QString& modName);
     std::tuple<QString, bool> getActualTempModFolderPathForPlugin(const QString& tempModDirPath, const QString& modName);
-    void removeTemporaryExtractionFolder();
     QString askModForWhichGame(void* yumiPtr, const QString& modName);
     QString getGameNameFromModInfoFile(const QString& actualTempModFolderPath);
     QString findGameForMod(const QString& actualTempModFolderPath, const QString& modName, void* yumiPtr, const bool isArchive);
