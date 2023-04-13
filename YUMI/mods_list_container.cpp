@@ -239,11 +239,15 @@ ModInfo* ModsListContainer::getSelectedMod(bool showErrorTooltip)
 
     bool isDisabledMod = false;
     QString modName = _modsList->selectedMod->text();
+
     if (modName.startsWith(_disabledPrefix))
     {
         isDisabledMod = true;
         modName = modName.mid(_disabledPrefix.length());
     }
+    int versionPos = modName.lastIndexOf(" (v");
+    if (versionPos > 0 && modName.endsWith(")"))
+        modName = modName.left(versionPos);
 
     int len = 0;
     if (isDisabledMod)
@@ -507,9 +511,9 @@ void ModsListContainer::updateDisableButtonText()
     _deleteModBtn.setStatusTip(" " + QCoreApplication::translate("ModsListContainer", "Delete %1 \"%2\".", "Delete selected plugin or patcher tooltip text").arg(_typeName, modName));
 }
 
-void ModsListContainer::addNewItem(const QString& item, const bool isDisabled)
+void ModsListContainer::addNewItem(const QString& item, const QString& version, const bool isDisabled)
 {
-    _modsList->addNewItem(isDisabled ? _disabledPrefix + item : item, isDisabled);
+    _modsList->addNewItem((isDisabled ? _disabledPrefix + item : item) + (!version.isEmpty() ? " (v" + version + ")" : ""), isDisabled);
 }
 
 void ModsListContainer::clearItems()

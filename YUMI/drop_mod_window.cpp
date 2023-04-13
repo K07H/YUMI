@@ -195,7 +195,7 @@ QStringList DropModWindow::getDroppedFilesList(const QMimeData* mimeData)
     for (int i = 0; i < nbPaths; i++)
     {
         QFileInfo fi(pathList.at(i));
-        if (fi.exists() && (fi.isDir() || (fi.isFile() && fi.completeSuffix().compare("zip", Qt::CaseInsensitive) == 0)))
+        if (fi.exists() && (fi.isDir() || (fi.isFile() && fi.completeSuffix().endsWith("zip", Qt::CaseInsensitive))))
         {
             qDebug().nospace() << "Receiving valid dropped file " << pathList.at(i) << ".";
             validPaths.push_back(pathList.at(i));
@@ -229,6 +229,8 @@ void DropModWindow::processDroppedMods()
         ((yumi*)_yumiPtr)->pendingDragAndDrop = false;
         return;
     }
+
+    ((yumi*)_yumiPtr)->showInstallingModWindow(false);
 
     int nbDroppedModsQueued = 0;
     for (int i = 0; i < nbFiles; i++)
@@ -266,7 +268,7 @@ void DropModWindow::processDroppedMods()
                 }
             }
         }
-        else if (fi.isFile() && fi.completeSuffix().compare("zip", Qt::CaseInsensitive) == 0 && fi.fileName().length() > 4)
+        else if (fi.isFile() && fi.completeSuffix().endsWith("zip", Qt::CaseInsensitive) && fi.fileName().length() > 4)
         {
             QFile toCopy(this->_modsToProcess[i]);
             if (toCopy.exists())
@@ -298,6 +300,8 @@ void DropModWindow::processDroppedMods()
     this->_modsToProcess.clear();
     if (nbDroppedModsQueued > 0)
         ((yumi*)_yumiPtr)->forceRefreshModsMonitoring();
+    else
+        ((yumi*)_yumiPtr)->showInstallingModWindow(true);
     ((yumi*)_yumiPtr)->pendingDragAndDrop = false;
 }
 

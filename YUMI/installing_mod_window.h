@@ -73,26 +73,43 @@
 ** Franklin Street, Fifth Floor, Boston, MA 02110 USA.
 */
 
-#ifndef __MOD_INFO_H__
-#define __MOD_INFO_H__
+#ifndef __INSTALLING_MOD_WINDOW_H__
+#define __INSTALLING_MOD_WINDOW_H__
 
-#include <QString>
+#include <QObject>
+#include <QWidget>
+#include <QPoint>
+#include <QMouseEvent>
+#include <QPaintEvent>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QPushButton>
+#include "window_title.h"
 
-class ModInfo
+class InstallingModWindow : public QWidget
 {
-private:
-    ModInfo();
+    Q_OBJECT
 
 public:
-    ModInfo(const QString& modName, const QString& modPath, const QString& modVersion);
-    ModInfo(const ModInfo& other);
-    ModInfo& operator=(const ModInfo&);
+    explicit InstallingModWindow(QWidget* parent = NULL);
+    void doShowAt(const QPoint& center);
+    void updateStyles();
 
-    bool isFolderPath();
+protected:
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
+    void paintEvent(QPaintEvent* event) override;
 
-    QString name;
-    QString path;
-    QString version;
+private:
+    InstallingModWindow() = delete;
+
+    WindowTitle* _title;
+    QLabel* _msg;
+    QPushButton* _okButton;
+    QVBoxLayout _layout;
+    bool _windowMoving;
+    QPoint _mousePos;
 };
 
 #endif

@@ -266,7 +266,7 @@ bool Config::SwapLanguage(const QString& lang, QApplication* app)
         _isFrenchTranslatorInstalled = true;
         return true;
     }
-    else if (lang.compare("Türk") == 0)
+    else if (lang.compare("Türk") == 0 || lang.compare("Türkçe") == 0)
     {
         if (!_isTurkishTranslatorInstalled)
         {
@@ -388,8 +388,13 @@ int Config::loadConfig()
         if (trimmedLineLen > languageDelimiterLen && trimmedLine.startsWith(languageDelimiter))
         {
             QString lineVal(trimmedLine.mid(languageDelimiterLen));
-            if (!lineVal.isEmpty() && (lineVal.compare("English", Qt::CaseInsensitive) == 0 || lineVal.compare("Français", Qt::CaseInsensitive) == 0 || lineVal.compare("Türk", Qt::CaseInsensitive) == 0))
-                language = lineVal;
+            if (!lineVal.isEmpty())
+            {
+                if (lineVal.compare("Türk", Qt::CaseInsensitive) == 0)
+                    lineVal = "Türkçe";
+                if (lineVal.compare("English", Qt::CaseInsensitive) == 0 || lineVal.compare("Français", Qt::CaseInsensitive) == 0 || lineVal.compare("Türkçe", Qt::CaseInsensitive) == 0)
+                    language = lineVal;
+            }
         }
         if (trimmedLineLen > themeDelimiterLen && trimmedLine.startsWith(themeDelimiter))
         {

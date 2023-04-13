@@ -93,7 +93,7 @@
 #define QT_NO_SSL
 #endif
 
-#define APP_VERSION "1.0.4"
+#define APP_VERSION "1.0.5"
 #if IS_DEVELOPMENT
 #define YUMI_BEPINEX_VERSION_CHECK_URL "http://osubmarin.fr/yumi/latest_bepinex_version_dev.php"
 #define YUMI_VERSION_CHECK_URL "http://osubmarin.fr/yumi/latest_version_dev.php"
@@ -122,8 +122,8 @@
 #define IL2CPPX64_BEPINEX_NAME "il2cppx64_bepinex"
 #define IL2CPPX86_BEPINEX_NAME "il2cppx86_bepinex"
 
-#define DEFAULT_DOWNLOAD_REQUEST_TIMEOUT 300
-#define DEFAULT_GET_REQUEST_TIMEOUT 60
+#define DEFAULT_DOWNLOAD_REQUEST_TIMEOUT 600
+#define DEFAULT_GET_REQUEST_TIMEOUT 120
 
 #define UNKNOWN_GAME -1
 #define WIN_GAME_X64 0

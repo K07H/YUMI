@@ -93,6 +93,7 @@
 #include "yumi_settings.h"
 #include "yumi_network.h"
 #include "debug_logs.h"
+#include "installing_mod_window.h"
 
 class yumi : public QMainWindow
 {
@@ -131,6 +132,7 @@ public:
     void showLicense();
     void showGetLatestVersionResult(const bool success, const QString& msg, const bool isStartup);
     void forceRefreshModsMonitoring();
+    void showInstallingModWindow(const bool hide);
 
 public slots:
     void gameFolderOpen();
@@ -138,6 +140,7 @@ public slots:
     void startupCheckForLatestVersion();
     void checkForLatestVersion();
     void checkForModsToInstall();
+    void createInstallingModWindow();
 
 protected:
     void mousePressEvent(QMouseEvent* event) override;
@@ -186,6 +189,9 @@ private:
     bool _monitoringInitialized;
     bool _monitoringIsRunning;
     QVector<std::tuple<QString, QDateTime>> _monitoredFolder;
+
+    InstallingModWindow* installingModWindow;
+    bool _showInstallingModWindow;
 
 private slots:
     void wiki();

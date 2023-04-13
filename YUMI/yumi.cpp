@@ -123,6 +123,8 @@ yumi::yumi(QApplication* app, QWidget *parent) : QMainWindow(parent)
     this->_monitoredFolder = QVector<std::tuple<QString, QDateTime>>();
     this->pendingDragAndDrop = false;
     this->theme = "Default";
+    this->_showInstallingModWindow = false;
+    this->installingModWindow = NULL;
 
     QStringList fontFamilies = QFontDatabase().families();
     Assets::primaryFontFamily = "Gill Sans MT";
@@ -411,6 +413,7 @@ void yumi::checkForModsToInstall()
 {
     ModsLoader::Instance()->installMods(this);
     this->yumiIsStarting = false;
+    this->showInstallingModWindow(true);
     this->_monitoringInitialized = false;
 }
 
@@ -786,4 +789,27 @@ void yumi::about()
     if (this->_aboutWidget->isVisible())
         this->_aboutWidget->close();
     this->_aboutWidget->doShowAt(getCenter());
+}
+
+void yumi::createInstallingModWindow()
+{
+    if (installingModWindow == NULL)
+        installingModWindow = new InstallingModWindow(NULL);
+    if (this->_showInstallingModWindow)
+    {
+        QApplication::setOverrideCursor(Qt::WaitCursor);
+        installingModWindow->doShowAt(this->getCenter());
+    }
+    else
+    {
+        QApplication::restoreOverrideCursor();
+        if (installingModWindow->isVisible())
+            installingModWindow->close();
+    }
+}
+
+void yumi::showInstallingModWindow(const bool hide)
+{
+    this->_showInstallingModWindow = !hide;
+    QMetaObject::invokeMethod(this, "createInstallingModWindow", Qt::AutoConnection);
 }

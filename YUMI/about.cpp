@@ -104,9 +104,10 @@ About::About(void* yumiPtr, QWidget* parent) : QWidget(parent)
     this->_description = new AboutDescription(yumiPtr, this);
 
     this->_additionalText = new QLabel(this);
+    QString contributors = "Fuat (K8)";
     this->_additionalText->setText("<table><tr><td><b>" + QCoreApplication::translate("About", "Version:", "Label text") + "</b>&nbsp;&nbsp;</td><td>" + APP_VERSION + "</td></tr>"
         "<tr><td><b>" + QCoreApplication::translate("About", "Author:", "Label text") + "</b>&nbsp;&nbsp;</td><td>OSubMarin &lt;<a href=\"mailto:" + YUMI_AUTHOR_EMAIL + "\">" + YUMI_AUTHOR_EMAIL + "</a>&gt;</td></tr>"
-        "<tr><td><b>" + QCoreApplication::translate("About", "Contributors:", "Label text") + "</b>&nbsp;&nbsp;</td><td><i>" + QCoreApplication::translate("About", "None yet, you're welcome to join :)", "Contributors names") + "</i></td></tr>"
+        "<tr><td><b>" + QCoreApplication::translate("About", "Contributors:", "Label text") + "</b>&nbsp;&nbsp;</td><td><i>" + contributors + "</i></td></tr>"
         "<tr><td><b>" + QCoreApplication::translate("About", "ModAPI Discord server:", "Label text") + "</b>&nbsp;&nbsp;</td><td><a href=\"" + MODDING_DISCORD_URL + "\">" + MODDING_DISCORD_URL + "</a></td></tr>"
         "<tr><td><b>" + QCoreApplication::translate("About", "YUMI Discord server:", "Label text") + "</b>&nbsp;&nbsp;</td><td><a href=\"" + YUMI_DISCORD_URL + "\">" + YUMI_DISCORD_URL + "</a></td></tr>"
         "<tr><td><b>" + QCoreApplication::translate("About", "Project link:", "Label text") + "</b>&nbsp;&nbsp;</td><td><a href=\"" + YUMI_REPOSITORY_URL + "\">" + YUMI_REPOSITORY_URL + "</a></td></tr>"

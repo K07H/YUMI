@@ -79,24 +79,28 @@ ModInfo::ModInfo()
 {
     this->name = QString("");
     this->path = QString("");
+    this->version = QString("");
 }
 
-ModInfo::ModInfo(const QString& modName, const QString& modPath)
+ModInfo::ModInfo(const QString& modName, const QString& modPath, const QString& modVersion)
 {
     this->name = modName;
     this->path = modPath;
+    this->version = modVersion;
 }
 
 ModInfo::ModInfo(const ModInfo& other)
 {
     this->name = other.name;
     this->path = other.path;
+    this->version = other.version;
 }
 
 ModInfo& ModInfo::operator=(const ModInfo& other)
 {
     this->name = other.name;
     this->path = other.path;
+    this->version = other.version;
     return *this;
 }
 

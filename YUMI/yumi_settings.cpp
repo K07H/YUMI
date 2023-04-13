@@ -115,7 +115,7 @@ YumiSettings::YumiSettings(void* yumiPtr, QWidget* parent) : QWidget(parent)
     this->_languageComboBox = new QComboBox();
     this->_languageComboBox->addItem(Assets::Instance()->englishFlagIcon, "English");
     this->_languageComboBox->addItem(Assets::Instance()->frenchFlagIcon, "Français");
-    this->_languageComboBox->addItem(Assets::Instance()->turkishFlagIcon, "Türk");
+    this->_languageComboBox->addItem(Assets::Instance()->turkishFlagIcon, "Türkçe");
     this->_languageComboBox->setCurrentText(Config::Instance()->language);
     this->_languageComboBox->setCursor(Qt::PointingHandCursor);
     this->_languageComboBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::MinimumExpanding);
@@ -620,7 +620,9 @@ void YumiSettings::save()
         saveConfig = true;
     }
     QString lang = this->_languageComboBox->currentText();
-    if (!lang.isEmpty() && (lang.compare("English", Qt::CaseInsensitive) == 0 || lang.compare("Français", Qt::CaseInsensitive) == 0 || lang.compare("Türk", Qt::CaseInsensitive) == 0) && Config::Instance()->language.compare(lang, Qt::CaseInsensitive) != 0)
+    if (!lang.isEmpty() && lang.compare("Türk", Qt::CaseInsensitive) == 0)             
+        lang = "Türkçe";
+    if (!lang.isEmpty() && (lang.compare("English", Qt::CaseInsensitive) == 0 || lang.compare("Français", Qt::CaseInsensitive) == 0 || lang.compare("Türkçe", Qt::CaseInsensitive) == 0) && Config::Instance()->language.compare(lang, Qt::CaseInsensitive) != 0)
     {
         Config::Instance()->language = lang;
         saveConfig = true;

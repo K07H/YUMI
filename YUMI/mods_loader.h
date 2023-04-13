@@ -156,6 +156,7 @@ private:
     std::tuple<QString, bool> getActualTempModFolderPathForPlugin(const QString& tempModDirPath, const QString& modName);
     QString askModForWhichGame(void* yumiPtr, const QString& modName);
     QString getGameNameFromModInfoFile(const QString& actualTempModFolderPath);
+    QString getModVersionFromModInfoFile(const QString& actualTempModFolderPath);
     QString findGameForMod(const QString& actualTempModFolderPath, const QString& modName, void* yumiPtr, const bool isArchive);
     void removeModArchiveOrFolder(const QString& modName, const QString& modsFolderPath, const bool isArchive);
     bool installExtractedMod(const QString& extractedModFolderPath, const QString& modName, const QString& modsFolderPath, void* yumiPtr, const bool isArchive);

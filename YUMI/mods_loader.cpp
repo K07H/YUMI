@@ -151,12 +151,41 @@ QList<ModInfo>* ModsLoader::getModsList(const QString& modsFolderPath)
             if (pluginsFolder.exists(allMods[i]))
             {
                 QString modName = allMods[i];
+                bool isDll = false;
                 if (modName.length() > 4 && modName.endsWith(".dll", Qt::CaseInsensitive))
+                {
                     modName = modName.left(modName.length() - 4);
+                    isDll = true;
+                }
+
                 QString modPath(Utils::toUnixPath(pluginsFolder.absolutePath() + QDir::separator() + allMods[i]));
+
+                QString modVersion = "";
+                QString modVersionFilepath = "";
+                if (isDll)
+                    modVersionFilepath = Utils::toUnixPath(pluginsFolder.absolutePath() + QDir::separator() + modName + "_version.txt");
+                else
+                    modVersionFilepath = Utils::toUnixPath(pluginsFolder.absolutePath() + QDir::separator() + modName + QDir::separator() + modName + "_version.txt");
+                QFile modVersionFile = QFile(modVersionFilepath);
+                if (modVersionFile.exists())
+                {
+                    if (modVersionFile.open(QIODevice::ReadOnly))
+                    {
+                        QString versionFileContent = "";
+                        try { versionFileContent = modVersionFile.readAll(); }
+                        catch (...) { versionFileContent = ""; }
+                        if (!versionFileContent.isEmpty())
+                        {
+                            versionFileContent = versionFileContent.replace("\r\n", "").replace("\n", "").trimmed();
+                            if (!versionFileContent.isEmpty())
+                                modVersion = versionFileContent;
+                        }
+                    }
+                }
+
                 if (retval == NULL)
                     retval = new QList<ModInfo>();
-                retval->push_back(ModInfo(modName, modPath));
+                retval->push_back(ModInfo(modName, modPath, modVersion));
             }
     }
 
@@ -1947,12 +1976,58 @@ QString ModsLoader::getGameNameFromModInfoFile(const QString& actualTempModFolde
     if (modInfoFile.exists())
         if (modInfoFile.open(QIODevice::ReadOnly))
         {
-            try { modForGameName = modInfoFile.readAll(); }
+            try
+            {
+                modForGameName = modInfoFile.readAll();
+                if (!modForGameName.isEmpty())
+                {
+                    modForGameName = modForGameName.replace("\r\n", "\n");
+                    int newLinePos = modForGameName.indexOf("\n");
+                    if (newLinePos == 0)
+                        modForGameName = "";
+                    else if (newLinePos > 0)
+                        modForGameName = modForGameName.left(newLinePos);
+                }
+            }
             catch (const std::exception& ex) { modForGameName = ""; qWarning().nospace() << "Exception caught while reading mod info file (Exception: " << ex.what() << ")."; }
             catch (...) { modForGameName = ""; qWarning() << "Exception caught while reading mod info file."; }
             modInfoFile.close();
         }
     return modForGameName;
+}
+
+QString ModsLoader::getModVersionFromModInfoFile(const QString& actualTempModFolderPath)
+{
+    QString modVersionName = "";
+    QString modInfoFilePath = Utils::toUnixPath(actualTempModFolderPath + "/mod_info.txt");
+    QFile modInfoFile(modInfoFilePath);
+    if (modInfoFile.exists())
+        if (modInfoFile.open(QIODevice::ReadOnly))
+        {
+            try
+            {
+                QString content = modInfoFile.readAll();
+                if (!content.isEmpty())
+                {
+                    content = content.replace("\r\n", "\n");
+                    int newLinePos = content.indexOf("\n");
+                    if (newLinePos >= 0 && content.length() > newLinePos)
+                        modVersionName = content.mid(newLinePos + 1);
+                    if (!modVersionName.isEmpty())
+                    {
+                        newLinePos = modVersionName.indexOf("\n");
+                        if (newLinePos == 0)
+                            modVersionName = "";
+                        else if (newLinePos > 0)
+                            modVersionName = modVersionName.left(newLinePos);
+                    }
+                }
+            }
+            catch (const std::exception& ex) { modVersionName = ""; qWarning().nospace() << "Exception caught while reading mod info file (Exception: " << ex.what() << ")."; }
+            catch (...) { modVersionName = ""; qWarning() << "Exception caught while reading mod info file."; }
+            modInfoFile.close();
+        }
+    return modVersionName;
 }
 
 QString ModsLoader::findGameForMod(const QString& actualTempModFolderPath, const QString& modName, void* yumiPtr, const bool isArchive)

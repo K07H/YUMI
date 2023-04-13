@@ -87,8 +87,6 @@
 #include "mods_loader.h"
 #include "yumi.h"
 #include "assets.h"
-#include "utils.h"
-
 GameDetails::GameDetails(void* yumiPtr, QWidget* parent) : QWidget(parent)
 {
     _uninstallWindow = NULL;
@@ -371,7 +369,7 @@ void GameDetails::updateGameDetails(GameInfo* details)
             int len = _pluginsListContainer->mods->count();
             if (len > 0)
                 for (int i = 0; i < len; i++)
-                    _pluginsListContainer->addNewItem((*_pluginsListContainer->mods)[i].name, false);
+                    _pluginsListContainer->addNewItem((*_pluginsListContainer->mods)[i].name, (*_pluginsListContainer->mods)[i].version, false);
         }
         if (_pluginsListContainer->disabledMods != NULL)
             delete _pluginsListContainer->disabledMods;
@@ -381,7 +379,7 @@ void GameDetails::updateGameDetails(GameInfo* details)
             int len = _pluginsListContainer->disabledMods->count();
             if (len > 0)
                 for (int i = 0; i < len; i++)
-                    _pluginsListContainer->addNewItem((*_pluginsListContainer->disabledMods)[i].name, true);
+                    _pluginsListContainer->addNewItem((*_pluginsListContainer->disabledMods)[i].name, (*_pluginsListContainer->disabledMods)[i].version, true);
         }
         if (_patchersListContainer->mods != NULL)
             delete _patchersListContainer->mods;
@@ -391,7 +389,7 @@ void GameDetails::updateGameDetails(GameInfo* details)
             int len = _patchersListContainer->mods->count();
             if (len > 0)
                 for (int i = 0; i < len; i++)
-                    _patchersListContainer->addNewItem((*_patchersListContainer->mods)[i].name, false);
+                    _patchersListContainer->addNewItem((*_patchersListContainer->mods)[i].name, (*_patchersListContainer->mods)[i].version, false);
         }
         if (_patchersListContainer->disabledMods != NULL)
             delete _patchersListContainer->disabledMods;
@@ -401,7 +399,7 @@ void GameDetails::updateGameDetails(GameInfo* details)
             int len = _patchersListContainer->disabledMods->count();
             if (len > 0)
                 for (int i = 0; i < len; i++)
-                    _patchersListContainer->addNewItem((*_patchersListContainer->disabledMods)[i].name, true);
+                    _patchersListContainer->addNewItem((*_patchersListContainer->disabledMods)[i].name, (*_patchersListContainer->disabledMods)[i].version, true);
         }
         if (!_updatesChecked.contains(details->path))
         {

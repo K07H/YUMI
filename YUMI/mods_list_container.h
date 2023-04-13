@@ -133,7 +133,7 @@ public:
     QList<ModInfo>* disabledMods;
     GameInfo* gameInfos;
 
-    void addNewItem(const QString& item, const bool isDisabled);
+    void addNewItem(const QString& item, const QString& version, const bool isDisabled);
     void clearItems();
     void toggleButtons(const bool visible);
     void updateDisableButtonText();

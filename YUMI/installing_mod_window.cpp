@@ -73,26 +73,108 @@
 ** Franklin Street, Fifth Floor, Boston, MA 02110 USA.
 */
 
-#ifndef __MOD_INFO_H__
-#define __MOD_INFO_H__
+#include <QCoreApplication>
+#include <QStyleOption>
+#include <QPainter>
+#include "installing_mod_window.h"
+#include "assets.h"
+#include "common.h"
 
-#include <QString>
-
-class ModInfo
+InstallingModWindow::InstallingModWindow(QWidget* parent) : QWidget(parent)
 {
-private:
-    ModInfo();
+    this->_windowMoving = false;
 
-public:
-    ModInfo(const QString& modName, const QString& modPath, const QString& modVersion);
-    ModInfo(const ModInfo& other);
-    ModInfo& operator=(const ModInfo&);
+    QString windowTitle(QCoreApplication::translate("InstallingModWindow", "Installing mod, please wait", "Window title"));
 
-    bool isFolderPath();
+    this->setWindowTitle(windowTitle);
+    this->setWindowIcon(Assets::Instance()->appIcon);
+    this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
+    this->setAttribute(Qt::WA_NoSystemBackground, true);
+    this->setAttribute(Qt::WA_TranslucentBackground, true);
+    this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    this->setContentsMargins(0, 0, 0, 0);
 
-    QString name;
-    QString path;
-    QString version;
-};
+    this->_title = new WindowTitle(windowTitle, this);
 
+    this->_msg = new QLabel(QCoreApplication::translate("InstallingModWindow", "Installing mod... Please wait.", "Label text"));
+    this->_msg->setStyleSheet("QLabel { margin-left: 10px; margin-right: 10px; " + Assets::Instance()->REGULAR_LABEL_STYLE + " }");
+
+    this->_okButton = new QPushButton();
+    this->_okButton->setText(QCoreApplication::translate("InstallingModWindow", "&OK", "Button text"));
+    this->_okButton->setStyleSheet(Assets::Instance()->mainBtnStyle);
+    this->_okButton->setCursor(Qt::PointingHandCursor);
+    this->_okButton->setContentsMargins(15, 0, 15, 0);
+    this->connect(this->_okButton, SIGNAL(clicked()), this, SLOT(close()));
+
+    this->_layout.setContentsMargins(0, 0, 0, 0);
+    this->_layout.setSpacing(0);
+    this->_layout.setAlignment(Qt::AlignTop);
+    this->_layout.addWidget(this->_title, Qt::AlignTop);
+    this->_layout.addSpacing(20);
+    this->_layout.addWidget(this->_msg, Qt::AlignTop);
+    this->_layout.addSpacing(20);
+    this->_layout.addWidget(this->_okButton, Qt::AlignHCenter);
+    this->_layout.addSpacing(10);
+
+    this->setStyleSheet("InstallingModWindow { " + Assets::Instance()->DEFAULT_WINDOW_STYLE + " }");
+    this->setLayout(&this->_layout);
+}
+
+void InstallingModWindow::updateStyles()
+{
+    this->_msg->setStyleSheet("QLabel { margin-left: 10px; margin-right: 10px; " + Assets::Instance()->REGULAR_LABEL_STYLE + " }");
+    this->_okButton->setStyleSheet(Assets::Instance()->mainBtnStyle);
+    this->setStyleSheet("InstallingModWindow { " + Assets::Instance()->DEFAULT_WINDOW_STYLE + " }");
+
+    this->_title->updateStyles();
+
+    adjustSize();
+    update();
+}
+
+void InstallingModWindow::doShowAt(const QPoint& center)
+{
+    this->show();
+    this->adjustSize();
+    this->move(center.x() - (this->width() / 2), center.y() - (this->height() / 2));
+}
+
+void InstallingModWindow::mousePressEvent(QMouseEvent* event)
+{
+    if (event->button() == Qt::LeftButton)
+    {
+        _mousePos = event->globalPos() - pos();
+        _windowMoving = true;
+    }
+    QWidget::mousePressEvent(event);
+}
+
+void InstallingModWindow::mouseMoveEvent(QMouseEvent* event)
+{
+    if (_windowMoving && (event->buttons() & Qt::LeftButton))
+    {
+        event->accept();
+        move(event->globalPos() - _mousePos);
+    }
+    else
+        QWidget::mouseMoveEvent(event);
+}
+
+void InstallingModWindow::mouseReleaseEvent(QMouseEvent* event)
+{
+    if (event->button() == Qt::LeftButton)
+        _windowMoving = false;
+    QWidget::mouseReleaseEvent(event);
+}
+
+void InstallingModWindow::paintEvent(QPaintEvent*)
+{
+#if IS_DEBUG && DEBUG_PAINTING
+    qDebug() << "InstallingModWindow paint event!";
 #endif
+
+    QStyleOption opt;
+    opt.init(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}
