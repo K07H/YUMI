@@ -7,7 +7,7 @@ Check out [the wiki](https://github.com/K07H/YUMI/wiki) for more info.
 <br><br>
 
 **Version:** 1.0.5<br>
-**Author:** OSubMarin <[contact@osubmarin.com](mailto:contact@osubmarin.com)><br>
+**Author:** OSubMarin <[contact@osubmarin.com](mailto:contact@osubmarin.fr)><br>
 **Contributors:** Fuat (also known as K8)<br>
 **ModAPI Discord server:** [https://discord.gg/VAMuXyd](https://discord.gg/VAMuXyd)<br>
 **YUMI Discord server:** [https://discord.gg/WDvjt7csWh](https://discord.gg/WDvjt7csWh)<br>
